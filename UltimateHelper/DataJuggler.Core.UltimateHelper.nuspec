@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/DataJuggler/SharedRepo/tree/master/License</licenseUrl>
+    <projectUrl>https://github.com/DataJuggler/SharedRepo</projectUrl>
+    <iconUrl>https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/DataJuggler.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>I fixed a bug with the Recursive Search. I should have tested the method GetFilesRecursively one time, but now that I fixed a bug it works really well.</releaseNotes>
+    <copyright>Copyright 2019 Data Juggler Software Licensed For Free To Do Whatever You Want. No Lawyers Needed Ever.</copyright>
+    <tags>C# Helper Classes Data Juggler DataJuggler NullHelper TextHelper EnumHelper ListHelper List Helper Dialog Helper MessageBoxHelper Message Box Helper</tags>
+  </metadata>
+</package>

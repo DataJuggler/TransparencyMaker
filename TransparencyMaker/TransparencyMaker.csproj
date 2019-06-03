@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09855544-8192-48BF-9412-CCD0A3822A64}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TransparencyMaker</RootNamespace>
+    <AssemblyName>TransparencyMaker</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Projects\GitHub\Published\TransparencyMaker\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Erason Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>AC3032132EC62D06C1FF55FD8EEFCDB07B892B5A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TransparencyMaker_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\FuturisticButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FuturisticButtonControl.Designer.cs">
+      <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PixelInformationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PixelInformationControl.Designer.cs">
+      <DependentUpon>PixelInformationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delegates\RegisteredEvents.cs" />
+    <Compile Include="Enumerations\TransparencyMakerEnumerations.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objects\History.cs" />
+    <Compile Include="Objects\PixelCriteria.cs" />
+    <Compile Include="Objects\PixelDatabase.cs" />
+    <Compile Include="Objects\PixelInformation.cs" />
+    <Compile Include="Objects\PixelQuery.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\DirectBitmap.cs" />
+    <Compile Include="Objects\Directions.cs" />
+    <Compile Include="Util\PixelQueryParser.cs" />
+    <EmbeddedResource Include="Controls\FuturisticButtonControl.resx">
+      <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PixelInformationControl.resx">
+      <DependentUpon>PixelInformationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Gray Slate.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Start2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Start2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Start Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Start Button New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Algorithym.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Dark Slate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Close Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Deep Space.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Save Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Save As Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Analyze File.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Close Button 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Background Changer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Background Changer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Reset2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Reset Button Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Dark Slate Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Gray Slate Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Color Picker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Alpha2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\X.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Yellow See Thru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Cyan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Sum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Erason Icon.ico" />
+    <None Include="Resources\YouTube.png" />
+    <None Include="Images\Alpha Background.png" />
+    <None Include="Images\Reset Button.png" />
+    <None Include="Images\Push Button Reset 2.png" />
+    <None Include="Images\Undo Changes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UltimateHelper\DataJuggler.Core.UltimateHelper.csproj">
+      <Project>{b570d96e-c163-480d-8c89-192ac7cef60a}</Project>
+      <Name>DataJuggler.Core.UltimateHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
