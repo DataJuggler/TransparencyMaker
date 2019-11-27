@@ -1412,7 +1412,7 @@ namespace TransparencyMaker
                     red = pixels[a + 2];
                     alpha = pixels[a + 3];
                     
-                    // create a coor
+                    // create a color
                     color = Color.FromArgb(alpha, red, green, blue);
 
                     // Add this point
