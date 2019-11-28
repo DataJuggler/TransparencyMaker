@@ -295,8 +295,8 @@ namespace TransparencyMaker
             /// </summary>
             private void YouTubeButton_Click(object sender, EventArgs e)
             {
-                // open to my website
-                System.Diagnostics.Process.Start("https://www.youtube.com/channel/UCaw0joqvisKr3lYJ9Pd2vHA");
+                // open to Transparency Maker PlayList
+                System.Diagnostics.Process.Start("https://www.youtube.com/playlist?list=PLKrW5tXCPiX2PxrLPszDzlcEZwQG-Qb8r");
             }
             #endregion
             
