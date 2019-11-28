@@ -158,7 +158,7 @@ All pixels with a Y value of 1,200 or higher wil be set to Alpha 255 to be shown
 # Less Than
 # Less Than Symbol: <
 
-Will match criterian on less than or equal to
+Will match criteria on less than or equal to
 
 # Less Than Example
 
@@ -247,10 +247,84 @@ Total Between 525 590<br/>
 X Between 200 360<br/>
 Y > 400<br/>
 
-# Drawing Lines
-You can draw lines to hide pixels along a line, or you can draw lines of a specific color.
+# Drawing Transparent Lines
 
-Coming Soon. I am going to Thansgiving lunch with a friend.
+To Draw a Transparent Line, Type The Following
+
+Line 1: Draw Line LineThickness
+Line 2: First two points are Line Start Point X Y
+        Second two points are Line End Point X Y
+Line 3 (Optional): Repeat Direction Iterations Move
+
+Draw Line 4
+161  125  457  66
+Repeat Down 15 1 
+
+# Tip: Line 2 can be filled in for you using the Color Picker
+
+Type Line 1 Draw Line (Thickness), then hit enter to place your cursor on the next line.
+Ensuriing the Color Picker is toggled on, Click on your image to establish Point 1:
+
+Draw Line 4
+161  125  
+
+Then click your mouse again for the end point of the line:
+
+Draw Line 4
+161  125  457  66
+
+(Optional) Type line 3 if you want to repeat.
+
+Then click Apply.
+
+Draw Line 4
+161  125  457  66
+Repeat Down 15 1 
+
+# Repeat Directions
+Use with Repeat with Down, Up, Left Right
+
+# Repeat Up Example
+
+Draw Line 2
+0  64  457  66
+Repeat Up 100 2
+
+The above line will be drawn 100 times, and each time it will move the Y coordinate up (minus) two pixels.
+
+Note: The line will go futher than the bounds of the image, so Repeat 50 would accomplish the same thing.
+
+# Repeat Left Example
+
+Draw Line 1
+225  412  105  430
+Repeat Left 25 2
+
+The above line will be drawn 25 times and will move the StartPoint.X and EndPoint.X left two pixels each iteration.
+
+# Repeat Right Example
+
+Draw Line 5
+140 300 90 600
+Repeat Right 50 10
+
+The above line will draw transparent stripes through an image because the Repeat Move (last parameter) is greater than the line thickness from Line 1.
+
+# Draw Transparent Lines Are Slow In Large Images
+Drawing transparent lines is slower than any other operation using Transparency Maker because what it actually does is create a copy of the source image and draws a line trhough the copy in a color that doesn't exist in the copy, then creates a Pixel Database out of the copy image and determines which pixels were modified. The pixels that were modified in the copy are then applied to the source Pixel Database and set to Transparent.
+
+I think this is a good candidate for letting people with a powerful GPU take advantage of this, but I haven't learned how to apply this yet. I have a 1080 TI, but I have never written any code to take advantage of a GPU. Volunteers anyone?
+
+# Draw Line In Color
+I thought I had code to draw a line in a specific color, but this has not been done yet apparently.
+
+If anyone wants this feature let me know.
+
+Any suggestions or feedback is welcome.
+
+
+
+
 
 
 
