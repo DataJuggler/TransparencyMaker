@@ -41,7 +41,7 @@ Alpha - The Transparency Level of the pixel. Values are 0 - 255, where 0 is tran
 
 You can use all of the above values in your queries to manipulate your image.
 
-I have to run to Starbucks and walk my doc, docs will be finished today (Thanksgiving in the US).
+I have to run to Starbucks and walk my dog, docs will be finished today (Thanksgiving in the US).
 
 
 
