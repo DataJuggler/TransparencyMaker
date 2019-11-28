@@ -90,7 +90,7 @@ Total > 700
 
 # Shortcut for Hide Pixels is Hide, so the same example can be rewritten
 
-Hide
+Hide<br/>
 Total > 700 
 
 # Show
