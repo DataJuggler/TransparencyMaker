@@ -315,6 +315,15 @@ Drawing transparent lines is slower than any other operation using Transparency 
 
 I think this is a good candidate for letting people with a powerful GPU take advantage of this, but I haven't learned how to apply this yet. I have a 1080 TI, but I have never written any code to take advantage of a GPU. Volunteers anyone?
 
+# Known Issues
+Clicking Save sometimes causes an error. You can think click Continue, and are returned to your image.
+Click Save As works.
+
+# Upcoming Features
+It has been on my list for a long time to add a Save prompt if there are changes and you attempt to close the file or the application.
+
+Let me know what features you think are needed or any feedback you may have.
+
 # Draw Line In Color
 I thought I had code to draw a line in a specific color, but this has not been done yet apparently.
 
