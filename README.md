@@ -235,7 +235,7 @@ setting all pixels in a range to a certain value.
 Update<br/>
 Set Color 220 0 55<br/>
 Where<br/>
-Color Total Between 525 590<br/>
+Total Between 525 590<br/>
 X Between 200 360<br/>
 Y > 400<br/>
 
