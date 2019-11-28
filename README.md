@@ -11,6 +11,14 @@ What do you think? Should I keep the name Transparency Maker, or do you like Pix
 
 Let me know by creatiing an Issue on this project, or on any Transparency Maker videos on YouTube.
 
+# Visual Studio 
+Visual Studio 2019 is the recommeneded version, but most of the code worked as far back as VS 2010.
+
+# Install Version
+
+I will make an install and put it on my website as soon as I get a chance. If anyone would like an install, create an issue on this project and / or leave a comment on any of my YOuTube videos and I will expedite the install.
+
+
 # Transparency Maker Videos on my Channel
 
 https://www.youtube.com/playlist?list=PLKrW5tXCPiX2PxrLPszDzlcEZwQG-Qb8r
