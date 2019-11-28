@@ -11,6 +11,8 @@ A Pixel Database is a List of PixelPixelInformation objects that contains proper
 
 <img src="https://github.com/DataJuggler/TransparencyMaker/blob/master/Docs/ColorPicker.png">
 
+Tip: To determiine if the Color Picker is on, hover your mouse of any part of your image. If the mouse turns into a pointer (a hand), then the Color Picker is on. 
+
 Once the Color Picker is turned on, click any pixel in your image and a Pixel Information Box pops up:
 
 <img src="https://github.com/DataJuggler/TransparencyMaker/blob/master/Docs/PixelInfoBox.png">
