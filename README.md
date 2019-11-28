@@ -88,7 +88,8 @@ Any pixels affected by the query will be set to Alpha 0, which makes them invisi
 Hide Pixels Where  
 Total > 700
 
-# Shortcut for Hide Pixels is Hide, so the same example can be rewritten
+# Shortcut: Hide
+Hide Pixels Where can be shortened to:
 
 Hide<br/>
 Total > 700 
@@ -100,7 +101,8 @@ Any pixels affected by the query will be set to Alpha 255, which makes them visi
 Show Pixels Where  
 Red < 200
 
-# Shortcut for Hide Pixels is Show, so the above example can be rewritten
+# Shortcut: Show
+Show Pixels Where can be shortened to:
 
 Show<br/>
 Red < 200
@@ -115,7 +117,7 @@ So the query above would fail if written like this
 Show X < 150
 
 # Correct
-Show
+Show<br/>
 X < 150
 
 It wouldn't be that hard to rewrite the query parser, so let me know if you think the line by line requirement is confusing. I know it is crude, but this app was designed to be quick, dirty and functional at first.
@@ -128,7 +130,7 @@ Will match criteria on exact values.
 
 # Equal Example: 
 
-Hide
+Hide<br/>
 Red = 233
 
 All pixels that have a Red value of 233 will be set to Alpha 0 to be hidden.
@@ -140,7 +142,7 @@ Will match criterian on greater than or equal to
 
 # Greater Than Example
 
-Show
+Show<br/>
 Y > 1200
 
 All pixels with a Y value of 1,200 or higher wil be set to Alpha 255 to be shown.
@@ -152,7 +154,7 @@ Will match criterian on less than or equal to
 
 # Less Than Example
 
-Hide
+Hide<br/>
 BlueGreen < 300
 
 All pixels with a BlueGreen value of 300 or less wil be set to Alpha o to be hidden.
@@ -163,7 +165,7 @@ Will match criteria that is greater than or equal to the first number and less t
 
 # Between Example
 
-Hide
+Hide<br/>
 Blue Between 200 255
 
 All pixels with a Blue value between 200 and 255 will be hidden.
@@ -177,10 +179,10 @@ You can combine criteria to further narrow down the pixels that are manipulated
 
 # Coupound Examples:
 
-Show
-X > 200
-Y Between 112 140
-Total = 765
+Show<br/>
+X > 200<br/>
+Y Between 112 140<br/>
+Total = 765<br/>
 
 All pixels with X coordinate of 200 or higher and a Y value of 112 - 140 and a Total of 765 (White).
 
@@ -198,10 +200,10 @@ http://www.flounder.com/csharp_color_table.htm
 
 # Named Color Example
 
-Update
-Set Color FireRed
-Where
-Total Between 125 150
+Update<br/>
+Set Color FireRed<br/>
+Where<br/>
+Total Between 125 150<br/>
 
 # Note: Where must be on its own line for Update queries
 
@@ -210,19 +212,19 @@ You set the color by specifying the Red, Green and Blue values
 
 # RGB Color Example
 
-Update
-Set Color 121 220 7
-Where
-Y > 100
+Update<br/>
+Set Color 121 220 7<br/>
+Where<br/>
+Y > 100<br/>
 
 # Where is not optional
 
 You must specify the Where, even if you want to update all pixels
 
-Update 
-Set Color White
-Where
-Total > 0
+Update<br/>
+Set Color White<br/>
+Where<br/>
+Total > 0<br/>
 
 # Note: In the above example, all pixels will be set to white, since greater than > is equal to > or equal to.
 
@@ -230,12 +232,12 @@ Total > 0
 One of the uses of Transparency Maker is take an image that is grainy or pixelated, you can smooth out an area by
 setting all pixels in a range to a certain value.
 
-Update
-Set Color 220 0 55
-Where
-Color Total Between 525 590
-X Between 200 360
-Y > 400
+Update<br/>
+Set Color 220 0 55<br/>
+Where<br/>
+Color Total Between 525 590<br/>
+X Between 200 360<br/>
+Y > 400<br/>
 
 # Drawing Lines
 You can draw lines to hide pixels along a line, or you can draw lines of a specific color.
