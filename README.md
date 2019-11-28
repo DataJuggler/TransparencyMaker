@@ -4,7 +4,7 @@ Transparency Maker reads in a .jpg or .png and creates a Pixel Information Datab
 # Motivation
 The reason I wrote this program originally is when I purchase stock photos, almost all come with a background color and often I need a transparent background. There are other tools that perform background removal, with more now than in 2012 when I started working on Transparency Maker, however I wanted a way to programmaticaly manipulate pixels.
 
-# rebranding the name to Pixel Database
+# Rebranding the name to Pixel Database
 The original purpose of Transparency Maker was to make backgrounds transparent, thus the name. I have now expanded the features to include features for updating pixels, changing colors, drawing lines, etc. 
 
 What do you think? Should I keep the name Transparency Maker, or do you like Pixel Database better? 
