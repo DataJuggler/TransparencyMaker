@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TransparencyMaker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Transparency Maker reads in a .jpg or .png file and creates a Pixel Information Database.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Data Juggler - License Free of Charge.")]
 [assembly: AssemblyProduct("TransparencyMaker")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright ©  2016 - 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
