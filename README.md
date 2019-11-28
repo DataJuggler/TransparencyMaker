@@ -229,7 +229,7 @@ Total > 0<br/>
 # Note: In the above example, all pixels will be set to white, since greater than > is equal to > or equal to.
 
 # Normalizing An Image
-One of the uses of Transparency Maker is take an image that is grainy or pixelated, you can smooth out an area by
+One of the uses of Transparency Maker is an image that is grainy or pixelated, you can smooth out an area by
 setting all pixels in a range to a certain value.
 
 Update<br/>
