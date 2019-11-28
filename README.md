@@ -33,6 +33,8 @@ BlueGreen - The sum of Blue plus Green.
 
 BlueRed - The sum of Blue plus Red.
 
+Total - The sum of Red plus Green plus Blue.
+
 Alpha - The Transparency Level of the pixel. Values are 0 - 255, where 0 is transparent and 255 is visible.
 
 You can use all of the above values in your queries to manipulate your image.
