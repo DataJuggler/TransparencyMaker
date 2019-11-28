@@ -77,7 +77,7 @@ The initial criticism I have received is there are not any controls like most gr
 
 # Hide / Show vs Update Queries
 
-There are two types of queries; Hide or Update.
+There are two types of queries; Hide/Show and Update.
 
 # Hide / Show
 
