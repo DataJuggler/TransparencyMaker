@@ -16,7 +16,7 @@ Visual Studio 2019 is the recommeneded version, but most of the code worked as f
 
 # Install Version
 
-I will make an install and put it on my website as soon as I get a chance. If anyone would like an install, create an issue on this project and / or leave a comment on any of my YOuTube videos and I will expedite the install.
+I will make an install and put it on my website as soon as I get a chance. If anyone would like an install, create an issue on this project and / or leave a comment on any of my YouTube videos and I will expedite the install.
 
 
 # Transparency Maker Videos on my Channel
