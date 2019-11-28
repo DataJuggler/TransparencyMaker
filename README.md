@@ -242,6 +242,7 @@ Y > 400<br/>
 # Drawing Lines
 You can draw lines to hide pixels along a line, or you can draw lines of a specific color.
 
+Coming Soon. I am going to Thansgiving lunch with a friend.
 
 
 
