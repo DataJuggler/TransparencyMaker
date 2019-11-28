@@ -102,7 +102,7 @@ Red < 200
 
 # Shortcut for Hide Pixels is Show, so the above example can be rewritten
 
-Show
+Show<br/>
 Red < 200
 
 # Important
