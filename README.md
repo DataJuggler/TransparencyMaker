@@ -251,10 +251,10 @@ Y > 400<br/>
 
 To Draw a Transparent Line, Type The Following
 
-Line 1: Draw Line LineThickness
-Line 2: First two points are Line Start Point X Y
-        Second two points are Line End Point X Y
-Line 3 (Optional): Repeat Direction Iterations Move
+Line 1: Draw Line LineThickness<br/>
+Line 2: First two points are Line Start Point X Y<br/>
+        Second two points are Line End Point X Y<br/>
+Line 3 (Optional): Repeat Direction Iterations Move<br/>
 
 Draw Line 4<br/>
 161  125  457  66<br/>
