@@ -270,25 +270,25 @@ Draw Line 4<br/>
 
 Then click your mouse again for the end point of the line:
 
-Draw Line 4
+Draw Line 4<br/>
 161  125  457  66
 
 (Optional) Type line 3 if you want to repeat.
 
 Then click Apply.
 
-Draw Line 4
-161  125  457  66
-Repeat Down 15 1 
+Draw Line 4<br/>
+161  125  457  66<br/>
+Repeat Down 15 1<br/>
 
 # Repeat Directions
 Use with Repeat with Down, Up, Left Right
 
 # Repeat Up Example
 
-Draw Line 2
-0  64  457  66
-Repeat Up 100 2
+Draw Line 2<br/>
+0  64  457  66<br/>
+Repeat Up 100 2<br/>
 
 The above line will be drawn 100 times, and each time it will move the Y coordinate up (minus) two pixels.
 
@@ -296,17 +296,17 @@ Note: The line will go futher than the bounds of the image, so Repeat 50 would a
 
 # Repeat Left Example
 
-Draw Line 1
-225  412  105  430
-Repeat Left 25 2
+Draw Line 1<br/>
+225  412  105  430<br/>
+Repeat Left 25 2<br/>
 
 The above line will be drawn 25 times and will move the StartPoint.X and EndPoint.X left two pixels each iteration.
 
 # Repeat Right Example
 
-Draw Line 5
-140 300 90 600
-Repeat Right 50 10
+Draw Line 5<br/>
+140 300 90 600<br/>
+Repeat Right 50 10<br/>
 
 The above line will draw transparent stripes through an image because the Repeat Move (last parameter) is greater than the line thickness from Line 1.
 
