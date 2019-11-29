@@ -256,16 +256,16 @@ Line 2: First two points are Line Start Point X Y
         Second two points are Line End Point X Y
 Line 3 (Optional): Repeat Direction Iterations Move
 
-Draw Line 4
-161  125  457  66
-Repeat Down 15 1 
+Draw Line 4<br/>
+161  125  457  66<br/>
+Repeat Down 15 1<br/>
 
 # Tip: Line 2 can be filled in for you using the Color Picker
 
 Type Line 1 Draw Line (Thickness), then hit enter to place your cursor on the next line.
 Ensuriing the Color Picker is toggled on, Click on your image to establish Point 1:
 
-Draw Line 4
+Draw Line 4<br/>
 161  125  
 
 Then click your mouse again for the end point of the line:
