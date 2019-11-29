@@ -282,7 +282,7 @@ Draw Line 4<br/>
 Repeat Down 15 1<br/>
 
 # Repeat Directions
-Use with Repeat with Down, Up, Left Right
+Use with Repeat with Down, Up, Left and Right
 
 # Repeat Up Example
 
