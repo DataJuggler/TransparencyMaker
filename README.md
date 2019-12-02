@@ -165,7 +165,7 @@ Will match criteria on less than or equal to
 Hide<br/>
 BlueGreen < 300
 
-All pixels with a BlueGreen value of 300 or less wil be set to Alpha o to be hidden.
+All pixels with a BlueGreen value of 300 or less wil be set to Alpha 0 to be hidden.
 
 # Between
 
