@@ -236,6 +236,29 @@ Total > 0<br/>
 
 # Note: In the above example, all pixels will be set to white, since greater than > is equal to > or equal to.
 
+# New Feature: 2.22.2020 - Added Adjust color feature
+
+The adjust color feature lets you adjust 1 color (Red, Green or Blue) or all colors by a certain amount.
+
+Example: 
+Update
+Set Adjust Red 25
+Where
+Total > 0 
+
+# Negative Color Example
+
+The Adjustment value can also be negative.
+
+Update
+Set Adjust All -15
+Where
+Total > 0 
+
+All pixels will be adjusted by 15, so Red = 33, will become red = 18.
+
+It is safe to apply a value as if a color channel of a pixel goes over 255 the value will be 255, or below 0 will be 0.
+
 # Normalizing An Image
 One of the uses of Transparency Maker is an image that is grainy or pixelated, you can smooth out an area by
 setting all pixels in a range to a certain value.
