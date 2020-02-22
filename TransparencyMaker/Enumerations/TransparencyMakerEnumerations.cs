@@ -85,4 +85,18 @@ namespace TransparencyMaker.Enumerations
     }
     #endregion
 
+    #region RGBColor : int
+    /// <summary>
+    /// This enumeration is used to select Red, Green or Blue.
+    /// </summary>
+    public enum RGBColor : int
+    {
+        NotSet = 0,
+        Red = 1,
+        Green = 2,
+        Blue = 3,
+        All = 4
+    }
+    #endregion
+
 }

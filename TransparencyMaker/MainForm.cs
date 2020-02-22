@@ -40,7 +40,6 @@ namespace TransparencyMaker
         private bool lineColorSet;
         private DirectBitmap directBitmap;
         private bool initialized;
-        private const int SemiTransparent = 128;
         private const int TitleBarHeight = 29;
         #endregion
 
@@ -304,6 +303,34 @@ namespace TransparencyMaker
 
         #region Methods
 
+            #region AdjustValue(int originalValue, int adjustment)
+            /// <summary>
+            /// This method returns the Value
+            /// </summary>
+            public int AdjustValue(int originalValue, int adjustment)
+            {
+                // Set the return value (adjustment may be negative)
+                int adjustValue = originalValue + adjustment;
+
+                // if too low
+                if (adjustValue < 0)
+                {
+                    // cannot be lower than zero
+                    adjustValue = 0;
+                }
+
+                 // if too high
+                if (adjustValue > 255)
+                {
+                    // cannot be higher than 255
+                    adjustValue = 255;
+                }
+                
+                // return value
+                return adjustValue;
+            }
+            #endregion
+            
             #region ApplyCriteria(List<PixelInformation> pixels, PixelQuery pixelQuery)
             /// <summary>
             /// This method returns a list of Criteria
@@ -479,9 +506,66 @@ namespace TransparencyMaker
                                 // Update the pixels
                                 foreach (PixelInformation pixel in pixels)
                                 {
-                                    // get the prevoiusCOlor
+                                    // get the prevoiusColor
                                     previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
 
+                                    // if adjust color is true
+                                    if (pixelQuery.AdjustColor)
+                                    {
+                                        // local
+                                        int adjustedValue = 0;
+
+                                        switch (pixelQuery.ColorToAdjust)
+                                        {
+                                            case RGBColor.Red:
+
+                                                // get the adjust color (guarunteed to be in range)
+                                                adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+
+                                                // Create the adjusted color
+                                                color = Color.FromArgb(adjustedValue, previousColor.G, previousColor.B);
+
+                                                // required
+                                                break;
+
+                                            case RGBColor.Green:
+
+                                                // get the adjust color (guarunteed to be in range)
+                                                adjustedValue = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+
+                                                // Create the adjusted color
+                                                color = Color.FromArgb(previousColor.R, adjustedValue, previousColor.B);
+
+                                                // required
+                                                break;
+
+                                            case RGBColor.Blue:
+
+                                                // get the adjust color (guarunteed to be in range)
+                                                adjustedValue = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+
+                                                // Create the adjusted color
+                                                color = Color.FromArgb(previousColor.R, previousColor.G, adjustedValue);
+
+                                                // required
+                                                break;
+
+                                            case RGBColor.All:
+
+                                                // get the adjust color (guarunteed to be in range)
+                                                adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+                                                int adjustedValue2 = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+                                                int adjustedValue3 = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+
+                                                // Create the adjusted color
+                                                color = Color.FromArgb(adjustedValue, adjustedValue2, adjustedValue3);
+
+                                                // required
+                                                break;
+
+                                        }                                        
+                                    }
+                                    
                                     // Set the pixel
                                     this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
 
@@ -1439,12 +1523,8 @@ namespace TransparencyMaker
                 // Set the value for the property 'ImageLoaded' to true
                 this.ImageLoaded = true;
 
-                // if the LineColor is not set
-                if (this.LineColor == Color.Transparent)                
-                {
-                    // Set the LineColor
-                    this.LineColor = SetLineColor();
-                }
+                // Set the LineColor (finds a color not in the image)
+                this.LineColor = SetLineColor();
 
                 // Enable controls now that we are done analyzing
                 UIEnable();

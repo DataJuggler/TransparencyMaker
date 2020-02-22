@@ -32,6 +32,9 @@ namespace TransparencyMaker.Objects
         private int alpha;
         private Color color;
         private bool colorSet;
+        private bool adjustColor; 
+        private int adjustment;
+        private RGBColor colorToAdjust;
         #endregion
 
         #region Constructor
@@ -55,6 +58,28 @@ namespace TransparencyMaker.Objects
             {
                 get { return actionType; }
                 set { actionType = value; }
+            }
+            #endregion
+            
+            #region AdjustColor
+            /// <summary>
+            /// This property gets or sets the value for 'AdjustColor'.
+            /// </summary>
+            public bool AdjustColor
+            {
+                get { return adjustColor; }
+                set { adjustColor = value; }
+            }
+            #endregion
+            
+            #region Adjustment
+            /// <summary>
+            /// This property gets or sets the value for 'Adjustment'.
+            /// </summary>
+            public int Adjustment
+            {
+                get { return adjustment; }
+                set { adjustment = value; }
             }
             #endregion
             
@@ -106,6 +131,17 @@ namespace TransparencyMaker.Objects
             {
                 get { return colorSet; }
                 set { colorSet = value; }
+            }
+            #endregion
+            
+            #region ColorToAdjust
+            /// <summary>
+            /// This property gets or sets the value for 'ColorToAdjust'.
+            /// </summary>
+            public RGBColor ColorToAdjust
+            {
+                get { return colorToAdjust; }
+                set { colorToAdjust = value; }
             }
             #endregion
             

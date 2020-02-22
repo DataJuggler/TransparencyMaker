@@ -166,13 +166,13 @@ namespace TransparencyMaker.Util
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.BlueGreen;
                         }
-                        // if this text contains bluegreen
+                        // if this text contains bluered
                         else if (text.Contains("bluered"))
                         {
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.BlueRed;
                         }
-                        // if this text contains bluegreen
+                        // if this text contains greenred
                         else if (text.Contains("greenred"))
                         {
                             // Set the PixelType
@@ -658,6 +658,60 @@ namespace TransparencyMaker.Util
             }
             #endregion
             
+            #region SetColorToAdjust()
+            /// <summary>
+            /// This method returns the Color To Adjust
+            /// </summary>
+            public static RGBColor SetColorToAdjust(string colorWord)
+            {
+                // initial value
+                RGBColor colorToAdjust = RGBColor.NotSet;
+                
+                // If the colorWord string exists
+                if (TextHelper.Exists(colorWord))
+                {
+                    // determine the action by the text of the word                    
+                    switch(colorWord.ToLower())
+                    {
+                        case "red":
+
+                            // set the value
+                            colorToAdjust = RGBColor.Red;
+
+                            // required
+                            break;
+
+                        case "green":
+
+                            // set the value
+                            colorToAdjust = RGBColor.Green;
+
+                            // required
+                            break;
+
+                        case "blue":
+
+                            // set the value
+                            colorToAdjust = RGBColor.Blue;
+
+                            // required
+                            break;
+
+                        case "all":
+
+                            // set the value
+                            colorToAdjust = RGBColor.All;
+
+                            // required
+                            break;
+                    }
+                }
+
+                // return value
+                return colorToAdjust;
+            }
+            #endregion
+            
             #region SetComparisonType(string text, ref PixelCriteria pixelCriteria)
             /// <summary>
             /// This method returns the Comparison Type
@@ -789,10 +843,10 @@ namespace TransparencyMaker.Util
                     if (updateText.StartsWith("set"))    
                     {
                         // only use a space as a delimiter character
-                        char[] delimiterChars = { ' '};
+                        char[] delimiterChars = { ' ' };
 
                         // Get a list of words from this text
-                        List<Word> words = WordParser.GetWords(updateText);
+                        List<Word> words = WordParser.GetWords(updateText, delimiterChars);
 
                         // If the words collection exists and has one or more items
                         if (ListHelper.HasOneOrMoreItems(words))
@@ -833,6 +887,28 @@ namespace TransparencyMaker.Util
 
                                 // Set the Color
                                 pixelQuery.Color = Color.FromArgb(pixelQuery.Alpha, pixelQuery.Red, pixelQuery.Green, pixelQuery.Blue);
+                            }
+                            // If there are 4 words
+                            // Example: Set Adjust Red 25 (every pixel gets 25 more red)
+                            else if (words.Count == 4)
+                            {
+                                // Adjustment
+
+                                // if the second word is adjust
+                                if (TextHelper.IsEqual(words[1].Text, "adjust"))
+                                {
+                                    // AdjustColor is true
+                                    pixelQuery.AdjustColor = true;
+
+                                    // get the text of the third word
+                                    string colorWord = words[2].Text;
+
+                                    // set the Color to Adjust
+                                    pixelQuery.ColorToAdjust = SetColorToAdjust(colorWord);
+
+                                    // Set the adjustment amount
+                                    pixelQuery.Adjustment = NumericHelper.ParseInteger(words[3].Text, -1000, -1001);
+                                }
                             }
                             // if there are 3 words
                             // Example: Set Color Orchid (the color must be a named color)
