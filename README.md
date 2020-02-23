@@ -18,7 +18,6 @@ Visual Studio 2019 is the recommeneded version, but most of the code worked as f
 
 I will make an install and put it on my website as soon as I get a chance. If anyone would like an install, create an issue on this project and / or leave a comment on any of my YouTube videos and I will expedite the install.
 
-
 # Transparency Maker Videos on my Channel
 
 https://www.youtube.com/playlist?list=PLKrW5tXCPiX2PxrLPszDzlcEZwQG-Qb8r
@@ -26,7 +25,7 @@ https://www.youtube.com/playlist?list=PLKrW5tXCPiX2PxrLPszDzlcEZwQG-Qb8r
 I just updated my channel to be split into more play lists to separate each section.
 
 # How Transparency Maker Works
-The first thing that happens when an image is opened, is your file is parsed into a Pixel Information Database, aka Pixel Database.
+The first thing that happens when an image is opened, is your file is parsed into a list of PixelInformation objects, aka Pixel Database.
 
 When the program starts, click the Start button to select your image. The image must be a Png or a Jpg.
 
@@ -259,6 +258,124 @@ All pixels will be adjusted by 15, so Red = 33, will become red = 18.
 
 It is safe to apply a value as if a color channel of a pixel goes over 255 the value will be 255, or below 0 will be 0.
 
+# New Feature 2.23.2020: Swap (color)
+
+I added a new useful feature called Swap, that let you replace the value of Red With Blue, Red With Green or Green With Blue, and of course the opposite of swap is the same; green to blue is the same as blue to green.
+
+# Swap Example:
+
+Update
+Set Swap Red Blue
+Where
+Total > 0
+
+The above query will replace the value of Pixel.Red with Pixel.Blue for all pixels in the image (again greater than > is the same as greater than or equal in BQL.
+
+Swap is safe to use, in terms of if you have a pixel with a vlue of blue 30, and you subtract 50, the resulting value of blue will be zero, not -20. The same is true for adding over the max value of a color (255), the value will be set to 255.
+One problem with swap and values going out of bounds is the contrast created by slight variances give an image a different look, compared to all pixels being the same color. Some information in your image will be lost if you go below zero or above the maximum for many pixels.
+
+# New Feature 2.23.2020: Masks
+
+Masks is something I have thought about for a long time. Today I worked on a sample and some unwanted pixels kept getting modified with my query, so I got motivated and created a new property to the PixelInformationObject called Mask.
+
+Mask Rules (This is the my guide for programming them, and is created as I code this).
+
+Masks will stay on after being created until you load a new image, remove the mask, clear all masks or close the program.
+
+Masks only affect Update queries for now. Hide Pixel and Show Pixel and draw line queries are not getting this feature (yet). If it works well I may apply it to the other areas later.
+
+# Mask Specification
+
+Set Mask Verb Name
+
+# Verbs 
+
+Verbs are actions that can be performed to create, add, remove or replace masks.
+
+# Add
+
+Add a mask and give it a name.
+
+Example: Set Mask Add Interior
+
+# Replace
+
+Replacing a mask removes all pixels affected by a mask, then creates a new mask for the pixels affected.
+Example: Set Mask Replace Mailbox
+
+If any pixels had a Mask applied named Mailbox, they would be removed, and then a new mask named Mask Mailbox is created for the pixels affected in the update query.
+
+# Clear
+
+Remove a mask by name.
+
+Example: Set Mask Clear Fence.
+
+# Clear (All)
+
+To remove all masks, pass in the name All.
+
+Set Mask Clear All
+
+Note: Clear and Clear All may require you to still pass in a valid where clause.
+If yes, You can use:
+
+Update
+Set Mask Clear Curb
+Where
+Total > 0
+
+When I start testing this I will try and document what is actually expected, and if possible I would like to get rid of the required Where clause. It should mean everything from the Select like SQL. 
+
+# Disabling a Mask
+
+If you want to keep a mask on an image, but want to run another query where the mask isn't active (disabled), you can run this.
+
+Set Mask Disable Bookshelf
+
+To enable the query again:
+
+Set Mask Enable Bookshelf.
+
+# Hiding / Showing a Mask
+By default, Masks are not visible, but a query to show them is as simple:
+
+Show A Mask:
+
+Update
+Set Mask Show Name
+
+Hide A Mask:
+
+Update
+Set Mask Hide Name
+
+# Set Mask Color
+
+By default, Masks are displayed in White. You can change this by setting the MaskColor property.
+
+Set MaskColor Color Name
+
+Color must be a .Net Named Color. If you are not sure, use the small box of Crayon colors like Red, Blue, Orange, etc.
+Name is the name of the Masque to set the MaskColor. 
+
+Example:
+Set MaskColor Turquoise PianoKeys
+
+Note: You must set the MaskColor property prior to showing the Mask.
+
+# Masks Are Being Developed Now
+I needed to write this somewhere to code it, and by writing it here first I don't have to come back and write it again.
+
+
+
+
+
+
+ 
+
+
+
 # Normalizing An Image
 One of the uses of Transparency Maker is an image that is grainy or pixelated, you can smooth out an area by
 setting all pixels in a range to a certain value.
@@ -338,6 +455,10 @@ Drawing transparent lines is slower than any other operation using Transparency 
 
 I think this is a good candidate for letting people with a powerful GPU take advantage of this, but I haven't learned how to apply this yet. I have a 1080 TI, but I have never written any code to take advantage of a GPU. Volunteers anyone?
 
+# Masks
+
+
+
 # Known Issues
 Clicking Save sometimes causes an error. You can think click Continue, and are returned to your image.
 Click Save As works.
@@ -348,7 +469,7 @@ It has been on my list for a long time to add a Save prompt if there are changes
 Let me know what features you think are needed or any feedback you may have.
 
 # Draw Line In Color
-I thought I had code to draw a line in a specific color, but this has not been done yet apparently.
+I thought I had code to draw a line in a specific color, but this has not been done yet apparently. It will be coming soon.
 
 If anyone wants this feature let me know.
 
