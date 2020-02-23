@@ -47,7 +47,23 @@ namespace TransparencyMaker.Enumerations
         LessThan = -1,
         GreaterThan = 1,
         Between = 2,
-        Equals = 3
+        Equals = 3,
+        In = 4
+    }
+    #endregion
+
+    #region MaskActionEnum
+    /// <summary>
+    /// MaskActionEnum is used by PixelQuery to turn masks on or off.
+    /// Any pixel with Mask = true will not be affected during an update.
+    /// </summary>
+    public enum MaskActionEnum : int
+    {
+        ClearAll = -2,
+        Clear = -1,
+        NoAction = 0,
+        Add = 1,
+        Replace = 2
     }
     #endregion
 
@@ -67,7 +83,8 @@ namespace TransparencyMaker.Enumerations
         GreenRed = 7,
         X = 8,
         Y = 9,
-        DrawLine = 10
+        DrawLine = 10,
+        LastUpdate = 11
     }
     #endregion
 
@@ -95,7 +112,24 @@ namespace TransparencyMaker.Enumerations
         Red = 1,
         Green = 2,
         Blue = 3,
-        All = 4
+        GreenRed = 4,
+        BlueRed = 5,
+        BlueGreen = 6,
+        All = 7
+    }
+    #endregion
+
+    #region SwapTypeEnum : int
+    /// <summary>
+    /// The SwapType is used to designate which colors
+    /// are being swapped when the SwapColors is true.
+    /// </summary>
+    public enum SwapTypeEnum : int
+    {
+        Unknown = 0,
+        RedToGreen = 1,
+        RedToBlue = 2,
+        BlueToGreen = 3
     }
     #endregion
 

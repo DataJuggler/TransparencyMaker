@@ -35,7 +35,7 @@ namespace TransparencyMaker
         private bool colorPickerMode;
         private bool imageLoaded;
         private bool updating;
-        private List<PixelInformation> updates;
+        private List<PixelInformation> lastUpdate;
         private Color lineColor;
         private bool lineColorSet;
         private DirectBitmap directBitmap;
@@ -303,6 +303,169 @@ namespace TransparencyMaker
 
         #region Methods
 
+            #region AdjustColor(Color previousColor, PixelQuery pixelQuery)
+            /// <summary>
+            /// This method returns the Adjusted Color
+            /// </summary>
+            public Color AdjustColor(Color previousColor, PixelQuery pixelQuery)
+            {
+                // initial value
+                Color color = previousColor;
+
+                // locals
+                int adjustedValue = 0;
+                int adjustedValue2 = 0;
+                int adjustedValue3 = 0;
+                
+                // If the pixelQuery object exists
+                if (NullHelper.Exists(pixelQuery))
+                {
+                    switch (pixelQuery.ColorToAdjust)
+                    {
+                        case RGBColor.Red:
+
+                            // if there is an AssignToColor
+                            if (pixelQuery.HasAssignToColor)
+                            {
+                                // Set Red Equals Blue
+                                if (pixelQuery.AssignToColor == RGBColor.Blue)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.B, previousColor.G, previousColor.B);
+                                }
+                                else if (pixelQuery.AssignToColor == RGBColor.Green)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.G, previousColor.G, previousColor.B);
+                                }
+                            }
+                            else
+                            {
+                                // get the adjust color (guarunteed to be in range)
+                                adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+
+                                // Create the adjusted color
+                                color = Color.FromArgb(adjustedValue, previousColor.G, previousColor.B);
+                            }
+
+                            // required
+                            break;
+
+                        case RGBColor.Green:
+
+                            // if there is an AssignToColor
+                            if (pixelQuery.HasAssignToColor)
+                            {
+                                // Set Red Equals Blue
+                                if (pixelQuery.AssignToColor == RGBColor.Blue)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.R, previousColor.B, previousColor.B);
+                                }
+                                else if (pixelQuery.AssignToColor == RGBColor.Red)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.R, previousColor.R, previousColor.B);
+                                }
+                            }
+                            else
+                            {
+                                // get the adjust color (guarunteed to be in range)
+                                adjustedValue = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+
+                                // Create the adjusted color
+                                color = Color.FromArgb(previousColor.R, adjustedValue, previousColor.B);
+                            }
+
+                            // required
+                            break;
+
+                        case RGBColor.Blue:
+
+                            // if there is an AssignToColor
+                            if (pixelQuery.HasAssignToColor)
+                            {
+                                // Set Red Equals Blue
+                                if (pixelQuery.AssignToColor == RGBColor.Green)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.R, previousColor.G, previousColor.G);
+                                }
+                                else if (pixelQuery.AssignToColor == RGBColor.Red)
+                                {
+                                    // Create the new color
+                                    color = Color.FromArgb(previousColor.R, previousColor.G, previousColor.R);
+                                }
+                            }
+                            else
+                            {
+                                // get the adjust color (guarunteed to be in range)
+                                adjustedValue = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+
+                                // Create the adjusted color
+                                color = Color.FromArgb(previousColor.R, previousColor.G, adjustedValue);
+                            }
+
+                            // required
+                            break;
+
+                        case RGBColor.GreenRed:
+
+                            // get the adjust color (guarunteed to be in range)
+                            adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+                            adjustedValue2 = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+                                                
+                            // Create the adjusted color
+                            color = Color.FromArgb(adjustedValue, adjustedValue2, previousColor.B);
+
+                            // required
+                            break;
+
+                            case RGBColor.BlueRed:
+
+                            // get the adjust color (guarunteed to be in range)
+                            adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+                            adjustedValue2 = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+                                                
+                            // Create the adjusted color
+                            color = Color.FromArgb(adjustedValue, previousColor.G , adjustedValue2);
+
+                            // required
+                            break;
+
+                        case RGBColor.BlueGreen:
+
+                            // get the adjust color (guarunteed to be in range)
+                            adjustedValue = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+                            adjustedValue2 = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+                                                
+                            // Create the adjusted color
+                            color = Color.FromArgb(previousColor.R, adjustedValue , adjustedValue2);
+
+                            // required
+                            break;
+
+                        case RGBColor.All:
+
+                            // get the adjust color (guarunteed to be in range)
+                            adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
+                            adjustedValue2 = AdjustValue(previousColor.G, pixelQuery.Adjustment);
+                            adjustedValue3 = AdjustValue(previousColor.B, pixelQuery.Adjustment);
+
+                            // Create the adjusted color
+                            color = Color.FromArgb(adjustedValue, adjustedValue2, adjustedValue3);
+
+                            // required
+                            break;
+
+                    } 
+                }
+                
+                // return value
+                return color;
+            }
+            #endregion
+            
             #region AdjustValue(int originalValue, int adjustment)
             /// <summary>
             /// This method returns the Value
@@ -416,6 +579,14 @@ namespace TransparencyMaker
 
                                 // required
                                 break;
+
+                            case PixelTypeEnum.LastUpdate:
+
+                                // We are using the same pixels as the last query
+                                pixels = LastUpdate;
+
+                                // required
+                                break;
                         }
                     }
                 }
@@ -441,7 +612,7 @@ namespace TransparencyMaker
                 Graphics graphics = Canvas.CreateGraphics();
                 Guid historyId = Guid.NewGuid();
                 Color previousColor;
-                
+
                 // if the queryText exists
                 if (TextHelper.Exists(queryText))
                 {
@@ -451,12 +622,6 @@ namespace TransparencyMaker
                     // if this is a valid query
                     if (pixelQuery.IsValid)
                     {
-                        // Get the current background image of the Canvas
-                        // Image image = this.Canvas.BackgroundImage;
-
-                        // Create a bitmap from the image
-                        // Bitmap bitmap = new Bitmap(image);        
-
                         // Set the alpha value based upon the ActionType
                         alpha = SetAlpha(pixelQuery.ActionType, pixelQuery);
 
@@ -495,6 +660,9 @@ namespace TransparencyMaker
                             // if there are one or more pixels
                             if (ListHelper.HasOneOrMoreItems(pixels))
                             {
+                                // Store the LastUpdate
+                                this.LastUpdate = pixels;
+
                                 Graph.Maximum = pixels.Count;
                                 Graph.Minimum = 0;
                                 Graph.Value = 0;
@@ -512,60 +680,15 @@ namespace TransparencyMaker
                                     // if adjust color is true
                                     if (pixelQuery.AdjustColor)
                                     {
-                                        // local
-                                        int adjustedValue = 0;
-
-                                        switch (pixelQuery.ColorToAdjust)
-                                        {
-                                            case RGBColor.Red:
-
-                                                // get the adjust color (guarunteed to be in range)
-                                                adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
-
-                                                // Create the adjusted color
-                                                color = Color.FromArgb(adjustedValue, previousColor.G, previousColor.B);
-
-                                                // required
-                                                break;
-
-                                            case RGBColor.Green:
-
-                                                // get the adjust color (guarunteed to be in range)
-                                                adjustedValue = AdjustValue(previousColor.G, pixelQuery.Adjustment);
-
-                                                // Create the adjusted color
-                                                color = Color.FromArgb(previousColor.R, adjustedValue, previousColor.B);
-
-                                                // required
-                                                break;
-
-                                            case RGBColor.Blue:
-
-                                                // get the adjust color (guarunteed to be in range)
-                                                adjustedValue = AdjustValue(previousColor.B, pixelQuery.Adjustment);
-
-                                                // Create the adjusted color
-                                                color = Color.FromArgb(previousColor.R, previousColor.G, adjustedValue);
-
-                                                // required
-                                                break;
-
-                                            case RGBColor.All:
-
-                                                // get the adjust color (guarunteed to be in range)
-                                                adjustedValue = AdjustValue(previousColor.R, pixelQuery.Adjustment);
-                                                int adjustedValue2 = AdjustValue(previousColor.G, pixelQuery.Adjustment);
-                                                int adjustedValue3 = AdjustValue(previousColor.B, pixelQuery.Adjustment);
-
-                                                // Create the adjusted color
-                                                color = Color.FromArgb(adjustedValue, adjustedValue2, adjustedValue3);
-
-                                                // required
-                                                break;
-
-                                        }                                        
+                                        // Adjust the color
+                                        color = AdjustColor(previousColor, pixelQuery);
                                     }
-                                    
+                                    else if (pixelQuery.SwapColors)
+                                    {
+                                        // Swap two colors
+                                        color = SwapColor(previousColor, pixelQuery);
+                                    }
+
                                     // Set the pixel
                                     this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
 
@@ -1860,6 +1983,51 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region SwapColor(Color previousColor, PixelQuery pixelQuery)
+            /// <summary>
+            /// This method returns the Color
+            /// </summary>
+            public Color SwapColor(Color previousColor, PixelQuery pixelQuery)
+            {
+                // initial value
+                Color color = previousColor;
+
+                // If the pixelQuery object exists
+                if (NullHelper.Exists(pixelQuery))                
+                {
+                    switch (pixelQuery.SwapType)
+                    {
+                        case SwapTypeEnum.BlueToGreen:
+
+                            // create the new color
+                            color = Color.FromArgb(previousColor.R, previousColor.B, previousColor.G);
+
+                            // required
+                            break;
+
+                        case SwapTypeEnum.RedToBlue:
+
+                            // create the new color
+                            color = Color.FromArgb(previousColor.B, previousColor.G, previousColor.R);
+
+                            // required
+                            break;
+
+                        case SwapTypeEnum.RedToGreen:
+
+                            // create the new color
+                            color = Color.FromArgb(previousColor.G, previousColor.R, previousColor.B);
+
+                            // required
+                            break;
+                    }
+                }
+                
+                // return value
+                return color;
+            }
+            #endregion
+            
             #region UIEnable()
             /// <summary>
             /// This method UI Enable
@@ -2017,6 +2185,23 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region HasUpdates
+            /// <summary>
+            /// This property returns true if this object has an 'Updates'.
+            /// </summary>
+            public bool HasUpdates
+            {
+                get
+                {
+                    // initial value
+                    bool hasUpdates = (this.LastUpdate != null);
+                    
+                    // return value
+                    return hasUpdates;
+                }
+            }
+            #endregion
+            
             #region ImageLoaded
             /// <summary>
             /// This property gets or sets the value for 'ImageLoaded'.
@@ -2060,6 +2245,17 @@ namespace TransparencyMaker
                 set { initialized = value; }
             }
             #endregion
+
+            #region LastUpdate
+            /// <summary>
+            /// This property gets or sets the value for 'LastUpdate'.
+            /// </summary>
+            public List<PixelInformation> LastUpdate
+            {
+                get { return lastUpdate; }
+                set { lastUpdate = value; }
+            }
+            #endregion
             
             #region LineColor
             /// <summary>
@@ -2099,17 +2295,6 @@ namespace TransparencyMaker
                 set { pixelDatabase = value; }
             }
         #endregion
-
-            #region Updates
-            /// <summary>
-            /// This property gets or sets the value for 'Updates'.
-            /// </summary>
-            public List<PixelInformation> Updates
-            {
-                get { return updates; }
-                set { updates = value; }
-            }
-            #endregion
             
             #region Updating
             /// <summary>

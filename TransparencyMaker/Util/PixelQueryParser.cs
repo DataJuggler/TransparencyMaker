@@ -27,6 +27,54 @@ namespace TransparencyMaker.Util
         
         #region Methods
 
+            #region AssignColor(string assignToColorText)
+            /// <summary>
+            /// This method is used to return Red, Green or Blue
+            /// if either of those are passed in.
+            /// </summary>
+            /// <param name="assignToColorText">Only Red, Green or Blue may be passed in</param>
+            public static RGBColor AssignColor(string assignToColorText)
+            {
+                // initial value
+                RGBColor assignColor = RGBColor.NotSet;
+
+                // If the assignToColorText string exists
+                if (TextHelper.Exists(assignToColorText))
+                {
+                    // Determine the action by the assignToColorText
+                    switch (assignToColorText)
+                    {
+                        case "red":
+
+                            // Set the return value
+                            assignColor = RGBColor.Red;
+
+                            // required
+                            break;
+
+                        case "green":
+
+                             // Set the return value
+                            assignColor = RGBColor.Green;
+
+                            // required
+                            break;
+
+                        case "blue":
+
+                             // Set the return value
+                            assignColor = RGBColor.Blue;
+
+                            // required
+                            break;
+                    }
+                }
+                
+                // return value
+                return assignColor;
+            }
+            #endregion
+            
             #region CreatePixelCriteria(string text, ActionTypeEnum actionType, int lineNumber, PixelCriteria existingCriteria = null)
             /// <summary>
             /// This method returns the Pixel Criteria
@@ -151,12 +199,12 @@ namespace TransparencyMaker.Util
                         pixelCriteria = new PixelCriteria();
 
                         // if this text contains bluegreen
-                        if (text.Contains("x"))
+                        if ((text.StartsWith("x ")) || (text.Contains(" x ")))
                         {
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.X;
                         }
-                        else if (text.Contains("y"))
+                        if ((text.StartsWith("y ")) || (text.Contains(" y ")))
                         {
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.Y;
@@ -197,6 +245,11 @@ namespace TransparencyMaker.Util
                         {
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.Total;
+                        }
+                        else if (text.Contains("pixels in lastupdate"))
+                        {
+                            // Set the PixelType
+                            pixelCriteria.PixelType = PixelTypeEnum.LastUpdate;
                         }
                     }
                 }
@@ -697,6 +750,30 @@ namespace TransparencyMaker.Util
                             // required
                             break;
 
+                        case "greenred":
+
+                            // set the value
+                            colorToAdjust = RGBColor.GreenRed;
+
+                            // required
+                            break;
+
+                        case "bluered":
+
+                            // set the value
+                            colorToAdjust = RGBColor.BlueRed;
+
+                            // required
+                            break;
+
+                         case "bluegreen":
+
+                            // set the value
+                            colorToAdjust = RGBColor.BlueGreen;
+
+                            // required
+                            break;
+
                         case "all":
 
                             // set the value
@@ -783,6 +860,11 @@ namespace TransparencyMaker.Util
                             // Set the TargetValue
                             pixelCriteria.TargetValue = number1;
                         }
+                        else if (text.Contains("pixels in lastupdate"))
+                        {
+                            // Set the ComparisonType
+                            comparisonType = ComparisonTypeEnum.In;
+                        }
                     }
 
                     // set the comparisonType on the object passed in
@@ -794,6 +876,55 @@ namespace TransparencyMaker.Util
             }
             #endregion
 
+            #region SetMaskAction(string verb)
+            /// <summary>
+            /// This method returns the Mask Action
+            /// </summary>
+            public static MaskActionEnum SetMaskAction(string verb)
+            {
+                // initial value
+                MaskActionEnum maskAction = MaskActionEnum.NoAction;
+
+                switch (verb)
+                {
+                    case "clear":
+
+                        // Clear 1 mask
+                        maskAction = MaskActionEnum.Clear;
+
+                        // required
+                        break;
+
+                    case "clearall":
+
+                        // Clear 1 mask
+                        maskAction = MaskActionEnum.ClearAll;
+
+                        // required
+                        break;
+
+                    case "add":
+
+                        // Clear 1 mask
+                        maskAction = MaskActionEnum.Add;
+
+                        // required
+                        break;
+
+                    case "replace":
+
+                        // Clear 1 mask
+                        maskAction = MaskActionEnum.Replace;
+
+                        // required
+                        break;
+                }
+                
+                // return value
+                return maskAction;
+            }
+            #endregion
+            
             #region SetRepeatType(string text)
             /// <summary>
             /// This method returns the Repeat Type
@@ -827,6 +958,73 @@ namespace TransparencyMaker.Util
 
                 // return value
                 return repeatType;
+            }
+            #endregion
+            
+            #region SetSwapType(string sourceColorWord, string targetColorWord)
+            /// <summary>
+            /// This method returns the Swap Type
+            /// </summary>
+            public static SwapTypeEnum SetSwapType(string sourceColorWord, string targetColorWord)
+            {
+                // initial value
+                SwapTypeEnum swapType = SwapTypeEnum.Unknown;
+
+                // If the strings sourceColorWord and targetColorWord both exist
+                if (TextHelper.Exists(sourceColorWord, targetColorWord))
+                {
+                    // if thel first word is red
+                    if (TextHelper.IsEqual(sourceColorWord, "red"))
+                    {
+                        // if the second word is green
+                        if (TextHelper.IsEqual(targetColorWord, "green"))
+                        {
+                            // Swap red and green
+                            swapType = SwapTypeEnum.RedToGreen;
+                        }
+                        // if the second word is green
+                        else if (TextHelper.IsEqual(targetColorWord, "blue"))
+                        {
+                            // Swap red and blue
+                            swapType = SwapTypeEnum.RedToBlue;
+                        }
+                    }
+                    // if the first word is green
+                    else if (TextHelper.IsEqual(sourceColorWord, "green"))
+                    {
+                        // if the second word is red
+                        if (TextHelper.IsEqual(targetColorWord, "red"))
+                        {
+                            // Swap green and red
+                            swapType = SwapTypeEnum.RedToGreen;
+                        }
+                        // if the second word is blue
+                        else if (TextHelper.IsEqual(targetColorWord, "blue"))
+                        {
+                            // Swap green and blue
+                            swapType = SwapTypeEnum.BlueToGreen;
+                        }
+                    }
+                    // if the first word is blue
+                    else if (TextHelper.IsEqual(sourceColorWord, "blue"))
+                    {
+                        // if the second word is red
+                        if (TextHelper.IsEqual(targetColorWord, "red"))
+                        {
+                            // Swap blue and red
+                            swapType = SwapTypeEnum.RedToBlue;
+                        }
+                        // if the second word is blue
+                        else if (TextHelper.IsEqual(targetColorWord, "green"))
+                        {
+                            // Swap blue and green
+                            swapType = SwapTypeEnum.BlueToGreen;
+                        }
+                    }
+                }
+                
+                // return value
+                return swapType;
             }
             #endregion
             
@@ -892,10 +1090,11 @@ namespace TransparencyMaker.Util
                             // Example: Set Adjust Red 25 (every pixel gets 25 more red)
                             else if (words.Count == 4)
                             {
-                                // Adjustment
+                                // Adjustment, Swap, Or Mask
+                                string secondWord = words[1].Text;
 
                                 // if the second word is adjust
-                                if (TextHelper.IsEqual(words[1].Text, "adjust"))
+                                if (TextHelper.IsEqual(secondWord, "adjust"))
                                 {
                                     // AdjustColor is true
                                     pixelQuery.AdjustColor = true;
@@ -906,8 +1105,38 @@ namespace TransparencyMaker.Util
                                     // set the Color to Adjust
                                     pixelQuery.ColorToAdjust = SetColorToAdjust(colorWord);
 
-                                    // Set the adjustment amount
-                                    pixelQuery.Adjustment = NumericHelper.ParseInteger(words[3].Text, -1000, -1001);
+                                    // Attempt to set the 4th word to the AssignToColor
+                                    pixelQuery.AssignToColor = AssignColor(words[3].Text);
+
+                                    // if there is not an AssignToColor
+                                    if (!pixelQuery.HasAssignToColor)
+                                    {
+                                        // Set the Adjustment value only if we do not have an AssignToColor
+                                        pixelQuery.Adjustment = NumericHelper.ParseInteger(words[3].Text, -1000, -1001);
+                                    }
+                                }
+                                // if the second word is swap
+                                else if (TextHelper.IsEqual(secondWord, "swap"))
+                                {
+                                    // get the thrid and fourth word
+                                    string sourceColorWord = words[2].Text;
+                                    string targetColorWord = words[3].Text;
+
+                                    // We are swapping colors
+                                    pixelQuery.SwapColors = true;
+
+                                    // Set the SwapType
+                                    pixelQuery.SwapType = SetSwapType(sourceColorWord, targetColorWord);
+                                }
+                                 // if the second word is swap
+                                else if (TextHelper.IsEqual(secondWord, "mask"))
+                                {
+                                    // get the thrid and fourth word
+                                    string verb = words[2].Text;
+                                    string name = words[3].Text;
+
+                                    // We are swapping colors
+                                    pixelQuery.MaskAction = SetMaskAction(verb);
                                 }
                             }
                             // if there are 3 words

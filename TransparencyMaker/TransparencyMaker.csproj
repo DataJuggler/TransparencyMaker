@@ -106,6 +106,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\History.cs" />
+    <Compile Include="Objects\Mask.cs" />
     <Compile Include="Objects\PixelCriteria.cs" />
     <Compile Include="Objects\PixelDatabase.cs" />
     <Compile Include="Objects\PixelInformation.cs" />

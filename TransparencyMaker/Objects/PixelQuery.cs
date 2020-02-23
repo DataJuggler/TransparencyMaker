@@ -32,9 +32,13 @@ namespace TransparencyMaker.Objects
         private int alpha;
         private Color color;
         private bool colorSet;
-        private bool adjustColor; 
+        private bool adjustColor;
+        private bool swapColors;
+        private SwapTypeEnum swapType;
         private int adjustment;
+        private MaskActionEnum maskAction;
         private RGBColor colorToAdjust;
+        private RGBColor assignToColor;
         #endregion
 
         #region Constructor
@@ -91,6 +95,17 @@ namespace TransparencyMaker.Objects
             {
                 get { return alpha; }
                 set { alpha = value; }
+            }
+            #endregion
+            
+            #region AssignToColor
+            /// <summary>
+            /// This property gets or sets the value for 'AssignToColor'.
+            /// </summary>
+            public RGBColor AssignToColor
+            {
+                get { return assignToColor; }
+                set { assignToColor = value; }
             }
             #endregion
             
@@ -178,6 +193,23 @@ namespace TransparencyMaker.Objects
             }
             #endregion
             
+            #region HasAssignToColor
+            /// <summary>
+            /// This property returns true if this object has an 'AssignToColor'.
+            /// </summary>
+            public bool HasAssignToColor
+            {
+                get
+                {
+                    // initial value
+                    bool hasAssignToColor = (this.AssignToColor != RGBColor.NotSet);
+                    
+                    // return value
+                    return hasAssignToColor;
+                }
+            }
+            #endregion
+            
             #region HasCriteria
             /// <summary>
             /// This property returns true if this object has a 'Criteria'.
@@ -256,6 +288,17 @@ namespace TransparencyMaker.Objects
             }
             #endregion
 
+            #region MaskAction
+            /// <summary>
+            /// This property gets or sets the value for 'MaskAction'.
+            /// </summary>
+            public MaskActionEnum MaskAction
+            {
+                get { return maskAction; }
+                set { maskAction = value; }
+            }
+            #endregion
+            
             #region Red
             /// <summary>
             /// This property gets or sets the value for 'Red'.
@@ -264,6 +307,28 @@ namespace TransparencyMaker.Objects
             {
                 get { return red; }
                 set { red = value; }
+            }
+            #endregion
+           
+            #region SwapColors
+            /// <summary>
+            /// This property gets or sets the value for 'SwapColors'.
+            /// </summary>
+            public bool SwapColors
+            {
+                get { return swapColors; }
+                set { swapColors = value; }
+            }
+            #endregion
+            
+            #region SwapType
+            /// <summary>
+            /// This property gets or sets the value for 'SwapType'.
+            /// </summary>
+            public SwapTypeEnum SwapType
+            {
+                get { return swapType; }
+                set { swapType = value; }
             }
             #endregion
             
