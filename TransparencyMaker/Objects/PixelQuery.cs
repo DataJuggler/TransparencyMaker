@@ -36,7 +36,9 @@ namespace TransparencyMaker.Objects
         private bool swapColors;
         private SwapTypeEnum swapType;
         private int adjustment;
-        private MaskActionEnum maskAction;
+        private Mask mask;
+        private bool setMaskColor;
+        private string setMaskcolorName;
         private RGBColor colorToAdjust;
         private RGBColor assignToColor;
         #endregion
@@ -244,6 +246,23 @@ namespace TransparencyMaker.Objects
             }
             #endregion
             
+            #region HasMask
+            /// <summary>
+            /// This property returns true if this object has a 'Mask'.
+            /// </summary>
+            public bool HasMask
+            {
+                get
+                {
+                    // initial value
+                    bool hasMask = (this.Mask != null);
+                    
+                    // return value
+                    return hasMask;
+                }
+            }
+            #endregion
+            
             #region IsValid
             /// <summary>
             /// This read only property returns the value for 'IsValid'.
@@ -288,14 +307,14 @@ namespace TransparencyMaker.Objects
             }
             #endregion
 
-            #region MaskAction
+            #region Mask
             /// <summary>
-            /// This property gets or sets the value for 'MaskAction'.
+            /// This property gets or sets the value for 'Mask'.
             /// </summary>
-            public MaskActionEnum MaskAction
+            public Mask Mask
             {
-                get { return maskAction; }
-                set { maskAction = value; }
+                get { return mask; }
+                set { mask = value; }
             }
             #endregion
             
@@ -310,6 +329,28 @@ namespace TransparencyMaker.Objects
             }
             #endregion
            
+            #region SetMaskColor
+            /// <summary>
+            /// This property gets or sets the value for 'SetMaskColor'.
+            /// </summary>
+            public bool SetMaskColor
+            {
+                get { return setMaskColor; }
+                set { setMaskColor = value; }
+            }
+            #endregion
+            
+            #region SetMaskcolorName
+            /// <summary>
+            /// This property gets or sets the value for 'SetMaskcolorName'.
+            /// </summary>
+            public string SetMaskcolorName
+            {
+                get { return setMaskcolorName; }
+                set { setMaskcolorName = value; }
+            }
+            #endregion
+            
             #region SwapColors
             /// <summary>
             /// This property gets or sets the value for 'SwapColors'.

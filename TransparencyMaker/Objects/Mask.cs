@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransparencyMaker.Enumerations;
 
 #endregion
 
@@ -26,9 +27,11 @@ namespace TransparencyMaker.Objects
         #region Private Variables
         private string name;
         private bool disabled;
+        private List<PixelInformation> pixels;
+        private MaskActionEnum action;
         #endregion
 
-        #region Mask(string name, disabled = false)
+        #region Parameterized Constructor(string name, disabled = false)
         /// <summary>
         /// Create a new instance of a Mask object
         /// </summary>
@@ -43,6 +46,17 @@ namespace TransparencyMaker.Objects
 
         #region Properties
         
+            #region Action
+            /// <summary>
+            /// This property gets or sets the value for 'Action'.
+            /// </summary>
+            public MaskActionEnum Action
+            {
+                get { return action; }
+                set { action = value; }
+            }
+            #endregion
+            
             #region Disabled
             /// <summary>
             /// This property gets or sets the value for 'Disabled'.
@@ -54,6 +68,57 @@ namespace TransparencyMaker.Objects
             }
             #endregion
             
+            #region HasAction
+            /// <summary>
+            /// This property returns true if this object has an 'Action'.
+            /// </summary>
+            public bool HasAction
+            {
+                get
+                {
+                    // initial value
+                    bool hasAction = (this.Action != MaskActionEnum.NoAction);
+                    
+                    // return value
+                    return hasAction;
+                }
+            }
+            #endregion
+            
+            #region HasName
+            /// <summary>
+            /// This property returns true if the 'Name' exists.
+            /// </summary>
+            public bool HasName
+            {
+                get
+                {
+                    // initial value
+                    bool hasName = (!String.IsNullOrEmpty(this.Name));
+                    
+                    // return value
+                    return hasName;
+                }
+            }
+            #endregion
+            
+            #region HasPixels
+            /// <summary>
+            /// This property returns true if this object has a 'Pixels'.
+            /// </summary>
+            public bool HasPixels
+            {
+                get
+                {
+                    // initial value
+                    bool hasPixels = (this.Pixels != null);
+                    
+                    // return value
+                    return hasPixels;
+                }
+            }
+            #endregion
+            
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -62,6 +127,17 @@ namespace TransparencyMaker.Objects
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region Pixels
+            /// <summary>
+            /// This property gets or sets the value for 'Pixels'.
+            /// </summary>
+            public List<PixelInformation> Pixels
+            {
+                get { return pixels; }
+                set { pixels = value; }
             }
             #endregion
             

@@ -1136,7 +1136,10 @@ namespace TransparencyMaker.Util
                                     string name = words[3].Text;
 
                                     // We are swapping colors
-                                    pixelQuery.MaskAction = SetMaskAction(verb);
+                                    pixelQuery.Mask = new Mask(name);
+                                    
+                                    // Set the Mask.Action property
+                                    pixelQuery.Mask.Action = SetMaskAction(verb);
                                 }
                             }
                             // if there are 3 words

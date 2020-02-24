@@ -39,7 +39,11 @@ namespace TransparencyMaker
         private Color lineColor;
         private bool lineColorSet;
         private DirectBitmap directBitmap;
+        private MaskManager maskManager;
         private bool initialized;
+        private bool rectangleMode;
+        private Point point1;
+        private Point point2;
         private const int TitleBarHeight = 29;
         #endregion
 
@@ -161,13 +165,13 @@ namespace TransparencyMaker
             /// event is fired when the 'Canvas' is clicked.
             /// </summary>
             private void Canvas_Click(object sender, EventArgs e)
-            {
+            {  
                 // locals
-                int x = 0;
-                int y = 0;
+                int x;
+                int y;
 
-                // If the value for the property this.ColorPickerMode is true
-                if (this.ColorPickerMode)
+                // If the value for the property this.ColorPickerMode is true or RectangleMode is true
+                if ((ColorPickerMode) || (RectangleMode))
                 {
                     // get the mouse event args
                     MouseEventArgs mouseEventArgs = e as MouseEventArgs;
@@ -179,13 +183,20 @@ namespace TransparencyMaker
                         x = mouseEventArgs.X;
                         y = mouseEventArgs.Y;
 
-                        // Handle the PixelInfo
-                        HandlePixelInfo(x, y);
+                        if (ColorPickerMode)
+                        {
+                            // Handle the PixelInfo
+                            HandlePixelInfo(x, y);
+                        }
+                        else if (RectangleMode)
+                        {   
+                            
+                        }
                     }
                 }
             }
             #endregion
-            
+
             #region Canvas_MouseEnter(object sender, EventArgs e)
             /// <summary>
             /// event is fired when Canvas _ Mouse Enter
@@ -257,6 +268,33 @@ namespace TransparencyMaker
                         // Change the text
                         this.QueryTextBox.Text = "Hide Pixels Where";
                     }
+                }
+            }
+            #endregion
+            
+            #region RectangleButton_Click(object sender, EventArgs e)
+            /// <summary>
+            /// event is fired when the 'RectangleButton' is clicked.
+            /// </summary>
+            private void RectangleButton_Click(object sender, EventArgs e)
+            {
+                // Turn Rectangle Mode On
+                RectangleMode = !RectangleMode;
+
+                // if the value for RectangleMode is true
+                if (RectangleMode)
+                {
+                    // reset the points
+                    point1 = Point.Empty;
+                    point2 = Point.Empty;
+
+                    // it is on
+                    MessagesTextBox.Text = "Rectangle Mode On";
+                }
+                else
+                {   
+                    // It is off
+                    MessagesTextBox.Text = "Rectangle Mode Off";
                 }
             }
             #endregion
@@ -494,6 +532,17 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region AppendQueryText(string text)
+            /// <summary>
+            /// This method returns the Query Text
+            /// </summary>
+            public void AppendQueryText(string text)
+            {
+                // Append the text sent plus a space
+                this.QueryTextBox.Text += text + " ";
+            }
+            #endregion
+            
             #region ApplyCriteria(List<PixelInformation> pixels, PixelQuery pixelQuery)
             /// <summary>
             /// This method returns a list of Criteria
@@ -612,6 +661,8 @@ namespace TransparencyMaker
                 Graphics graphics = Canvas.CreateGraphics();
                 Guid historyId = Guid.NewGuid();
                 Color previousColor;
+                bool checkForMask = false;
+                bool isMaskProtected = false;
 
                 // if the queryText exists
                 if (TextHelper.Exists(queryText))
@@ -654,6 +705,13 @@ namespace TransparencyMaker
                         }
                         else if (pixelQuery.ActionType == ActionTypeEnum.Update)
                         {
+                            // if Clear All
+                            if ((HasMaskManager) && (pixelQuery.HasMask) && (pixelQuery.Mask.HasAction) && (pixelQuery.Mask.Action == MaskActionEnum.ClearAll))
+                            {
+                                // Recreate the MaskManager
+                                MaskManager = new MaskManager();
+                            }
+
                              // Find the pixels that match the Criteria given
                             pixels = ApplyCriteria(pixels, pixelQuery);
 
@@ -663,37 +721,68 @@ namespace TransparencyMaker
                                 // Store the LastUpdate
                                 this.LastUpdate = pixels;
 
-                                Graph.Maximum = pixels.Count;
-                                Graph.Minimum = 0;
-                                Graph.Value = 0;
-                                Graph.Visible = true;
+                                //Graph.Maximum = pixels.Count;
+                                //Graph.Minimum = 0;
+                                //Graph.Value = 0;
+                                //Graph.Visible = true;
+                                
+                                // Refresh
+                                // Refresh();
+                                // Application.DoEvents();
 
                                 // Get the color
                                 Color color = pixelQuery.Color;
 
-                                // Update the pixels
-                                foreach (PixelInformation pixel in pixels)
+                                // If the value for the property pixelQuery.HasMask is true
+                                if (pixelQuery.HasMask)
                                 {
-                                    // get the prevoiusColor
-                                    previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
+                                    // Handle the mask in the Pixel database
+                                    HandleMask(pixels, pixelQuery.Mask);
+                                }
+                                else
+                                {
+                                    // If there are one or more Masks
+                                    checkForMask = ListHelper.HasOneOrMoreItems(MaskManager.Masks);
 
-                                    // if adjust color is true
-                                    if (pixelQuery.AdjustColor)
+                                    // Update the pixels
+                                    foreach (PixelInformation pixel in pixels)
                                     {
-                                        // Adjust the color
-                                        color = AdjustColor(previousColor, pixelQuery);
-                                    }
-                                    else if (pixelQuery.SwapColors)
-                                    {
-                                        // Swap two colors
-                                        color = SwapColor(previousColor, pixelQuery);
-                                    }
+                                        // if the value for checkForMask is true
+                                        if (checkForMask)
+                                        {
+                                            // Set the value for isMaskProtected
+                                            isMaskProtected = MaskManager.IsPixelInMask(pixel.X, pixel.Y);
+                                        }
 
-                                    // Set the pixel
-                                    this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
+                                        // if this pixel is not protected under a mask
+                                        if (!isMaskProtected)
+                                        {
+                                            // get the prevoiusColor
+                                            previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
 
-                                    // Increment the value for Graph
-                                    Graph.Value++;
+                                            // if this pixel is not part of any active masks
+                                            if ((pixelQuery.AdjustColor) || (pixelQuery.SwapColors))
+                                            {
+                                                // if adjust color is true
+                                                if (pixelQuery.AdjustColor)
+                                                {
+                                                    // Adjust the color
+                                                    color = AdjustColor(previousColor, pixelQuery);
+                                                }
+                                                else if (pixelQuery.SwapColors)
+                                                {
+                                                    // Swap two colors
+                                                    color = SwapColor(previousColor, pixelQuery);
+                                                }
+                                            }
+
+                                            // Set the pixel
+                                            this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
+                                        }
+
+                                        // Increment the value for Graph
+                                        // Graph.Value++;
+                                    }
                                 }
 
                                 // Hide the Graph
@@ -742,8 +831,8 @@ namespace TransparencyMaker
                                 this.Graph.Visible = true;
 
                                 // Refresh everything
-                                this.Refresh();
-                                Application.DoEvents();
+                                // this.Refresh();
+                                // Application.DoEvents();
 
                                 // Iterate the collection of PixelInformation objects
                                 foreach (PixelInformation pixel in pixels)
@@ -761,7 +850,7 @@ namespace TransparencyMaker
                                     if (this.Graph.Maximum < (this.Graph.Value + 1))
                                     {
                                         // Increment the value for Graph
-                                        this.Graph.Value++;
+                                        // this.Graph.Value++;
                                     }
                                 }
                             }
@@ -1183,6 +1272,48 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region HandleMask(List<PixelInformation> pixels, Mask mask)
+            /// <summary>
+            /// This method returns the Mask
+            /// </summary>
+            public void HandleMask(List<PixelInformation> pixels, Mask mask)
+            {
+                // If the MaskManager and Mask both exist, and the mask is valid
+                if ((this.HasMaskManager) && (MaskManager.HasMasks) && (NullHelper.Exists(mask)) && (mask.HasAction) && (mask.HasName))
+                { 
+                    // if Replace or Clear
+                    if ((mask.Action == MaskActionEnum.Replace) || (mask.Action == MaskActionEnum.Clear))
+                    {
+                        // Find the existing Mask
+                        Mask existingMask = MaskManager.Masks.FirstOrDefault(x => x.Name == mask.Name);
+
+                        // if this already mask exists
+                        if (NullHelper.Exists(existingMask))
+                        {
+                            // Remove this Mask
+                            MaskManager.Masks.Remove(existingMask);
+
+                            // Show the user something happened
+                            this.MessagesTextBox.Text = Environment.NewLine + "Mask " + mask.Name + " Removed";
+                        }
+                    }
+
+                     // if this is an add or a name
+                    if ((mask.Action == MaskActionEnum.Add) || (mask.Action == MaskActionEnum.Replace))
+                    {
+                        // Set the Pixels
+                        mask.Pixels = pixels;
+
+                        // Add this Mask
+                        MaskManager.Masks.Add(mask);
+
+                        // Show the TextBox
+                        this.MessagesTextBox.Text = Environment.NewLine + "Mask " + mask.Name + " Created With " + String.Format("{0:n0}", pixels.Count) + " Pixels";
+                    }
+                }
+            }
+            #endregion
+            
             #region HandlePixelInfo(int x, int y)
             /// <summary>
             /// This method Handle Pixel Info
@@ -1547,6 +1678,9 @@ namespace TransparencyMaker
                     // bail
                     return;
                 }
+
+                // Create the MaskManager
+                this.MaskManager = new MaskManager();
 
                 // Set to true
                 this.Analyzing = true;
@@ -2036,7 +2170,8 @@ namespace TransparencyMaker
             {
                 this.StartButton.Visible = !this.HasImagePath;
                 this.Canvas.Visible = this.HasImagePath;
-                this.ButtonPanel.Visible = this.HasImagePath;
+                this.ButtonPanel.Visible = HasImagePath;
+                this.QueryPanel.Visible = HasImagePath;
                 this.BottomMarginPanel.Visible = !this.HasImagePath;
                 this.GraphPanel.Visible = this.Analyzing;
                 this.Graph.Visible = this.Analyzing;
@@ -2168,6 +2303,23 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region HasMaskManager
+            /// <summary>
+            /// This property returns true if this object has a 'MaskManager'.
+            /// </summary>
+            public bool HasMaskManager
+            {
+                get
+                {
+                    // initial value
+                    bool hasMaskManager = (this.MaskManager != null);
+                    
+                    // return value
+                    return hasMaskManager;
+                }
+            }
+            #endregion
+            
             #region HasPixelDatabase
             /// <summary>
             /// This property returns true if this object has a 'PixelDatabase'.
@@ -2285,6 +2437,17 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region MaskManager
+            /// <summary>
+            /// This property gets or sets the value for 'MaskManager'.
+            /// </summary>
+            public MaskManager MaskManager
+            {
+                get { return maskManager; }
+                set { maskManager = value; }
+            }
+            #endregion
+            
             #region PixelDatabase
             /// <summary>
             /// This property gets or sets the value for 'PixelDatabase'.
@@ -2295,6 +2458,39 @@ namespace TransparencyMaker
                 set { pixelDatabase = value; }
             }
         #endregion
+                        
+            #region Point1
+            /// <summary>
+            /// This property gets or sets the value for 'Point1'.
+            /// </summary>
+            public Point Point1
+            {
+                get { return point1; }
+                set { point1 = value; }
+            }
+            #endregion
+            
+            #region Point2
+            /// <summary>
+            /// This property gets or sets the value for 'Point2'.
+            /// </summary>
+            public Point Point2
+            {
+                get { return point2; }
+                set { point2 = value; }
+            }
+            #endregion
+            
+            #region RectangleMode
+            /// <summary>
+            /// This property gets or sets the value for 'RectangleMode'.
+            /// </summary>
+            public bool RectangleMode
+            {
+                get { return rectangleMode; }
+                set { rectangleMode = value; }
+            }
+            #endregion
             
             #region Updating
             /// <summary>

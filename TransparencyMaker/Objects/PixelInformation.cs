@@ -26,7 +26,6 @@ namespace TransparencyMaker.Objects
         private Color color;
         private int x;
         private int y;
-        private List<string> mask;
         #endregion
 
         #region Constructor
@@ -194,24 +193,7 @@ namespace TransparencyMaker.Objects
                 }
             }
             #endregion
-            
-            #region HasMask
-            /// <summary>
-            /// This property returns true if this object has a 'Mask'.
-            /// </summary>
-            public bool HasMask
-            {
-                get
-                {
-                    // initial value
-                    bool hasMask = (this.Mask != null);
-                    
-                    // return value
-                    return hasMask;
-                }
-            }
-            #endregion
-            
+
             #region Index
             /// <summary>
             /// This property gets or sets the value for 'Index'.
@@ -220,17 +202,6 @@ namespace TransparencyMaker.Objects
             {
                 get { return index; }
                 set { index = value; }
-            }
-            #endregion
-            
-            #region Mask
-            /// <summary>
-            /// This property gets or sets the value for 'Mask'.
-            /// </summary>
-            public List<string> Mask
-            {
-                get { return mask; }
-                set { mask = value; }
             }
             #endregion
             
