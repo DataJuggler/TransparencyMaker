@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataJuggler.Core.UltimateHelper;
 using TransparencyMaker.Enumerations;
 
 #endregion
@@ -272,7 +273,23 @@ namespace TransparencyMaker.Objects
                 get
                 {
                     // initial value
-                    bool isValid = ((this.ActionType != ActionTypeEnum.Unknown) && (this.HasCriteria) && (this.Criteria.Count > 0));
+                    bool isValid = (this.ActionType != ActionTypeEnum.Unknown);
+
+                    // if we not have any criteria
+                    if ((isValid) && (!ListHelper.HasOneOrMoreItems(Criteria)))
+                    {
+                        // create default pixel criteria
+                        PixelCriteria pixelCriteria = new PixelCriteria();
+
+                        // Set the Properties on the criteria
+                        pixelCriteria.ComparisonType = ComparisonTypeEnum.GreaterThan;
+                        pixelCriteria.PixelType = PixelTypeEnum.Total;
+                        pixelCriteria.TargetValue = 0;
+
+                        // Create Default Criteria
+                        Criteria = new List<PixelCriteria>();
+                        Criteria.Add(pixelCriteria);
+                    }
 
                     // adding a test for UpdateQueries
                 

@@ -56,6 +56,7 @@ namespace TransparencyMaker
             /// </summary>
             private void InitializeComponent()
             {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LeftMarginPanel = new System.Windows.Forms.Panel();
             this.RightMarginPanel = new System.Windows.Forms.Panel();
@@ -64,6 +65,8 @@ namespace TransparencyMaker
             this.ButtonPanel = new System.Windows.Forms.Panel();
             this.IconBottomPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.UpdateButton = new System.Windows.Forms.PictureBox();
             this.IconTopPanel = new System.Windows.Forms.Panel();
             this.RectangleButton = new System.Windows.Forms.PictureBox();
             this.Margin7 = new System.Windows.Forms.Panel();
@@ -85,19 +88,21 @@ namespace TransparencyMaker
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.Graph = new System.Windows.Forms.ProgressBar();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
             this.QueryPanel = new System.Windows.Forms.Panel();
             this.QueryTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.MessagesTextBox = new System.Windows.Forms.TextBox();
             this.ApplyButton = new TransparencyMaker.Controls.FuturisticButtonControl();
-            this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
             this.Separator2 = new System.Windows.Forms.Panel();
             this.Separator1 = new System.Windows.Forms.Panel();
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.StartButton = new System.Windows.Forms.PictureBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ButtonPanel.SuspendLayout();
             this.IconBottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
             this.IconTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).BeginInit();
             this.YouTubePanel.SuspendLayout();
@@ -183,6 +188,8 @@ namespace TransparencyMaker
             this.IconBottomPanel.BackColor = System.Drawing.Color.Transparent;
             this.IconBottomPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.IconBottomPanel.Controls.Add(this.pictureBox1);
+            this.IconBottomPanel.Controls.Add(this.panel1);
+            this.IconBottomPanel.Controls.Add(this.UpdateButton);
             this.IconBottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.IconBottomPanel.Location = new System.Drawing.Point(688, 84);
             this.IconBottomPanel.Name = "IconBottomPanel";
@@ -192,16 +199,41 @@ namespace TransparencyMaker
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.pictureBox1.BackgroundImage = global::TransparencyMaker.Properties.Resources.Between;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 0);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(48, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox1.TabIndex = 81;
+            this.pictureBox1.TabIndex = 83;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.ToolTip.SetToolTip(this.pictureBox1, "Update Mode");
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(48, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(12, 48);
+            this.panel1.TabIndex = 82;
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.UpdateButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("UpdateButton.BackgroundImage")));
+            this.UpdateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.UpdateButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.UpdateButton.Location = new System.Drawing.Point(0, 0);
+            this.UpdateButton.MaximumSize = new System.Drawing.Size(48, 48);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(48, 48);
+            this.UpdateButton.TabIndex = 81;
+            this.UpdateButton.TabStop = false;
+            this.ToolTip.SetToolTip(this.UpdateButton, "Update Mode");
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            this.UpdateButton.MouseEnter += new System.EventHandler(this.Button_Enter);
+            this.UpdateButton.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
             // IconTopPanel
             // 
@@ -451,8 +483,8 @@ namespace TransparencyMaker
             this.MainPanel.BackColor = System.Drawing.Color.Black;
             this.MainPanel.BackgroundImage = global::TransparencyMaker.Properties.Resources.Gray_Slate_Small;
             this.MainPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.MainPanel.Controls.Add(this.QueryPanel);
             this.MainPanel.Controls.Add(this.PixelInfo);
+            this.MainPanel.Controls.Add(this.QueryPanel);
             this.MainPanel.Controls.Add(this.Separator2);
             this.MainPanel.Controls.Add(this.Separator1);
             this.MainPanel.Controls.Add(this.Canvas);
@@ -462,6 +494,21 @@ namespace TransparencyMaker
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1652, 550);
             this.MainPanel.TabIndex = 8;
+            // 
+            // PixelInfo
+            // 
+            this.PixelInfo.BackColor = System.Drawing.Color.LightYellow;
+            this.PixelInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PixelInfo.BackgroundImage")));
+            this.PixelInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PixelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PixelInfo.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PixelInfo.Location = new System.Drawing.Point(208, 142);
+            this.PixelInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.PixelInfo.Name = "PixelInfo";
+            this.PixelInfo.Pixel = null;
+            this.PixelInfo.Size = new System.Drawing.Size(338, 236);
+            this.PixelInfo.TabIndex = 0;
+            this.PixelInfo.Visible = false;
             // 
             // QueryPanel
             // 
@@ -530,21 +577,6 @@ namespace TransparencyMaker
             this.ApplyButton.TabIndex = 20;
             this.ApplyButton.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.ApplyButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // PixelInfo
-            // 
-            this.PixelInfo.BackColor = System.Drawing.Color.LightYellow;
-            this.PixelInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PixelInfo.BackgroundImage")));
-            this.PixelInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PixelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PixelInfo.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PixelInfo.Location = new System.Drawing.Point(208, 142);
-            this.PixelInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.PixelInfo.Name = "PixelInfo";
-            this.PixelInfo.Pixel = null;
-            this.PixelInfo.Size = new System.Drawing.Size(338, 236);
-            this.PixelInfo.TabIndex = 0;
-            this.PixelInfo.Visible = false;
             // 
             // Separator2
             // 
@@ -617,6 +649,7 @@ namespace TransparencyMaker
             this.ButtonPanel.ResumeLayout(false);
             this.IconBottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
             this.IconTopPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).EndInit();
             this.YouTubePanel.ResumeLayout(false);
@@ -657,7 +690,10 @@ namespace TransparencyMaker
         private System.Windows.Forms.Panel IconTopPanel;
         private System.Windows.Forms.PictureBox RectangleButton;
         private System.Windows.Forms.Panel IconBottomPanel;
+        private System.Windows.Forms.PictureBox UpdateButton;
+        private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
     }
     #endregion
 

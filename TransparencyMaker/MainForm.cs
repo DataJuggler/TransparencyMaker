@@ -190,7 +190,28 @@ namespace TransparencyMaker
                         }
                         else if (RectangleMode)
                         {   
-                            
+                            // set the pixel
+                            PixelInformation pixel = null;
+
+                            if (Point1 == Point.Empty)
+                            {
+                                // Get the scaled Pixel
+                                pixel = HandlePixelInfo(x, y);
+
+                                // Create Point1
+                                Point1 = new Point(pixel.X, pixel.Y);
+                            }
+                            else if (Point2 == Point.Empty)
+                            {
+                                // Get the scaled Pixel
+                                pixel = HandlePixelInfo(x, y);
+
+                                // Create Point1
+                                Point2 = new Point(pixel.X, pixel.Y);
+
+                                // Draw a rectangle
+                                DrawRectangle(Point1, Point2);
+                            }
                         }
                     }
                 }
@@ -204,7 +225,7 @@ namespace TransparencyMaker
             private void Canvas_MouseEnter(object sender, EventArgs e)
             {
                 // if the value for ColorPickerMode is true
-                if (ColorPickerMode)
+                if ((ColorPickerMode) || (RectangleMode))
                 {
                     // Change the cursor to a hand
                     this.Cursor = Cursors.Hand;
@@ -323,6 +344,20 @@ namespace TransparencyMaker
 
                 // Show the ListBox
                 UIEnable();
+            }
+            #endregion
+            
+            #region UpdateButton_Click(object sender, EventArgs e)
+            /// <summary>
+            /// event is fired when the 'UpdateButton' is clicked.
+            /// </summary>
+            private void UpdateButton_Click(object sender, EventArgs e)
+            {
+                // Change the text
+                QueryTextBox.Text = "Update" + Environment.NewLine + "Set ";
+
+                // Set Focus
+                QueryTextBox.Focus();
             }
             #endregion
             
@@ -668,7 +703,7 @@ namespace TransparencyMaker
                 if (TextHelper.Exists(queryText))
                 {
                     // Parse the PixelQuery
-                    PixelQuery pixelQuery = PixelQueryParser.ParsePixelQuery(queryText);
+                   PixelQuery pixelQuery = PixelQueryParser.ParsePixelQuery(queryText);
 
                     // if this is a valid query
                     if (pixelQuery.IsValid)
@@ -712,7 +747,7 @@ namespace TransparencyMaker
                                 MaskManager = new MaskManager();
                             }
 
-                             // Find the pixels that match the Criteria given
+                            // Find the pixels that match the Criteria given
                             pixels = ApplyCriteria(pixels, pixelQuery);
 
                             // if there are one or more pixels
@@ -968,6 +1003,59 @@ namespace TransparencyMaker
                         // force Repaint
                         this.Canvas.Invalidate();
                     }
+                }
+            }
+            #endregion
+            
+            #region DrawRectangle()
+            /// <summary>
+            /// This method Draw Rectangle
+            /// </summary>
+            /// <param name="point1">The top left corner of the rectangle</param>
+            /// <param name="point2">The bottom right</param>
+            public void DrawRectangle(Point point1, Point point2)
+            {
+                if ((point1 != Point.Empty) && (point2 != Point.Empty))
+                {
+                    // get the color to draw in
+                    Color yellow = Color.Yellow;
+
+                    // draw top line
+                    for (int x = point1.X; x < point2.X; x++)
+                    {
+                        // Draw the line
+                        DirectBitmap.SetPixel(x, point1.Y, yellow);  
+                    }
+
+                    // draw left line
+
+                    // draw left line
+                    for (int y = point1.Y; y < point2.Y; y++)
+                    {
+                        // Draw the line
+                        DirectBitmap.SetPixel(point1.X, y, yellow);  
+                    }
+
+                    // draw bottom line
+                    for (int x = point1.X; x < point2.X; x++)
+                    {
+                        // Draw the line
+                        DirectBitmap.SetPixel(x, point2.Y, yellow);  
+                    }
+
+                    // draw right line
+                    for (int y = point1.Y; y < point2.Y; y++)
+                    {
+                        // Draw the line
+                        DirectBitmap.SetPixel(point2.X, y, yellow);  
+                    }
+
+                     // Set the background image
+                    this.Canvas.BackgroundImage = this.DirectBitmap.Bitmap;
+
+                    // Refresh everything
+                    this.Refresh();
+                    Application.DoEvents();
                 }
             }
             #endregion
@@ -1318,8 +1406,11 @@ namespace TransparencyMaker
             /// <summary>
             /// This method Handle Pixel Info
             /// </summary>
-            public void HandlePixelInfo(int x, int y)
+            public PixelInformation HandlePixelInfo(int x, int y)
             {  
+                // local
+                PixelInformation pixel = null;
+
                 // for debugging only
                 int originalX = x;
                 int originalY = y;
@@ -1376,45 +1467,51 @@ namespace TransparencyMaker
                 Color color = bitmap.GetPixel(x, y);
 
                 // Create a new instance of a 'PixelInformation' object.
-                PixelInformation pixel = new PixelInformation();
+                pixel = new PixelInformation();
 
                 // set the information on the pixel
                 pixel.Color = color;
                 pixel.X = x;
                 pixel.Y = y;
 
-                // Handle the display top in case the mouse is too far down
-                int displayY = originalY;
-
-                // if the height is too far down
-                if (displayY > (canvasHeight - PixelInfo.Height - TitleBarHeight))
+                if (ColorPickerMode)
                 {
-                    // Move up a control's length
-                    displayY = displayY - PixelInfo.Height - TitleBarHeight;
+                    // Handle the display top in case the mouse is too far down
+                    int displayY = originalY;
+
+                    // if the height is too far down
+                    if (displayY > (canvasHeight - PixelInfo.Height - TitleBarHeight))
+                    {
+                        // Move up a control's length
+                        displayY = displayY - PixelInfo.Height - TitleBarHeight;
+                    }
+
+                    // Display the PixelInfo
+                    this.PixelInfo.DisplayPixel(pixel);
+                    this.PixelInfo.Left = LeftMarginPanel.Width + originalX + 32;
+                    this.PixelInfo.Top = TitleBarHeight + displayY;
+                    this.PixelInfo.Visible = true;
+                    this.PixelInfo.Refresh();
+
+                    // if draw line is set
+                    if (this.QueryTextBox.Text.ToLower().Contains("draw line"))
+                    {
+                        // add to the current text
+                        string text = this.QueryTextBox.Text + " " + x + "  " + y + " ";
+
+                        // Remove the new line character out of the beginning
+                        text = text.Replace(Environment.NewLine + " ", Environment.NewLine);
+
+                        // Update the text
+                        this.QueryTextBox.Text = text;
+
+                        // Set the Selection Start
+                        this.QueryTextBox.SelectionStart = text.Length - 1;
+                    }
                 }
 
-                // Display the PixelInfo
-                this.PixelInfo.DisplayPixel(pixel);
-                this.PixelInfo.Left = LeftMarginPanel.Width + originalX + 32;
-                this.PixelInfo.Top = TitleBarHeight + displayY;
-                this.PixelInfo.Visible = true;
-                this.PixelInfo.Refresh();
-
-                // if draw line is set
-                if (this.QueryTextBox.Text.ToLower().Contains("draw line"))
-                {
-                    // add to the current text
-                    string text = this.QueryTextBox.Text + " " + x + "  " + y + " ";
-
-                    // Remove the new line character out of the beginning
-                    text = text.Replace(Environment.NewLine + " ", Environment.NewLine);
-
-                    // Update the text
-                    this.QueryTextBox.Text = text;
-
-                    // Set the Selection Start
-                    this.QueryTextBox.SelectionStart = text.Length - 1;
-                }
+                // return value
+                return pixel;
             }
             #endregion
             
@@ -1693,75 +1790,76 @@ namespace TransparencyMaker
                 UIEnable();
 
                 // Create a Bitmap from the Source image
-                Bitmap source = new Bitmap(this.Canvas.BackgroundImage);
-
-                // Code To Lockbits
-                BitmapData bitmapData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
-                IntPtr pointer = bitmapData.Scan0;
-                int size = Math.Abs(bitmapData.Stride) * source.Height;
-                byte[] pixels = new byte[size];
-                Marshal.Copy(pointer, pixels, 0, size);
-
-                // End Code To Lockbits
-                // Marshal.Copy(pixels,0,pointer, size);
-                source.UnlockBits(bitmapData);
-
-                // test only
-                int length = pixels.Length;
-
-                // Set the Max for the grid, minus 10 just for comfort
-                this.Graph.Maximum = source.Width * source.Height + 1000;
-
-                // Create a new instance of a 'PixelDatabase' object.
-                this.PixelDatabase = new PixelDatabase();
-
-                // locals
-                Color color = Color.FromArgb(0, 0, 0);
-                int red = 0;
-                int green = 0;
-                int blue = 0;
-                int alpha = 0;
-
-                // variables to hold height and width
-                int width = source.Width;
-                int height = source.Height;
-                int x = -1;
-                int y = 0;
-                
-                // Iterating the pixel array, every 4th byte is a new pixel, much faster than GetPixel
-                for (int a = 0; a < pixels.Length; a = a + 4)
+                using (Bitmap source = new Bitmap(this.Canvas.BackgroundImage))
                 {
-                     // increment the value for x
-                    x++;
+                    // Code To Lockbits
+                    BitmapData bitmapData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
+                    IntPtr pointer = bitmapData.Scan0;
+                    int size = Math.Abs(bitmapData.Stride) * source.Height;
+                    byte[] pixels = new byte[size];
+                    Marshal.Copy(pointer, pixels, 0, size);
 
-                    // every new column
-                    if (x >= width)
+                    // End Code To Lockbits
+                    // Marshal.Copy(pixels,0,pointer, size);
+                    source.UnlockBits(bitmapData);
+
+                    // test only
+                    int length = pixels.Length;
+
+                    // Set the Max for the grid, minus 10 just for comfort
+                    this.Graph.Maximum = source.Width * source.Height + 1000;
+
+                    // Create a new instance of a 'PixelDatabase' object.
+                    this.PixelDatabase = new PixelDatabase();
+
+                     // locals
+                    Color color = Color.FromArgb(0, 0, 0);
+                    int red = 0;
+                    int green = 0;
+                    int blue = 0;
+                    int alpha = 0;
+
+                    // variables to hold height and width
+                    int width = source.Width;
+                    int height = source.Height;
+                    int x = -1;
+                    int y = 0;
+
+                    // Iterating the pixel array, every 4th byte is a new pixel, much faster than GetPixel
+                    for (int a = 0; a < pixels.Length; a = a + 4)
                     {
-                        // reset x
-                        x = 0;
+                         // increment the value for x
+                        x++;
 
-                        // Increment the value for y
-                        y++;
-                    }      
+                        // every new column
+                        if (x >= width)
+                        {
+                            // reset x
+                            x = 0;
 
-                    // Increment the value
-                    this.Graph.Value++;
+                            // Increment the value for y
+                            y++;
+                        }      
 
-                    // get the values for r, g, and blue
-                    blue = pixels[a];
-                    green = pixels[a + 1];
-                    red = pixels[a + 2];
-                    alpha = pixels[a + 3];
+                        // Increment the value
+                        this.Graph.Value++;
+
+                        // get the values for r, g, and blue
+                        blue = pixels[a];
+                        green = pixels[a + 1];
+                        red = pixels[a + 2];
+                        alpha = pixels[a + 3];
                     
-                    // create a color
-                    color = Color.FromArgb(alpha, red, green, blue);
+                        // create a color
+                        color = Color.FromArgb(alpha, red, green, blue);
 
-                    // Add this point
-                    PixelInformation pixelInformation = this.PixelDatabase.AddPixel(color, x, y);
+                        // Add this point
+                        PixelInformation pixelInformation = this.PixelDatabase.AddPixel(color, x, y);
+                    }
+
+                    // Create a DirectBitmap
+                    this.DirectBitmap = new DirectBitmap(source.Width, source.Height);
                 }
-
-                // Create a DirectBitmap
-                this.DirectBitmap = new DirectBitmap(source.Width, source.Height);
 
                 // Now we must copy over the Pixels from the PixelDatabase to the DirectBitmap
                 if ((this.HasPixelDatabase) && (ListHelper.HasOneOrMoreItems(this.PixelDatabase.Pixels)))

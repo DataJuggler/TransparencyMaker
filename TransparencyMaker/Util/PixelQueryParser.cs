@@ -446,7 +446,7 @@ namespace TransparencyMaker.Util
                     directions = new Directions();
 
                     // only use a space as a delimiter character
-                    char[] delimiterChars = { ' '};
+                    char[] delimiterChars = { ' ' };
 
                     // if the words exists
                     List<Word> words = WordParser.GetWords(directionsText, delimiterChars);
@@ -457,7 +457,7 @@ namespace TransparencyMaker.Util
                         // Iterate the collection of Word objects
                         foreach (Word word in words)
                         {
-                            switch (word.Text)
+                            switch (word.Text.ToLower())
                             {
                                 case "left":
                                     
@@ -630,6 +630,9 @@ namespace TransparencyMaker.Util
                 // If the queryText string exists
                 if (TextHelper.Exists(queryText))
                 {
+                    // Get the text lines
+                    List<TextLine> lines = WordParser.GetTextLines(queryText);
+
                     // get the lowercase version of the text
                     queryText = queryText.ToLower().Trim();
 
@@ -641,9 +644,6 @@ namespace TransparencyMaker.Util
                     {
                         // for an update query, the second line sets the color values to update to
                         // and the third line starts the where clause.
-
-                        // Get the text lines
-                        List<TextLine> lines = WordParser.GetTextLines(queryText);
 
                         // If the lines collection exists and has one or more items
                         if (ListHelper.HasOneOrMoreItems(lines))
@@ -689,12 +689,18 @@ namespace TransparencyMaker.Util
                     else if (pixelQuery.ActionType == ActionTypeEnum.HideFrom)
                     {
                         // hide from (Left, Right, Up, Down, All)
+                        // Get the first line
+                        if (ListHelper.HasOneOrMoreItems(lines))
+                        {
+                            // Get the text
+                            string hideFromText = lines[0].Text;
 
-                        // set the directionsText
-                        string directionsText = queryText.Substring(10).Trim();
+                            // set the directionsText
+                            string directionsText = hideFromText.Substring(10).Trim();
 
-                        // Parse the directions 
-                        pixelQuery.Directions = ParseDirections(directionsText);
+                            // Parse the directions 
+                            pixelQuery.Directions = ParseDirections(directionsText);
+                        }
                     }
                     else
                     {
