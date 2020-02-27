@@ -117,12 +117,27 @@ namespace TransparencyMaker
                         // Set ColorPickerMode true or false
                         this.ColorPickerMode = !this.ColorPickerMode;
 
+                        // We can't be in both at the same time
+                        this.RectangleMode = !ColorPickerMode;
+
                         // if not in ColorPickerMode
-                        if (!this.ColorPickerMode)
+                        if (this.ColorPickerMode)
                         {
+                            // it is on
+                            MessagesTextBox.Text = "Color Picker Mode On";
+
                             // Hide the control
                             this.PixelInfo.Visible = false;
                         }
+                        else 
+                        {
+                            // it is on
+                            MessagesTextBox.Text = "Color Picker Mode Off";
+
+                            // Hide the control
+                            this.PixelInfo.Visible = false;
+                        }
+
                         
                         // required
                         break;
@@ -270,6 +285,17 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region QueryPanel_Resize(object sender, EventArgs e)
+            /// <summary>
+            /// event is fired when Query Panel _ Resize
+            /// </summary>
+            private void QueryPanel_Resize(object sender, EventArgs e)
+            {
+                // Resize to top half not used for now
+                QueryTopMargin.Height = QueryPanel.Height / 2;
+            }
+            #endregion
+            
             #region QueryTextBox_KeyDown(object sender, KeyEventArgs e)
             /// <summary>
             /// event is fired when Query Text Box _ Key Down
@@ -301,6 +327,9 @@ namespace TransparencyMaker
             {
                 // Turn Rectangle Mode On
                 RectangleMode = !RectangleMode;
+
+                // We can't be in both modes at the same time
+                ColorPickerMode = !RectangleMode;
 
                 // if the value for RectangleMode is true
                 if (RectangleMode)
@@ -701,7 +730,7 @@ namespace TransparencyMaker
 
                 // if the queryText exists
                 if (TextHelper.Exists(queryText))
-                {
+                {  
                     // Parse the PixelQuery
                    PixelQuery pixelQuery = PixelQueryParser.ParsePixelQuery(queryText);
 
@@ -746,6 +775,8 @@ namespace TransparencyMaker
                                 // Recreate the MaskManager
                                 MaskManager = new MaskManager();
                             }
+
+                            
 
                             // Find the pixels that match the Criteria given
                             pixels = ApplyCriteria(pixels, pixelQuery);
@@ -923,6 +954,9 @@ namespace TransparencyMaker
                 // Close the current file
                 this.ImagePath = "";
                 this.Canvas.BackgroundImage = null;
+
+                // destory the PixelDatabase
+                PixelDatabase = null;
 
                 // Not loaded
                 this.ImageLoaded = false;
@@ -1478,18 +1512,26 @@ namespace TransparencyMaker
                 {
                     // Handle the display top in case the mouse is too far down
                     int displayY = originalY;
+                    int displayX = LeftMarginPanel.Width + originalX + 32;
 
                     // if the height is too far down
-                    if (displayY > (canvasHeight - PixelInfo.Height - TitleBarHeight))
+                    if ((displayY + 60) > (canvasHeight - PixelInfo.Height - TitleBarHeight))
                     {
                         // Move up a control's length
-                        displayY = displayY - PixelInfo.Height - TitleBarHeight;
+                        displayY = displayY - 60 - PixelInfo.Height;
+                    }
+
+                    // if the width is too far right
+                    if ((displayX) > (canvasWidth + PixelInfo.Width))
+                    {
+                        // Move left 
+                        displayX = displayX - 60 - PixelInfo.Width;
                     }
 
                     // Display the PixelInfo
                     this.PixelInfo.DisplayPixel(pixel);
-                    this.PixelInfo.Left = LeftMarginPanel.Width + originalX + 32;
-                    this.PixelInfo.Top = TitleBarHeight + displayY;
+                    this.PixelInfo.Left = displayX;
+                    this.PixelInfo.Top = displayY;
                     this.PixelInfo.Visible = true;
                     this.PixelInfo.Refresh();
 
@@ -2268,22 +2310,38 @@ namespace TransparencyMaker
             {
                 this.StartButton.Visible = !this.HasImagePath;
                 this.Canvas.Visible = this.HasImagePath;
-                this.ButtonPanel.Visible = HasImagePath;
+                this.BottomMarginPanel.Visible = !this.HasImagePath;                
                 this.QueryPanel.Visible = HasImagePath;
-                this.BottomMarginPanel.Visible = !this.HasImagePath;
                 this.GraphPanel.Visible = this.Analyzing;
                 this.Graph.Visible = this.Analyzing;
+                this.ButtonPanel.Visible = HasImagePath;
+                
+                // local
+                bool isFileOpen =  ((this.ImageLoaded) && (!this.Analyzing));
 
                 // Handle the buttons
-                this.CloseFileButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
-                this.SaveButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
-                this.SaveAsButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
-                this.ResetButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
-                this.ColorPickerButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
-                this.UndoChangesButton.Visible = ((this.ImageLoaded) && (!this.Analyzing));
+                this.CloseFileButton.Visible = isFileOpen;
+                this.SaveButton.Visible = isFileOpen;
+                this.SaveAsButton.Visible = isFileOpen;
+                this.ResetButton.Visible = isFileOpen;
+                this.ColorPickerButton.Visible = isFileOpen;
+                this.UndoChangesButton.Visible = isFileOpen;
+                this.IconTopPanel.Visible = isFileOpen;
+                this.IconBottomPanel.Visible = isFileOpen;
                 
                 // Show the QueryPanel if we are done analyzing the Pixel Database has any pixels
                 this.QueryPanel.Visible = ((!this.Analyzing) && (this.HasPixelDatabase) && (this.PixelDatabase.HasOneOrMorePixels));
+
+                if (isFileOpen)
+                {
+                    // remove the background image while a file is open
+                    this.MainPanel.BackgroundImage = null;
+                }
+                else
+                {
+                    // remove the background image while a file is open
+                    this.MainPanel.BackgroundImage = Properties.Resources.Gray_Slate_Small;
+                }
 
                 // Refresh Everything
                 this.Refresh();

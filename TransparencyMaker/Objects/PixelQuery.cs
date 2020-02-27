@@ -42,6 +42,7 @@ namespace TransparencyMaker.Objects
         private string setMaskcolorName;
         private RGBColor colorToAdjust;
         private RGBColor assignToColor;
+        private string queryText;
         #endregion
 
         #region Constructor
@@ -332,6 +333,17 @@ namespace TransparencyMaker.Objects
             {
                 get { return mask; }
                 set { mask = value; }
+            }
+            #endregion
+            
+            #region QueryText
+            /// <summary>
+            /// This property gets or sets the value for 'QueryText'.
+            /// </summary>
+            public string QueryText
+            {
+                get { return queryText; }
+                set { queryText = value; }
             }
             #endregion
             

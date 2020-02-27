@@ -21,15 +21,23 @@ namespace TransparencyMaker
         private System.Windows.Forms.Panel RightMarginPanel;
         private System.Windows.Forms.Panel TopMarginPanel;
         private System.Windows.Forms.Panel BottomMarginPanel;
-        private System.Windows.Forms.Panel ButtonPanel;
+        private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Panel QueryPanel;
+        private Controls.FuturisticButtonControl ApplyButton;
+        private System.Windows.Forms.Panel QueryTopMargin;
+        private System.Windows.Forms.Panel YouTubePanel;
+        private System.Windows.Forms.PictureBox YouTubeButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MessagesTextBox;
+        private System.Windows.Forms.Panel RightMargin2;
         private System.Windows.Forms.Panel MainPanel;
-        private System.Windows.Forms.PictureBox Canvas;
-        private System.Windows.Forms.PictureBox StartButton;
         private System.Windows.Forms.Panel Separator2;
         private System.Windows.Forms.Panel Separator1;
-        private System.Windows.Forms.Panel GraphPanel;
-        private System.Windows.Forms.ProgressBar Graph;
+        private System.Windows.Forms.PictureBox Canvas;
         private Controls.PixelInformationControl PixelInfo;
+        private System.Windows.Forms.PictureBox StartButton;
+        private System.Windows.Forms.TextBox QueryTextBox;
+        private System.Windows.Forms.Panel ApplyButtonMargin;
         #endregion
         
         #region Methods
@@ -62,13 +70,30 @@ namespace TransparencyMaker
             this.RightMarginPanel = new System.Windows.Forms.Panel();
             this.TopMarginPanel = new System.Windows.Forms.Panel();
             this.BottomMarginPanel = new System.Windows.Forms.Panel();
-            this.ButtonPanel = new System.Windows.Forms.Panel();
-            this.IconBottomPanel = new System.Windows.Forms.Panel();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.UpdateButton = new System.Windows.Forms.PictureBox();
+            this.QueryPanel = new System.Windows.Forms.Panel();
+            this.QueryTextBox = new System.Windows.Forms.TextBox();
+            this.ApplyButtonMargin = new System.Windows.Forms.Panel();
+            this.ApplyButton = new TransparencyMaker.Controls.FuturisticButtonControl();
+            this.QueryTopMargin = new System.Windows.Forms.Panel();
+            this.YouTubePanel = new System.Windows.Forms.Panel();
+            this.YouTubeButton = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MessagesTextBox = new System.Windows.Forms.Label();
+            this.RightMargin2 = new System.Windows.Forms.Panel();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
+            this.Separator2 = new System.Windows.Forms.Panel();
+            this.Separator1 = new System.Windows.Forms.Panel();
+            this.StartButton = new System.Windows.Forms.PictureBox();
+            this.Canvas = new System.Windows.Forms.PictureBox();
+            this.ButtonPanel = new System.Windows.Forms.Panel();
             this.IconTopPanel = new System.Windows.Forms.Panel();
             this.RectangleButton = new System.Windows.Forms.PictureBox();
+            this.IconBottomPanel = new System.Windows.Forms.Panel();
+            this.IconSeperator = new System.Windows.Forms.Panel();
             this.Margin7 = new System.Windows.Forms.Panel();
             this.ColorPickerButton = new TransparencyMaker.Controls.FuturisticButtonControl();
             this.Margin6 = new System.Windows.Forms.Panel();
@@ -81,37 +106,25 @@ namespace TransparencyMaker
             this.SaveButton = new TransparencyMaker.Controls.FuturisticButtonControl();
             this.Margin2 = new System.Windows.Forms.Panel();
             this.CloseFileButton = new TransparencyMaker.Controls.FuturisticButtonControl();
+            this.ButtonBottomMargin = new System.Windows.Forms.Panel();
             this.Margin1 = new System.Windows.Forms.Panel();
-            this.ButtonMarginPanel = new System.Windows.Forms.Panel();
-            this.YouTubePanel = new System.Windows.Forms.Panel();
-            this.YouTubeButton = new System.Windows.Forms.PictureBox();
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.Graph = new System.Windows.Forms.ProgressBar();
-            this.MainPanel = new System.Windows.Forms.Panel();
-            this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
-            this.QueryPanel = new System.Windows.Forms.Panel();
-            this.QueryTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.MessagesTextBox = new System.Windows.Forms.TextBox();
-            this.ApplyButton = new TransparencyMaker.Controls.FuturisticButtonControl();
-            this.Separator2 = new System.Windows.Forms.Panel();
-            this.Separator1 = new System.Windows.Forms.Panel();
-            this.Canvas = new System.Windows.Forms.PictureBox();
-            this.StartButton = new System.Windows.Forms.PictureBox();
-            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ButtonPanel.SuspendLayout();
-            this.IconBottomPanel.SuspendLayout();
+            this.ButtonMarginPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
-            this.IconTopPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).BeginInit();
+            this.QueryPanel.SuspendLayout();
+            this.QueryTopMargin.SuspendLayout();
             this.YouTubePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).BeginInit();
-            this.GraphPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
-            this.QueryPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
+            this.ButtonPanel.SuspendLayout();
+            this.IconTopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).BeginInit();
+            this.IconBottomPanel.SuspendLayout();
+            this.GraphPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftMarginPanel
@@ -154,48 +167,6 @@ namespace TransparencyMaker
             this.BottomMarginPanel.Size = new System.Drawing.Size(1652, 32);
             this.BottomMarginPanel.TabIndex = 5;
             // 
-            // ButtonPanel
-            // 
-            this.ButtonPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ButtonPanel.Controls.Add(this.IconBottomPanel);
-            this.ButtonPanel.Controls.Add(this.IconTopPanel);
-            this.ButtonPanel.Controls.Add(this.Margin7);
-            this.ButtonPanel.Controls.Add(this.ColorPickerButton);
-            this.ButtonPanel.Controls.Add(this.Margin6);
-            this.ButtonPanel.Controls.Add(this.UndoChangesButton);
-            this.ButtonPanel.Controls.Add(this.Margin5);
-            this.ButtonPanel.Controls.Add(this.ResetButton);
-            this.ButtonPanel.Controls.Add(this.Margin4);
-            this.ButtonPanel.Controls.Add(this.SaveAsButton);
-            this.ButtonPanel.Controls.Add(this.Margin3);
-            this.ButtonPanel.Controls.Add(this.SaveButton);
-            this.ButtonPanel.Controls.Add(this.Margin2);
-            this.ButtonPanel.Controls.Add(this.CloseFileButton);
-            this.ButtonPanel.Controls.Add(this.Margin1);
-            this.ButtonPanel.Controls.Add(this.ButtonMarginPanel);
-            this.ButtonPanel.Controls.Add(this.YouTubePanel);
-            this.ButtonPanel.Controls.Add(this.GraphPanel);
-            this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonPanel.Location = new System.Drawing.Point(32, 582);
-            this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(1652, 132);
-            this.ButtonPanel.TabIndex = 7;
-            this.ButtonPanel.Visible = false;
-            // 
-            // IconBottomPanel
-            // 
-            this.IconBottomPanel.BackColor = System.Drawing.Color.Transparent;
-            this.IconBottomPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.IconBottomPanel.Controls.Add(this.pictureBox1);
-            this.IconBottomPanel.Controls.Add(this.panel1);
-            this.IconBottomPanel.Controls.Add(this.UpdateButton);
-            this.IconBottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.IconBottomPanel.Location = new System.Drawing.Point(688, 84);
-            this.IconBottomPanel.Name = "IconBottomPanel";
-            this.IconBottomPanel.Size = new System.Drawing.Size(836, 48);
-            this.IconBottomPanel.TabIndex = 82;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.DeepSkyBlue;
@@ -209,14 +180,7 @@ namespace TransparencyMaker
             this.pictureBox1.TabIndex = 83;
             this.pictureBox1.TabStop = false;
             this.ToolTip.SetToolTip(this.pictureBox1, "Update Mode");
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(48, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(12, 48);
-            this.panel1.TabIndex = 82;
+            this.pictureBox1.Visible = false;
             // 
             // UpdateButton
             // 
@@ -231,269 +195,138 @@ namespace TransparencyMaker
             this.UpdateButton.TabIndex = 81;
             this.UpdateButton.TabStop = false;
             this.ToolTip.SetToolTip(this.UpdateButton, "Update Mode");
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
-            this.UpdateButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.UpdateButton.MouseLeave += new System.EventHandler(this.Button_Leave);
+            this.UpdateButton.Visible = false;
             // 
-            // IconTopPanel
+            // QueryPanel
             // 
-            this.IconTopPanel.BackColor = System.Drawing.Color.Transparent;
-            this.IconTopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.IconTopPanel.Controls.Add(this.RectangleButton);
-            this.IconTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IconTopPanel.Location = new System.Drawing.Point(688, 28);
-            this.IconTopPanel.Name = "IconTopPanel";
-            this.IconTopPanel.Size = new System.Drawing.Size(836, 48);
-            this.IconTopPanel.TabIndex = 81;
+            this.QueryPanel.BackColor = System.Drawing.Color.Transparent;
+            this.QueryPanel.Controls.Add(this.QueryTextBox);
+            this.QueryPanel.Controls.Add(this.ApplyButtonMargin);
+            this.QueryPanel.Controls.Add(this.ApplyButton);
+            this.QueryPanel.Controls.Add(this.QueryTopMargin);
+            this.QueryPanel.Controls.Add(this.label1);
+            this.QueryPanel.Controls.Add(this.MessagesTextBox);
+            this.QueryPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.QueryPanel.Location = new System.Drawing.Point(1204, 32);
+            this.QueryPanel.Name = "QueryPanel";
+            this.QueryPanel.Size = new System.Drawing.Size(480, 682);
+            this.QueryPanel.TabIndex = 73;
+            this.QueryPanel.Visible = false;
             // 
-            // RectangleButton
+            // QueryTextBox
             // 
-            this.RectangleButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.RectangleButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Rectanble;
-            this.RectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RectangleButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RectangleButton.Location = new System.Drawing.Point(0, 0);
-            this.RectangleButton.MaximumSize = new System.Drawing.Size(48, 48);
-            this.RectangleButton.Name = "RectangleButton";
-            this.RectangleButton.Size = new System.Drawing.Size(48, 48);
-            this.RectangleButton.TabIndex = 81;
-            this.RectangleButton.TabStop = false;
-            this.RectangleButton.Click += new System.EventHandler(this.RectangleButton_Click);
-            this.RectangleButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.RectangleButton.MouseLeave += new System.EventHandler(this.Button_Leave);
+            this.QueryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryTextBox.Location = new System.Drawing.Point(0, 200);
+            this.QueryTextBox.Multiline = true;
+            this.QueryTextBox.Name = "QueryTextBox";
+            this.QueryTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.QueryTextBox.Size = new System.Drawing.Size(480, 214);
+            this.QueryTextBox.TabIndex = 40;
+            this.QueryTextBox.Text = "Hide Pixels Where";
             // 
-            // Margin7
+            // ApplyButtonMargin
             // 
-            this.Margin7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin7.Location = new System.Drawing.Point(672, 28);
-            this.Margin7.Name = "Margin7";
-            this.Margin7.Size = new System.Drawing.Size(16, 104);
-            this.Margin7.TabIndex = 79;
+            this.ApplyButtonMargin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ApplyButtonMargin.Location = new System.Drawing.Point(0, 414);
+            this.ApplyButtonMargin.Name = "ApplyButtonMargin";
+            this.ApplyButtonMargin.Size = new System.Drawing.Size(480, 12);
+            this.ApplyButtonMargin.TabIndex = 38;
             // 
-            // ColorPickerButton
+            // ApplyButton
             // 
-            this.ColorPickerButton.BackColor = System.Drawing.Color.Transparent;
-            this.ColorPickerButton.BorderSize = 0;
-            this.ColorPickerButton.ButtonNumber = 6;
-            this.ColorPickerButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.ColorPicker;
-            this.ColorPickerButton.ClickHandler = null;
-            this.ColorPickerButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ColorPickerButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ColorPickerButton.Location = new System.Drawing.Point(576, 28);
-            this.ColorPickerButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.ColorPickerButton.Name = "ColorPickerButton";
-            this.ColorPickerButton.Size = new System.Drawing.Size(96, 104);
-            this.ColorPickerButton.TabIndex = 78;
-            this.ColorPickerButton.Visible = false;
-            this.ColorPickerButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.ColorPickerButton.MouseLeave += new System.EventHandler(this.Button_Leave);
+            this.ApplyButton.BackColor = System.Drawing.Color.Black;
+            this.ApplyButton.BorderSize = 0;
+            this.ApplyButton.ButtonNumber = 7;
+            this.ApplyButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Apply;
+            this.ApplyButton.ClickHandler = null;
+            this.ApplyButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ApplyButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ApplyButton.Location = new System.Drawing.Point(0, 426);
+            this.ApplyButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.ApplyButton.MaximumSize = new System.Drawing.Size(96, 96);
+            this.ApplyButton.MinimumSize = new System.Drawing.Size(96, 96);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(96, 96);
+            this.ApplyButton.TabIndex = 37;
             // 
-            // Margin6
+            // QueryTopMargin
             // 
-            this.Margin6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin6.Location = new System.Drawing.Point(560, 28);
-            this.Margin6.Name = "Margin6";
-            this.Margin6.Size = new System.Drawing.Size(16, 104);
-            this.Margin6.TabIndex = 77;
-            // 
-            // UndoChangesButton
-            // 
-            this.UndoChangesButton.BackColor = System.Drawing.Color.Transparent;
-            this.UndoChangesButton.BorderSize = 0;
-            this.UndoChangesButton.ButtonNumber = 5;
-            this.UndoChangesButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Undo;
-            this.UndoChangesButton.ClickHandler = null;
-            this.UndoChangesButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.UndoChangesButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UndoChangesButton.Location = new System.Drawing.Point(464, 28);
-            this.UndoChangesButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.UndoChangesButton.Name = "UndoChangesButton";
-            this.UndoChangesButton.Size = new System.Drawing.Size(96, 104);
-            this.UndoChangesButton.TabIndex = 76;
-            this.UndoChangesButton.Visible = false;
-            this.UndoChangesButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.UndoChangesButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // Margin5
-            // 
-            this.Margin5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin5.Location = new System.Drawing.Point(448, 28);
-            this.Margin5.Name = "Margin5";
-            this.Margin5.Size = new System.Drawing.Size(16, 104);
-            this.Margin5.TabIndex = 75;
-            // 
-            // ResetButton
-            // 
-            this.ResetButton.BackColor = System.Drawing.Color.Transparent;
-            this.ResetButton.BorderSize = 0;
-            this.ResetButton.ButtonNumber = 4;
-            this.ResetButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Reset;
-            this.ResetButton.ClickHandler = null;
-            this.ResetButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ResetButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetButton.Location = new System.Drawing.Point(352, 28);
-            this.ResetButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(96, 104);
-            this.ResetButton.TabIndex = 74;
-            this.ResetButton.Visible = false;
-            this.ResetButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.ResetButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // Margin4
-            // 
-            this.Margin4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin4.Location = new System.Drawing.Point(336, 28);
-            this.Margin4.Name = "Margin4";
-            this.Margin4.Size = new System.Drawing.Size(16, 104);
-            this.Margin4.TabIndex = 73;
-            // 
-            // SaveAsButton
-            // 
-            this.SaveAsButton.BackColor = System.Drawing.Color.Transparent;
-            this.SaveAsButton.BorderSize = 0;
-            this.SaveAsButton.ButtonNumber = 3;
-            this.SaveAsButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.SaveAs;
-            this.SaveAsButton.ClickHandler = null;
-            this.SaveAsButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SaveAsButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveAsButton.Location = new System.Drawing.Point(240, 28);
-            this.SaveAsButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.SaveAsButton.Name = "SaveAsButton";
-            this.SaveAsButton.Size = new System.Drawing.Size(96, 104);
-            this.SaveAsButton.TabIndex = 72;
-            this.SaveAsButton.Visible = false;
-            this.SaveAsButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.SaveAsButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // Margin3
-            // 
-            this.Margin3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin3.Location = new System.Drawing.Point(224, 28);
-            this.Margin3.Name = "Margin3";
-            this.Margin3.Size = new System.Drawing.Size(16, 104);
-            this.Margin3.TabIndex = 71;
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.BackColor = System.Drawing.Color.Transparent;
-            this.SaveButton.BorderSize = 0;
-            this.SaveButton.ButtonNumber = 2;
-            this.SaveButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Save;
-            this.SaveButton.ClickHandler = null;
-            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SaveButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveButton.Location = new System.Drawing.Point(128, 28);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(96, 104);
-            this.SaveButton.TabIndex = 70;
-            this.SaveButton.Visible = false;
-            this.SaveButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.SaveButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // Margin2
-            // 
-            this.Margin2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin2.Location = new System.Drawing.Point(112, 28);
-            this.Margin2.Name = "Margin2";
-            this.Margin2.Size = new System.Drawing.Size(16, 104);
-            this.Margin2.TabIndex = 69;
-            // 
-            // CloseFileButton
-            // 
-            this.CloseFileButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseFileButton.BorderSize = 0;
-            this.CloseFileButton.ButtonNumber = 1;
-            this.CloseFileButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Close;
-            this.CloseFileButton.ClickHandler = null;
-            this.CloseFileButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CloseFileButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseFileButton.Location = new System.Drawing.Point(16, 28);
-            this.CloseFileButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.CloseFileButton.Name = "CloseFileButton";
-            this.CloseFileButton.Size = new System.Drawing.Size(96, 104);
-            this.CloseFileButton.TabIndex = 68;
-            this.CloseFileButton.Visible = false;
-            this.CloseFileButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.CloseFileButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
-            // Margin1
-            // 
-            this.Margin1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Margin1.Location = new System.Drawing.Point(0, 28);
-            this.Margin1.Name = "Margin1";
-            this.Margin1.Size = new System.Drawing.Size(16, 104);
-            this.Margin1.TabIndex = 67;
-            // 
-            // ButtonMarginPanel
-            // 
-            this.ButtonMarginPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonMarginPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ButtonMarginPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonMarginPanel.Location = new System.Drawing.Point(0, 12);
-            this.ButtonMarginPanel.Name = "ButtonMarginPanel";
-            this.ButtonMarginPanel.Size = new System.Drawing.Size(1524, 16);
-            this.ButtonMarginPanel.TabIndex = 66;
+            this.QueryTopMargin.BackColor = System.Drawing.Color.Transparent;
+            this.QueryTopMargin.Controls.Add(this.YouTubePanel);
+            this.QueryTopMargin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.QueryTopMargin.Location = new System.Drawing.Point(0, 0);
+            this.QueryTopMargin.Name = "QueryTopMargin";
+            this.QueryTopMargin.Size = new System.Drawing.Size(480, 200);
+            this.QueryTopMargin.TabIndex = 25;
             // 
             // YouTubePanel
             // 
             this.YouTubePanel.Controls.Add(this.YouTubeButton);
-            this.YouTubePanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.YouTubePanel.Location = new System.Drawing.Point(1524, 12);
+            this.YouTubePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.YouTubePanel.Location = new System.Drawing.Point(0, 0);
             this.YouTubePanel.Name = "YouTubePanel";
-            this.YouTubePanel.Size = new System.Drawing.Size(128, 120);
-            this.YouTubePanel.TabIndex = 65;
+            this.YouTubePanel.Size = new System.Drawing.Size(480, 180);
+            this.YouTubePanel.TabIndex = 107;
             // 
             // YouTubeButton
             // 
             this.YouTubeButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.YouTube;
             this.YouTubeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.YouTubeButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.YouTubeButton.Location = new System.Drawing.Point(0, 56);
+            this.YouTubeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.YouTubeButton.Location = new System.Drawing.Point(320, 0);
             this.YouTubeButton.MaximumSize = new System.Drawing.Size(160, 80);
             this.YouTubeButton.Name = "YouTubeButton";
-            this.YouTubeButton.Size = new System.Drawing.Size(128, 64);
+            this.YouTubeButton.Size = new System.Drawing.Size(160, 80);
             this.YouTubeButton.TabIndex = 65;
             this.YouTubeButton.TabStop = false;
-            this.YouTubeButton.Click += new System.EventHandler(this.YouTubeButton_Click);
-            this.YouTubeButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.YouTubeButton.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
-            // GraphPanel
+            // label1
             // 
-            this.GraphPanel.Controls.Add(this.Graph);
-            this.GraphPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GraphPanel.Location = new System.Drawing.Point(0, 0);
-            this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(1652, 12);
-            this.GraphPanel.TabIndex = 20;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
+            this.label1.Location = new System.Drawing.Point(0, 522);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(480, 40);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Messages:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // Graph
+            // MessagesTextBox
             // 
-            this.Graph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Graph.Location = new System.Drawing.Point(0, 0);
-            this.Graph.Name = "Graph";
-            this.Graph.Size = new System.Drawing.Size(1652, 12);
-            this.Graph.TabIndex = 1;
-            this.Graph.Visible = false;
+            this.MessagesTextBox.BackColor = System.Drawing.Color.Transparent;
+            this.MessagesTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MessagesTextBox.ForeColor = System.Drawing.Color.GhostWhite;
+            this.MessagesTextBox.Location = new System.Drawing.Point(0, 562);
+            this.MessagesTextBox.Name = "MessagesTextBox";
+            this.MessagesTextBox.Size = new System.Drawing.Size(480, 120);
+            this.MessagesTextBox.TabIndex = 22;
+            this.MessagesTextBox.Text = "Ready";
+            // 
+            // RightMargin2
+            // 
+            this.RightMargin2.BackColor = System.Drawing.Color.Transparent;
+            this.RightMargin2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RightMargin2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RightMargin2.Location = new System.Drawing.Point(1188, 32);
+            this.RightMargin2.Name = "RightMargin2";
+            this.RightMargin2.Size = new System.Drawing.Size(16, 682);
+            this.RightMargin2.TabIndex = 77;
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.Black;
+            this.MainPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainPanel.BackgroundImage = global::TransparencyMaker.Properties.Resources.Gray_Slate_Small;
             this.MainPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.MainPanel.Controls.Add(this.PixelInfo);
-            this.MainPanel.Controls.Add(this.QueryPanel);
             this.MainPanel.Controls.Add(this.Separator2);
             this.MainPanel.Controls.Add(this.Separator1);
-            this.MainPanel.Controls.Add(this.Canvas);
             this.MainPanel.Controls.Add(this.StartButton);
+            this.MainPanel.Controls.Add(this.Canvas);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(32, 32);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1652, 550);
-            this.MainPanel.TabIndex = 8;
+            this.MainPanel.Size = new System.Drawing.Size(1156, 682);
+            this.MainPanel.TabIndex = 78;
             // 
             // PixelInfo
             // 
@@ -510,74 +343,6 @@ namespace TransparencyMaker
             this.PixelInfo.TabIndex = 0;
             this.PixelInfo.Visible = false;
             // 
-            // QueryPanel
-            // 
-            this.QueryPanel.Controls.Add(this.QueryTextBox);
-            this.QueryPanel.Controls.Add(this.label1);
-            this.QueryPanel.Controls.Add(this.MessagesTextBox);
-            this.QueryPanel.Controls.Add(this.ApplyButton);
-            this.QueryPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.QueryPanel.Location = new System.Drawing.Point(1172, 0);
-            this.QueryPanel.MaximumSize = new System.Drawing.Size(480, 0);
-            this.QueryPanel.Name = "QueryPanel";
-            this.QueryPanel.Size = new System.Drawing.Size(480, 550);
-            this.QueryPanel.TabIndex = 22;
-            this.QueryPanel.Visible = false;
-            // 
-            // QueryTextBox
-            // 
-            this.QueryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryTextBox.Location = new System.Drawing.Point(96, 0);
-            this.QueryTextBox.Multiline = true;
-            this.QueryTextBox.Name = "QueryTextBox";
-            this.QueryTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.QueryTextBox.Size = new System.Drawing.Size(384, 384);
-            this.QueryTextBox.TabIndex = 24;
-            this.QueryTextBox.Text = "Hide Pixels Where";
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(96, 384);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 46);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Messages:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // MessagesTextBox
-            // 
-            this.MessagesTextBox.BackColor = System.Drawing.Color.Black;
-            this.MessagesTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MessagesTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MessagesTextBox.ForeColor = System.Drawing.Color.GhostWhite;
-            this.MessagesTextBox.Location = new System.Drawing.Point(96, 430);
-            this.MessagesTextBox.Multiline = true;
-            this.MessagesTextBox.Name = "MessagesTextBox";
-            this.MessagesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.MessagesTextBox.Size = new System.Drawing.Size(384, 120);
-            this.MessagesTextBox.TabIndex = 22;
-            this.MessagesTextBox.Text = "Ready";
-            // 
-            // ApplyButton
-            // 
-            this.ApplyButton.BackColor = System.Drawing.Color.Black;
-            this.ApplyButton.BorderSize = 0;
-            this.ApplyButton.ButtonNumber = 7;
-            this.ApplyButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Apply;
-            this.ApplyButton.ClickHandler = null;
-            this.ApplyButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ApplyButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ApplyButton.Location = new System.Drawing.Point(0, 0);
-            this.ApplyButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.ApplyButton.MaximumSize = new System.Drawing.Size(96, 96);
-            this.ApplyButton.Name = "ApplyButton";
-            this.ApplyButton.Size = new System.Drawing.Size(96, 96);
-            this.ApplyButton.TabIndex = 20;
-            this.ApplyButton.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.ApplyButton.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
             // Separator2
             // 
             this.Separator2.BackColor = System.Drawing.Color.Transparent;
@@ -585,8 +350,8 @@ namespace TransparencyMaker
             this.Separator2.Dock = System.Windows.Forms.DockStyle.Left;
             this.Separator2.Location = new System.Drawing.Point(736, 0);
             this.Separator2.Name = "Separator2";
-            this.Separator2.Size = new System.Drawing.Size(16, 550);
-            this.Separator2.TabIndex = 12;
+            this.Separator2.Size = new System.Drawing.Size(16, 682);
+            this.Separator2.TabIndex = 26;
             // 
             // Separator1
             // 
@@ -595,23 +360,8 @@ namespace TransparencyMaker
             this.Separator1.Dock = System.Windows.Forms.DockStyle.Left;
             this.Separator1.Location = new System.Drawing.Point(720, 0);
             this.Separator1.Name = "Separator1";
-            this.Separator1.Size = new System.Drawing.Size(16, 550);
-            this.Separator1.TabIndex = 10;
-            // 
-            // Canvas
-            // 
-            this.Canvas.BackColor = System.Drawing.Color.Transparent;
-            this.Canvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Canvas.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Canvas.Location = new System.Drawing.Point(0, 0);
-            this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(720, 550);
-            this.Canvas.TabIndex = 8;
-            this.Canvas.TabStop = false;
-            this.Canvas.Visible = false;
-            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
-            this.Canvas.MouseEnter += new System.EventHandler(this.Canvas_MouseEnter);
-            this.Canvas.MouseLeave += new System.EventHandler(this.Canvas_MouseLeave);
+            this.Separator1.Size = new System.Drawing.Size(16, 682);
+            this.Separator1.TabIndex = 25;
             // 
             // StartButton
             // 
@@ -627,13 +377,298 @@ namespace TransparencyMaker
             this.StartButton.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.StartButton.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
+            // Canvas
+            // 
+            this.Canvas.BackColor = System.Drawing.Color.Transparent;
+            this.Canvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Canvas.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Canvas.Location = new System.Drawing.Point(0, 0);
+            this.Canvas.Name = "Canvas";
+            this.Canvas.Size = new System.Drawing.Size(720, 682);
+            this.Canvas.TabIndex = 24;
+            this.Canvas.TabStop = false;
+            this.Canvas.Visible = false;
+            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
+            this.Canvas.MouseEnter += new System.EventHandler(this.Canvas_MouseEnter);
+            this.Canvas.MouseLeave += new System.EventHandler(this.Canvas_MouseLeave);
+            // 
+            // ButtonPanel
+            // 
+            this.ButtonPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ButtonPanel.Controls.Add(this.IconTopPanel);
+            this.ButtonPanel.Controls.Add(this.IconBottomPanel);
+            this.ButtonPanel.Controls.Add(this.Margin7);
+            this.ButtonPanel.Controls.Add(this.ColorPickerButton);
+            this.ButtonPanel.Controls.Add(this.Margin6);
+            this.ButtonPanel.Controls.Add(this.UndoChangesButton);
+            this.ButtonPanel.Controls.Add(this.Margin5);
+            this.ButtonPanel.Controls.Add(this.ResetButton);
+            this.ButtonPanel.Controls.Add(this.Margin4);
+            this.ButtonPanel.Controls.Add(this.SaveAsButton);
+            this.ButtonPanel.Controls.Add(this.Margin3);
+            this.ButtonPanel.Controls.Add(this.SaveButton);
+            this.ButtonPanel.Controls.Add(this.Margin2);
+            this.ButtonPanel.Controls.Add(this.CloseFileButton);
+            this.ButtonPanel.Controls.Add(this.ButtonBottomMargin);
+            this.ButtonPanel.Controls.Add(this.Margin1);
+            this.ButtonPanel.Controls.Add(this.GraphPanel);
+            this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ButtonPanel.Location = new System.Drawing.Point(32, 574);
+            this.ButtonPanel.Name = "ButtonPanel";
+            this.ButtonPanel.Size = new System.Drawing.Size(1156, 140);
+            this.ButtonPanel.TabIndex = 79;
+            this.ButtonPanel.Visible = false;
+            // 
+            // IconTopPanel
+            // 
+            this.IconTopPanel.BackColor = System.Drawing.Color.Transparent;
+            this.IconTopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.IconTopPanel.Controls.Add(this.RectangleButton);
+            this.IconTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.IconTopPanel.Location = new System.Drawing.Point(688, 12);
+            this.IconTopPanel.MaximumSize = new System.Drawing.Size(600, 48);
+            this.IconTopPanel.Name = "IconTopPanel";
+            this.IconTopPanel.Size = new System.Drawing.Size(468, 48);
+            this.IconTopPanel.TabIndex = 105;
+            // 
+            // RectangleButton
+            // 
+            this.RectangleButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.RectangleButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Rectanble;
+            this.RectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RectangleButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RectangleButton.Location = new System.Drawing.Point(0, 0);
+            this.RectangleButton.MaximumSize = new System.Drawing.Size(48, 48);
+            this.RectangleButton.Name = "RectangleButton";
+            this.RectangleButton.Size = new System.Drawing.Size(48, 48);
+            this.RectangleButton.TabIndex = 81;
+            this.RectangleButton.TabStop = false;
+            this.RectangleButton.Visible = false;
+            // 
+            // IconBottomPanel
+            // 
+            this.IconBottomPanel.BackColor = System.Drawing.Color.Transparent;
+            this.IconBottomPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.IconBottomPanel.Controls.Add(this.pictureBox1);
+            this.IconBottomPanel.Controls.Add(this.IconSeperator);
+            this.IconBottomPanel.Controls.Add(this.UpdateButton);
+            this.IconBottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.IconBottomPanel.Location = new System.Drawing.Point(688, 76);
+            this.IconBottomPanel.MaximumSize = new System.Drawing.Size(600, 48);
+            this.IconBottomPanel.Name = "IconBottomPanel";
+            this.IconBottomPanel.Size = new System.Drawing.Size(468, 48);
+            this.IconBottomPanel.TabIndex = 104;
+            // 
+            // IconSeperator
+            // 
+            this.IconSeperator.Dock = System.Windows.Forms.DockStyle.Left;
+            this.IconSeperator.Location = new System.Drawing.Point(48, 0);
+            this.IconSeperator.Name = "IconSeperator";
+            this.IconSeperator.Size = new System.Drawing.Size(12, 48);
+            this.IconSeperator.TabIndex = 82;
+            // 
+            // Margin7
+            // 
+            this.Margin7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin7.Location = new System.Drawing.Point(672, 12);
+            this.Margin7.Name = "Margin7";
+            this.Margin7.Size = new System.Drawing.Size(16, 112);
+            this.Margin7.TabIndex = 103;
+            // 
+            // ColorPickerButton
+            // 
+            this.ColorPickerButton.BackColor = System.Drawing.Color.Transparent;
+            this.ColorPickerButton.BorderSize = 0;
+            this.ColorPickerButton.ButtonNumber = 6;
+            this.ColorPickerButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.ColorPicker;
+            this.ColorPickerButton.ClickHandler = null;
+            this.ColorPickerButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ColorPickerButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColorPickerButton.Location = new System.Drawing.Point(576, 12);
+            this.ColorPickerButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.ColorPickerButton.Name = "ColorPickerButton";
+            this.ColorPickerButton.Size = new System.Drawing.Size(96, 112);
+            this.ColorPickerButton.TabIndex = 102;
+            this.ColorPickerButton.Visible = false;
+            // 
+            // Margin6
+            // 
+            this.Margin6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin6.Location = new System.Drawing.Point(560, 12);
+            this.Margin6.Name = "Margin6";
+            this.Margin6.Size = new System.Drawing.Size(16, 112);
+            this.Margin6.TabIndex = 101;
+            // 
+            // UndoChangesButton
+            // 
+            this.UndoChangesButton.BackColor = System.Drawing.Color.Transparent;
+            this.UndoChangesButton.BorderSize = 0;
+            this.UndoChangesButton.ButtonNumber = 5;
+            this.UndoChangesButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Undo;
+            this.UndoChangesButton.ClickHandler = null;
+            this.UndoChangesButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.UndoChangesButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UndoChangesButton.Location = new System.Drawing.Point(464, 12);
+            this.UndoChangesButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.UndoChangesButton.Name = "UndoChangesButton";
+            this.UndoChangesButton.Size = new System.Drawing.Size(96, 112);
+            this.UndoChangesButton.TabIndex = 100;
+            this.UndoChangesButton.Visible = false;
+            // 
+            // Margin5
+            // 
+            this.Margin5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin5.Location = new System.Drawing.Point(448, 12);
+            this.Margin5.Name = "Margin5";
+            this.Margin5.Size = new System.Drawing.Size(16, 112);
+            this.Margin5.TabIndex = 99;
+            // 
+            // ResetButton
+            // 
+            this.ResetButton.BackColor = System.Drawing.Color.Transparent;
+            this.ResetButton.BorderSize = 0;
+            this.ResetButton.ButtonNumber = 4;
+            this.ResetButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Reset;
+            this.ResetButton.ClickHandler = null;
+            this.ResetButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ResetButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetButton.Location = new System.Drawing.Point(352, 12);
+            this.ResetButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(96, 112);
+            this.ResetButton.TabIndex = 98;
+            this.ResetButton.Visible = false;
+            // 
+            // Margin4
+            // 
+            this.Margin4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin4.Location = new System.Drawing.Point(336, 12);
+            this.Margin4.Name = "Margin4";
+            this.Margin4.Size = new System.Drawing.Size(16, 112);
+            this.Margin4.TabIndex = 97;
+            // 
+            // SaveAsButton
+            // 
+            this.SaveAsButton.BackColor = System.Drawing.Color.Transparent;
+            this.SaveAsButton.BorderSize = 0;
+            this.SaveAsButton.ButtonNumber = 3;
+            this.SaveAsButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.SaveAs;
+            this.SaveAsButton.ClickHandler = null;
+            this.SaveAsButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SaveAsButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveAsButton.Location = new System.Drawing.Point(240, 12);
+            this.SaveAsButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.SaveAsButton.Name = "SaveAsButton";
+            this.SaveAsButton.Size = new System.Drawing.Size(96, 112);
+            this.SaveAsButton.TabIndex = 96;
+            this.SaveAsButton.Visible = false;
+            // 
+            // Margin3
+            // 
+            this.Margin3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin3.Location = new System.Drawing.Point(224, 12);
+            this.Margin3.Name = "Margin3";
+            this.Margin3.Size = new System.Drawing.Size(16, 112);
+            this.Margin3.TabIndex = 95;
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.BackColor = System.Drawing.Color.Transparent;
+            this.SaveButton.BorderSize = 0;
+            this.SaveButton.ButtonNumber = 2;
+            this.SaveButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Save;
+            this.SaveButton.ClickHandler = null;
+            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SaveButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveButton.Location = new System.Drawing.Point(128, 12);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(96, 112);
+            this.SaveButton.TabIndex = 94;
+            this.SaveButton.Visible = false;
+            // 
+            // Margin2
+            // 
+            this.Margin2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin2.Location = new System.Drawing.Point(112, 12);
+            this.Margin2.Name = "Margin2";
+            this.Margin2.Size = new System.Drawing.Size(16, 112);
+            this.Margin2.TabIndex = 93;
+            // 
+            // CloseFileButton
+            // 
+            this.CloseFileButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseFileButton.BorderSize = 0;
+            this.CloseFileButton.ButtonNumber = 1;
+            this.CloseFileButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Close;
+            this.CloseFileButton.ClickHandler = null;
+            this.CloseFileButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CloseFileButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseFileButton.Location = new System.Drawing.Point(16, 12);
+            this.CloseFileButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.CloseFileButton.Name = "CloseFileButton";
+            this.CloseFileButton.Size = new System.Drawing.Size(96, 112);
+            this.CloseFileButton.TabIndex = 92;
+            this.CloseFileButton.Visible = false;
+            // 
+            // ButtonBottomMargin
+            // 
+            this.ButtonBottomMargin.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonBottomMargin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ButtonBottomMargin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ButtonBottomMargin.Location = new System.Drawing.Point(16, 124);
+            this.ButtonBottomMargin.Name = "ButtonBottomMargin";
+            this.ButtonBottomMargin.Size = new System.Drawing.Size(1140, 16);
+            this.ButtonBottomMargin.TabIndex = 83;
+            // 
+            // Margin1
+            // 
+            this.Margin1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Margin1.Location = new System.Drawing.Point(0, 12);
+            this.Margin1.Name = "Margin1";
+            this.Margin1.Size = new System.Drawing.Size(16, 128);
+            this.Margin1.TabIndex = 67;
+            // 
+            // GraphPanel
+            // 
+            this.GraphPanel.Controls.Add(this.Graph);
+            this.GraphPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GraphPanel.Location = new System.Drawing.Point(0, 0);
+            this.GraphPanel.Name = "GraphPanel";
+            this.GraphPanel.Size = new System.Drawing.Size(1156, 12);
+            this.GraphPanel.TabIndex = 20;
+            // 
+            // Graph
+            // 
+            this.Graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Graph.Location = new System.Drawing.Point(0, 0);
+            this.Graph.Name = "Graph";
+            this.Graph.Size = new System.Drawing.Size(1156, 12);
+            this.Graph.TabIndex = 1;
+            this.Graph.Visible = false;
+            // 
+            // ButtonMarginPanel
+            // 
+            this.ButtonMarginPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonMarginPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ButtonMarginPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ButtonMarginPanel.Location = new System.Drawing.Point(32, 558);
+            this.ButtonMarginPanel.Name = "ButtonMarginPanel";
+            this.ButtonMarginPanel.Size = new System.Drawing.Size(1156, 16);
+            this.ButtonMarginPanel.TabIndex = 80;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::TransparencyMaker.Properties.Resources.Dark_Slate_Small;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1716, 746);
-            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.ButtonMarginPanel);
             this.Controls.Add(this.ButtonPanel);
+            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.RightMargin2);
+            this.Controls.Add(this.QueryPanel);
             this.Controls.Add(this.BottomMarginPanel);
             this.Controls.Add(this.TopMarginPanel);
             this.Controls.Add(this.RightMarginPanel);
@@ -646,30 +681,36 @@ namespace TransparencyMaker
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.ButtonPanel.ResumeLayout(false);
-            this.IconBottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
-            this.IconTopPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).EndInit();
-            this.YouTubePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).EndInit();
-            this.GraphPanel.ResumeLayout(false);
-            this.MainPanel.ResumeLayout(false);
             this.QueryPanel.ResumeLayout(false);
             this.QueryPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
+            this.QueryTopMargin.ResumeLayout(false);
+            this.YouTubePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).EndInit();
+            this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.StartButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
+            this.ButtonPanel.ResumeLayout(false);
+            this.IconTopPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).EndInit();
+            this.IconBottomPanel.ResumeLayout(false);
+            this.GraphPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
             }
         #endregion
 
         #endregion
-        private System.Windows.Forms.Panel YouTubePanel;
-        private System.Windows.Forms.PictureBox YouTubeButton;
-        private System.Windows.Forms.Panel QueryPanel;
-        private Controls.FuturisticButtonControl ApplyButton;
+
+        private System.Windows.Forms.Panel ButtonPanel;
+        private System.Windows.Forms.Panel IconTopPanel;
+        private System.Windows.Forms.PictureBox RectangleButton;
+        private System.Windows.Forms.Panel IconBottomPanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel IconSeperator;
+        private System.Windows.Forms.PictureBox UpdateButton;
+        private System.Windows.Forms.Panel Margin7;
         private Controls.FuturisticButtonControl ColorPickerButton;
         private System.Windows.Forms.Panel Margin6;
         private Controls.FuturisticButtonControl UndoChangesButton;
@@ -681,19 +722,11 @@ namespace TransparencyMaker
         private Controls.FuturisticButtonControl SaveButton;
         private System.Windows.Forms.Panel Margin2;
         private Controls.FuturisticButtonControl CloseFileButton;
+        private System.Windows.Forms.Panel ButtonBottomMargin;
         private System.Windows.Forms.Panel Margin1;
+        private System.Windows.Forms.Panel GraphPanel;
+        private System.Windows.Forms.ProgressBar Graph;
         private System.Windows.Forms.Panel ButtonMarginPanel;
-        private System.Windows.Forms.TextBox QueryTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox MessagesTextBox;
-        private System.Windows.Forms.Panel Margin7;
-        private System.Windows.Forms.Panel IconTopPanel;
-        private System.Windows.Forms.PictureBox RectangleButton;
-        private System.Windows.Forms.Panel IconBottomPanel;
-        private System.Windows.Forms.PictureBox UpdateButton;
-        private System.Windows.Forms.ToolTip ToolTip;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
     }
     #endregion
 

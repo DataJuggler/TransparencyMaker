@@ -621,6 +621,9 @@ namespace TransparencyMaker.Util
                 // initial value
                 PixelQuery pixelQuery = new PixelQuery();
 
+                // store the text
+                pixelQuery.QueryText = queryText;
+
                 // locals
                 int count = 0;
                 StringBuilder sb = null;
@@ -630,11 +633,11 @@ namespace TransparencyMaker.Util
                 // If the queryText string exists
                 if (TextHelper.Exists(queryText))
                 {
-                    // Get the text lines
-                    List<TextLine> lines = WordParser.GetTextLines(queryText);
-
                     // get the lowercase version of the text
                     queryText = queryText.ToLower().Trim();
+
+                    // Get the text lines
+                    List<TextLine> lines = WordParser.GetTextLines(queryText);
 
                     // parse the ActionType (Show Pixels, Hide Pixels, Draw Line, Update)
                     pixelQuery.ActionType = ParseActionType(queryText);
@@ -1088,9 +1091,6 @@ namespace TransparencyMaker.Util
                                     // Set the Color
                                     pixelQuery.Color = Color.FromArgb(pixelQuery.Alpha, pixelQuery.Red, pixelQuery.Green, pixelQuery.Blue);
                                 }
-
-                                // Set the Color
-                                pixelQuery.Color = Color.FromArgb(pixelQuery.Alpha, pixelQuery.Red, pixelQuery.Green, pixelQuery.Blue);
                             }
                             // If there are 4 words
                             // Example: Set Adjust Red 25 (every pixel gets 25 more red)
@@ -1134,10 +1134,10 @@ namespace TransparencyMaker.Util
                                     // Set the SwapType
                                     pixelQuery.SwapType = SetSwapType(sourceColorWord, targetColorWord);
                                 }
-                                 // if the second word is swap
+                                 // if the second word is mask
                                 else if (TextHelper.IsEqual(secondWord, "mask"))
                                 {
-                                    // get the thrid and fourth word
+                                    // get the third and fourth word
                                     string verb = words[2].Text;
                                     string name = words[3].Text;
 
