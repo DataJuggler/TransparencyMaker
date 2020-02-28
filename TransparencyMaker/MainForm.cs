@@ -2569,8 +2569,12 @@ namespace TransparencyMaker
                     // if the file exists
                     if ((TextHelper.Exists(value)) && (File.Exists(value)))
                     {
-                        // Load the Canvas
-                        this.Canvas.BackgroundImage = Image.FromFile(value);
+                        // fixing the Save bug a second time
+                        using (Image image = Image.FromFile(value))
+                        {
+                            // Load the Canvas
+                            this.Canvas.BackgroundImage = image;
+                        }
                     }
                 }
             }
