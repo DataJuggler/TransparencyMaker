@@ -251,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Erason Icon.ico" />
+    <None Include="Resources\AbortButton.png" />
     <None Include="Resources\Edit1.png" />
     <None Include="Resources\Edit.png" />
     <None Include="Resources\Rectanble.png" />

@@ -42,6 +42,7 @@ namespace TransparencyMaker
         private MaskManager maskManager;
         private bool initialized;
         private bool rectangleMode;
+        private bool abort;
         private Point point1;
         private Point point2;
         private const int TitleBarHeight = 29;
@@ -144,8 +145,20 @@ namespace TransparencyMaker
 
                     case 7:
 
-                          // Parse and apply the current query
+                        // Parse and apply the current query
                         ApplyQuery();
+
+                        // required
+                        break;
+
+                    case 8:
+
+                        // Parse and apply the current query
+                        this.Abort = true;
+
+                        // Refresh everything
+                        Refresh();
+                        Application.DoEvents();
 
                         // required
                         break;
@@ -720,6 +733,12 @@ namespace TransparencyMaker
                 Color color = Color.Empty;
                 Guid historyId = Guid.NewGuid();
                 int count = 0;
+                Abort = false;
+                AbortButton.Visible = true;
+                
+                // Refresh everything
+                Refresh();
+                Application.DoEvents();
 
                 // Update the pixels
                 foreach (PixelInformation pixel in pixels)
@@ -758,6 +777,16 @@ namespace TransparencyMaker
                             // Update the pixels affected by the query
                             MessagesLabel.Text = "Updated " + String.Format("{0:n0}", count) + " of " +  String.Format("{0:n0}", pixels.Count);
 
+                            // if abort is true
+                            if (Abort)
+                            {
+                                // Show the user a message
+                                MessagesLabel.Text = "Operation Aborted.";
+
+                                // break out of the loop
+                                break;
+                            }
+
                             // Refersh everything
                             Refresh();
                             Application.DoEvents();
@@ -766,10 +795,14 @@ namespace TransparencyMaker
 
                     // Set the pixel
                     this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
-
-                    // Update the pixels affected by the query
-                    MessagesLabel.Text = "Updated " + String.Format("{0:n0}", pixels.Count) + " pixels.";
                 }
+
+                // Update the pixels affected by the query
+                MessagesLabel.Text = "Updated " + String.Format("{0:n0}", count) + " pixels.";
+
+                // Hide the button again
+                Abort = false;
+                AbortButton.Visible = false;
             }
             #endregion
             
@@ -1830,6 +1863,7 @@ namespace TransparencyMaker
                 this.ResetButton.ClickHandler = this.ButtonClickHandler;
                 this.UndoChangesButton.ClickHandler = this.ButtonClickHandler;
                 this.ColorPickerButton.ClickHandler = this.ButtonClickHandler;
+                this.AbortButton.ClickHandler = this.ButtonClickHandler;
 
                 // only fire once
                 this.Initialized = true;
@@ -2127,6 +2161,9 @@ namespace TransparencyMaker
             /// </summary>
             public void Reset()
             { 
+                // Abort is n
+                Abort = false;
+
                 // get a copy of the imagePath
                 string imagePath = this.ImagePath;
 
@@ -2401,6 +2438,17 @@ namespace TransparencyMaker
 
         #region Properties
 
+            #region Abort
+            /// <summary>
+            /// This property gets or sets the value for 'Abort'.
+            /// </summary>
+            public bool Abort
+            {
+                get { return abort; }
+                set { abort = value; }
+            }
+            #endregion
+            
             #region Analyzing
             /// <summary>
             /// This property gets or sets the value for 'Analyzing'.
@@ -2569,12 +2617,14 @@ namespace TransparencyMaker
                     // if the file exists
                     if ((TextHelper.Exists(value)) && (File.Exists(value)))
                     {
-                        // fixing the Save bug a second time
-                        using (Image image = Image.FromFile(value))
-                        {
-                            // Load the Canvas
-                            this.Canvas.BackgroundImage = image;
-                        }
+                        // local
+                        Image image = null;
+
+                        // load the image
+                        image = Image.FromFile(value);
+
+                        // Load the Canvas
+                        this.Canvas.BackgroundImage = image;
                     }
                 }
             }

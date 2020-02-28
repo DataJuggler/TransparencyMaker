@@ -23,10 +23,6 @@ namespace TransparencyMaker
         private System.Windows.Forms.Panel BottomMarginPanel;
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Panel QueryPanel;
-        private Controls.FuturisticButtonControl ApplyButton;
-        private System.Windows.Forms.Panel QueryTopMargin;
-        private System.Windows.Forms.Panel YouTubePanel;
-        private System.Windows.Forms.PictureBox YouTubeButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label MessagesLabel;
         private System.Windows.Forms.Panel RightMargin2;
@@ -74,8 +70,11 @@ namespace TransparencyMaker
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.UpdateButton = new System.Windows.Forms.PictureBox();
             this.QueryPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.QueryTextBox = new System.Windows.Forms.TextBox();
             this.ApplyButtonMargin = new System.Windows.Forms.Panel();
+            this.AbortButton = new TransparencyMaker.Controls.FuturisticButtonControl();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ApplyButton = new TransparencyMaker.Controls.FuturisticButtonControl();
             this.QueryTopMargin = new System.Windows.Forms.Panel();
             this.YouTubePanel = new System.Windows.Forms.Panel();
@@ -114,6 +113,7 @@ namespace TransparencyMaker
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
             this.QueryPanel.SuspendLayout();
+            this.ApplyButtonMargin.SuspendLayout();
             this.QueryTopMargin.SuspendLayout();
             this.YouTubePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).BeginInit();
@@ -200,9 +200,9 @@ namespace TransparencyMaker
             // QueryPanel
             // 
             this.QueryPanel.BackColor = System.Drawing.Color.Transparent;
+            this.QueryPanel.Controls.Add(this.panel1);
             this.QueryPanel.Controls.Add(this.QueryTextBox);
             this.QueryPanel.Controls.Add(this.ApplyButtonMargin);
-            this.QueryPanel.Controls.Add(this.ApplyButton);
             this.QueryPanel.Controls.Add(this.QueryTopMargin);
             this.QueryPanel.Controls.Add(this.label1);
             this.QueryPanel.Controls.Add(this.MessagesLabel);
@@ -213,6 +213,14 @@ namespace TransparencyMaker
             this.QueryPanel.TabIndex = 73;
             this.QueryPanel.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 414);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(480, 12);
+            this.panel1.TabIndex = 41;
+            // 
             // QueryTextBox
             // 
             this.QueryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -220,34 +228,66 @@ namespace TransparencyMaker
             this.QueryTextBox.Multiline = true;
             this.QueryTextBox.Name = "QueryTextBox";
             this.QueryTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.QueryTextBox.Size = new System.Drawing.Size(480, 214);
+            this.QueryTextBox.Size = new System.Drawing.Size(480, 226);
             this.QueryTextBox.TabIndex = 40;
             this.QueryTextBox.Text = "Hide Pixels Where";
             // 
             // ApplyButtonMargin
             // 
+            this.ApplyButtonMargin.Controls.Add(this.AbortButton);
+            this.ApplyButtonMargin.Controls.Add(this.panel2);
+            this.ApplyButtonMargin.Controls.Add(this.ApplyButton);
             this.ApplyButtonMargin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ApplyButtonMargin.Location = new System.Drawing.Point(0, 414);
+            this.ApplyButtonMargin.Location = new System.Drawing.Point(0, 426);
             this.ApplyButtonMargin.Name = "ApplyButtonMargin";
-            this.ApplyButtonMargin.Size = new System.Drawing.Size(480, 12);
+            this.ApplyButtonMargin.Size = new System.Drawing.Size(480, 96);
             this.ApplyButtonMargin.TabIndex = 38;
+            // 
+            // AbortButton
+            // 
+            this.AbortButton.BackColor = System.Drawing.Color.Transparent;
+            this.AbortButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AbortButton.BorderSize = 0;
+            this.AbortButton.ButtonNumber = 8;
+            this.AbortButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Abort;
+            this.AbortButton.ClickHandler = null;
+            this.AbortButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AbortButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AbortButton.Location = new System.Drawing.Point(108, 0);
+            this.AbortButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.AbortButton.MaximumSize = new System.Drawing.Size(96, 96);
+            this.AbortButton.MinimumSize = new System.Drawing.Size(96, 96);
+            this.AbortButton.Name = "AbortButton";
+            this.AbortButton.Size = new System.Drawing.Size(96, 96);
+            this.AbortButton.TabIndex = 84;
+            this.AbortButton.Visible = false;
+            this.AbortButton.MouseEnter += new System.EventHandler(this.Button_Enter);
+            this.AbortButton.MouseLeave += new System.EventHandler(this.Button_Leave);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(96, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(12, 96);
+            this.panel2.TabIndex = 83;
             // 
             // ApplyButton
             // 
-            this.ApplyButton.BackColor = System.Drawing.Color.Black;
+            this.ApplyButton.BackColor = System.Drawing.Color.Transparent;
             this.ApplyButton.BorderSize = 0;
             this.ApplyButton.ButtonNumber = 7;
             this.ApplyButton.ButtonType = TransparencyMaker.Enumerations.ButtonTypeEnum.Apply;
             this.ApplyButton.ClickHandler = null;
-            this.ApplyButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ApplyButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.ApplyButton.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ApplyButton.Location = new System.Drawing.Point(0, 426);
+            this.ApplyButton.Location = new System.Drawing.Point(0, 0);
             this.ApplyButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.ApplyButton.MaximumSize = new System.Drawing.Size(96, 96);
             this.ApplyButton.MinimumSize = new System.Drawing.Size(96, 96);
             this.ApplyButton.Name = "ApplyButton";
             this.ApplyButton.Size = new System.Drawing.Size(96, 96);
-            this.ApplyButton.TabIndex = 37;
+            this.ApplyButton.TabIndex = 38;
             // 
             // QueryTopMargin
             // 
@@ -291,13 +331,13 @@ namespace TransparencyMaker
             this.label1.Text = "Messages:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // MessagesTextBox
+            // MessagesLabel
             // 
             this.MessagesLabel.BackColor = System.Drawing.Color.Transparent;
             this.MessagesLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MessagesLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.MessagesLabel.Location = new System.Drawing.Point(0, 562);
-            this.MessagesLabel.Name = "MessagesTextBox";
+            this.MessagesLabel.Name = "MessagesLabel";
             this.MessagesLabel.Size = new System.Drawing.Size(480, 120);
             this.MessagesLabel.TabIndex = 22;
             this.MessagesLabel.Text = "Ready";
@@ -685,6 +725,7 @@ namespace TransparencyMaker
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
             this.QueryPanel.ResumeLayout(false);
             this.QueryPanel.PerformLayout();
+            this.ApplyButtonMargin.ResumeLayout(false);
             this.QueryTopMargin.ResumeLayout(false);
             this.YouTubePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).EndInit();
@@ -727,6 +768,13 @@ namespace TransparencyMaker
         private System.Windows.Forms.Panel GraphPanel;
         private System.Windows.Forms.ProgressBar Graph;
         private System.Windows.Forms.Panel ButtonMarginPanel;
+        private System.Windows.Forms.Panel panel1;
+        private Controls.FuturisticButtonControl AbortButton;
+        private System.Windows.Forms.Panel panel2;
+        private Controls.FuturisticButtonControl ApplyButton;
+        private System.Windows.Forms.Panel QueryTopMargin;
+        private System.Windows.Forms.Panel YouTubePanel;
+        private System.Windows.Forms.PictureBox YouTubeButton;
     }
     #endregion
 

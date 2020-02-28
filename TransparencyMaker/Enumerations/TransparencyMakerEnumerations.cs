@@ -32,7 +32,8 @@ namespace TransparencyMaker.Enumerations
         Apply = 4, 
         Reset = 5,
         ColorPicker = 6,
-        Undo = 7
+        Undo = 7,
+        Abort = 8
     }
     #endregion
 

@@ -211,6 +211,17 @@ namespace TransparencyMaker.Controls
 
                         // required
                         break;
+
+                    case ButtonTypeEnum.Abort:
+
+                        // Set the text
+                        this.TitleLabel.Text = "Abort";
+                        
+                        // Set the image
+                        this.Image.BackgroundImage = Properties.Resources.AbortButton;
+
+                         // required
+                        break;
                 }
             }
             #endregion
