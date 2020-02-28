@@ -124,7 +124,7 @@ namespace TransparencyMaker
                         if (this.ColorPickerMode)
                         {
                             // it is on
-                            MessagesTextBox.Text = "Color Picker Mode On";
+                            MessagesLabel.Text = "Color Picker Mode On";
 
                             // Hide the control
                             this.PixelInfo.Visible = false;
@@ -132,7 +132,7 @@ namespace TransparencyMaker
                         else 
                         {
                             // it is on
-                            MessagesTextBox.Text = "Color Picker Mode Off";
+                            MessagesLabel.Text = "Color Picker Mode Off";
 
                             // Hide the control
                             this.PixelInfo.Visible = false;
@@ -339,12 +339,12 @@ namespace TransparencyMaker
                     point2 = Point.Empty;
 
                     // it is on
-                    MessagesTextBox.Text = "Rectangle Mode On";
+                    MessagesLabel.Text = "Rectangle Mode On";
                 }
                 else
                 {   
                     // It is off
-                    MessagesTextBox.Text = "Rectangle Mode Off";
+                    MessagesLabel.Text = "Rectangle Mode Off";
                 }
             }
             #endregion
@@ -704,9 +704,72 @@ namespace TransparencyMaker
                     }
                 }
                 
-                
                 // return value
                 return pixels;
+            }
+            #endregion
+            
+            #region ApplyPixels(List<PixelInformation> pixels, PixelQuery pixelQuery, bool isMask = false)
+            /// <summary>
+            /// This method Apply Pixels
+            /// </summary>
+            public void ApplyPixels(List<PixelInformation> pixels, PixelQuery pixelQuery, bool isMask = false)
+            {
+                // locals
+                Color previousColor;
+                Color color = Color.Empty;
+                Guid historyId = Guid.NewGuid();
+                int count = 0;
+
+                // Update the pixels
+                foreach (PixelInformation pixel in pixels)
+                {  
+                    // get the prevoiusColor
+                    previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
+
+                    // if this pixel is not part of any active masks
+                    if ((pixelQuery.AdjustColor) || (pixelQuery.SwapColors))
+                    {
+                        // Get the color
+                        color = pixel.Color;
+
+                        // if this is not a mask, masks get set as is
+                        if (!isMask)
+                        {
+                            // if adjust color is true
+                            if (pixelQuery.AdjustColor)
+                            {
+                                // Adjust the color
+                                color = AdjustColor(previousColor, pixelQuery);
+                            }
+                            else if (pixelQuery.SwapColors)
+                            {
+                                // Swap two colors
+                                color = SwapColor(previousColor, pixelQuery);
+                            }
+                        }
+
+                        // Increment the value for count
+                        count++;
+
+                        // refresh every 100,000 in case this is a long query
+                        if (count % 100000 == 0)
+                        {
+                            // Update the pixels affected by the query
+                            MessagesLabel.Text = "Updated " + String.Format("{0:n0}", count) + " of " +  String.Format("{0:n0}", pixels.Count);
+
+                            // Refersh everything
+                            Refresh();
+                            Application.DoEvents();
+                        }
+                    }
+
+                    // Set the pixel
+                    this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
+
+                    // Update the pixels affected by the query
+                    MessagesLabel.Text = "Updated " + String.Format("{0:n0}", pixels.Count) + " pixels.";
+                }
             }
             #endregion
             
@@ -724,9 +787,8 @@ namespace TransparencyMaker
                 List<PixelInformation> pixels = this.PixelDatabase.Pixels;
                 Graphics graphics = Canvas.CreateGraphics();
                 Guid historyId = Guid.NewGuid();
-                Color previousColor;
+                Color color;
                 bool checkForMask = false;
-                bool isMaskProtected = false;
 
                 // if the queryText exists
                 if (TextHelper.Exists(queryText))
@@ -776,8 +838,6 @@ namespace TransparencyMaker
                                 MaskManager = new MaskManager();
                             }
 
-                            
-
                             // Find the pixels that match the Criteria given
                             pixels = ApplyCriteria(pixels, pixelQuery);
 
@@ -797,7 +857,7 @@ namespace TransparencyMaker
                                 // Application.DoEvents();
 
                                 // Get the color
-                                Color color = pixelQuery.Color;
+                                color = pixelQuery.Color;
 
                                 // If the value for the property pixelQuery.HasMask is true
                                 if (pixelQuery.HasMask)
@@ -810,44 +870,17 @@ namespace TransparencyMaker
                                     // If there are one or more Masks
                                     checkForMask = ListHelper.HasOneOrMoreItems(MaskManager.Masks);
 
-                                    // Update the pixels
-                                    foreach (PixelInformation pixel in pixels)
+                                    // Apply these pixels
+                                    ApplyPixels(pixels, pixelQuery);
+
+                                    // if the value for checkForMask is true
+                                    if (checkForMask)
                                     {
-                                        // if the value for checkForMask is true
-                                        if (checkForMask)
+                                        foreach (Mask mask in MaskManager.Masks)      
                                         {
-                                            // Set the value for isMaskProtected
-                                            isMaskProtected = MaskManager.IsPixelInMask(pixel.X, pixel.Y);
+                                            // Apply the pixels
+                                            ApplyPixels(mask.Pixels, pixelQuery, true);
                                         }
-
-                                        // if this pixel is not protected under a mask
-                                        if (!isMaskProtected)
-                                        {
-                                            // get the prevoiusColor
-                                            previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
-
-                                            // if this pixel is not part of any active masks
-                                            if ((pixelQuery.AdjustColor) || (pixelQuery.SwapColors))
-                                            {
-                                                // if adjust color is true
-                                                if (pixelQuery.AdjustColor)
-                                                {
-                                                    // Adjust the color
-                                                    color = AdjustColor(previousColor, pixelQuery);
-                                                }
-                                                else if (pixelQuery.SwapColors)
-                                                {
-                                                    // Swap two colors
-                                                    color = SwapColor(previousColor, pixelQuery);
-                                                }
-                                            }
-
-                                            // Set the pixel
-                                            this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, previousColor);
-                                        }
-
-                                        // Increment the value for Graph
-                                        // Graph.Value++;
                                     }
                                 }
 
@@ -904,7 +937,7 @@ namespace TransparencyMaker
                                 foreach (PixelInformation pixel in pixels)
                                 {
                                     // Get the color
-                                    Color color = Color.FromArgb(alpha, pixel.Color);
+                                    color = Color.FromArgb(alpha, pixel.Color);
 
                                     // Set the pixel
                                     this.DirectBitmap.SetPixel(pixel.X, pixel.Y, color, historyId, pixel.Color);
@@ -1416,7 +1449,7 @@ namespace TransparencyMaker
                             MaskManager.Masks.Remove(existingMask);
 
                             // Show the user something happened
-                            this.MessagesTextBox.Text = Environment.NewLine + "Mask " + mask.Name + " Removed";
+                            this.MessagesLabel.Text = Environment.NewLine + "Mask " + mask.Name + " Removed";
                         }
                     }
 
@@ -1430,7 +1463,7 @@ namespace TransparencyMaker
                         MaskManager.Masks.Add(mask);
 
                         // Show the TextBox
-                        this.MessagesTextBox.Text = Environment.NewLine + "Mask " + mask.Name + " Created With " + String.Format("{0:n0}", pixels.Count) + " Pixels";
+                        this.MessagesLabel.Text = "Mask " + mask.Name + " Created With " + String.Format("{0:n0}", pixels.Count) + " Pixels";
                     }
                 }
             }

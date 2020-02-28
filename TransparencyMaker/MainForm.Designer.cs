@@ -28,7 +28,7 @@ namespace TransparencyMaker
         private System.Windows.Forms.Panel YouTubePanel;
         private System.Windows.Forms.PictureBox YouTubeButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label MessagesTextBox;
+        private System.Windows.Forms.Label MessagesLabel;
         private System.Windows.Forms.Panel RightMargin2;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Panel Separator2;
@@ -81,7 +81,7 @@ namespace TransparencyMaker
             this.YouTubePanel = new System.Windows.Forms.Panel();
             this.YouTubeButton = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.MessagesTextBox = new System.Windows.Forms.Label();
+            this.MessagesLabel = new System.Windows.Forms.Label();
             this.RightMargin2 = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
@@ -205,7 +205,7 @@ namespace TransparencyMaker
             this.QueryPanel.Controls.Add(this.ApplyButton);
             this.QueryPanel.Controls.Add(this.QueryTopMargin);
             this.QueryPanel.Controls.Add(this.label1);
-            this.QueryPanel.Controls.Add(this.MessagesTextBox);
+            this.QueryPanel.Controls.Add(this.MessagesLabel);
             this.QueryPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.QueryPanel.Location = new System.Drawing.Point(1204, 32);
             this.QueryPanel.Name = "QueryPanel";
@@ -293,14 +293,14 @@ namespace TransparencyMaker
             // 
             // MessagesTextBox
             // 
-            this.MessagesTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.MessagesTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MessagesTextBox.ForeColor = System.Drawing.Color.GhostWhite;
-            this.MessagesTextBox.Location = new System.Drawing.Point(0, 562);
-            this.MessagesTextBox.Name = "MessagesTextBox";
-            this.MessagesTextBox.Size = new System.Drawing.Size(480, 120);
-            this.MessagesTextBox.TabIndex = 22;
-            this.MessagesTextBox.Text = "Ready";
+            this.MessagesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MessagesLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MessagesLabel.ForeColor = System.Drawing.Color.GhostWhite;
+            this.MessagesLabel.Location = new System.Drawing.Point(0, 562);
+            this.MessagesLabel.Name = "MessagesTextBox";
+            this.MessagesLabel.Size = new System.Drawing.Size(480, 120);
+            this.MessagesLabel.TabIndex = 22;
+            this.MessagesLabel.Text = "Ready";
             // 
             // RightMargin2
             // 
