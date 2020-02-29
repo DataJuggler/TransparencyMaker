@@ -22,24 +22,24 @@ namespace DataJuggler.PixelDatabase
 
         #region Methods
 
-            #region LoadPixelDatabase(Bitmap bitmap)
+            #region LoadPixelDatabase(Image original, StatusUpdate updateCallback)
             /// <summary>
             /// This method is used to load a PixelDatabase and its DirectBitmap object.
             /// </summary>
             /// <param name="bitmap"></param>
             /// <returns></returns>
-            public static PixelDatabase LoadPixelDatabase(Bitmap bitmap)
+            public static PixelDatabase LoadPixelDatabase(Image original, StatusUpdate updateCallback)
             {
                 // initial valule
                 PixelDatabase pixelDatabase = null;
 
                 try
                 {
-                    // if we have a bitMap
-                    if (NullHelper.Exists(bitmap))
-                    {
-                        // Create a Bitmap from the Source image
-                        using (Bitmap source = new Bitmap(bitmap))
+                    // if we have an image
+                    if (NullHelper.Exists(original))
+                    { 
+                        // create a new bitmap
+                        using (Bitmap source = new Bitmap(original))
                         {
                             // Code To Lockbits
                             BitmapData bitmapData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
@@ -68,11 +68,22 @@ namespace DataJuggler.PixelDatabase
                             int height = source.Height;
                             int x = -1;
                             int y = 0;
+                            int max = 0;
+
+                            // if the UpdateCallback exists
+                            if (NullHelper.Exists(updateCallback))
+                            {
+                                // Set the value for max
+                                max = height * width + 1000;    
+
+                                // Set the graph max
+                                updateCallback("SetGraphMax", max);
+                            }
 
                             // Iterating the pixel array, every 4th byte is a new pixel, much faster than GetPixel
                             for (int a = 0; a < pixels.Length; a = a + 4)
                             {
-                                 // increment the value for x
+                                    // increment the value for x
                                 x++;
 
                                 // every new column
@@ -94,8 +105,15 @@ namespace DataJuggler.PixelDatabase
                                 // create a color
                                 color = Color.FromArgb(alpha, red, green, blue);
 
-                                // Add this point
+                                // Add this pixel
                                 PixelInformation pixelInformation = pixelDatabase.AddPixel(color, x, y);
+
+                                //// refresh every 100,000
+                                //if (a % 100000 == 0)
+                                //{
+                                //    // Set the updateCallback
+                                //    updateCallback("Read " + String.Format("{0:n0}", a / 4) + " pixels of " + String.Format("{0:n0}", max / 4), a / 4);
+                                //}
                             }
 
                             // Create a DirectBitmap
@@ -118,6 +136,10 @@ namespace DataJuggler.PixelDatabase
                 {
                     // write to console for now
                     DebugHelper.WriteDebugError("LoadPixelDatabase", "PixelDatabaseLoader", error);
+                }
+                finally
+                {
+                    
                 }
 
                 // return value

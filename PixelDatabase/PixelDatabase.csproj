@@ -58,6 +58,7 @@
     <Compile Include="DirectBitmap.cs" />
     <Compile Include="MaskManager.cs" />
     <Compile Include="PixelQueryParser.cs" />
+    <Compile Include="StatusCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Erason Icon.ico" />

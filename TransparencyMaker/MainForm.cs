@@ -37,7 +37,6 @@ namespace TransparencyMaker
         private List<PixelInformation> lastUpdate;
         private Color lineColor;
         private bool lineColorSet;
-        private DirectBitmap directBitmap;
         private MaskManager maskManager;
         private bool initialized;
         private bool rectangleMode;
@@ -137,7 +136,6 @@ namespace TransparencyMaker
                             // Hide the control
                             this.PixelInfo.Visible = false;
                         }
-
                         
                         // required
                         break;
@@ -382,9 +380,6 @@ namespace TransparencyMaker
 
                 // Load the PixelDatabase
                 LoadPixelDatabase();
-
-                // Show the ListBox
-                UIEnable();
             }
             #endregion
             
@@ -1960,88 +1955,8 @@ namespace TransparencyMaker
                 // Enable or disable controls
                 UIEnable();
 
-                // Create a Bitmap from the Source image
-                using (Bitmap source = new Bitmap(this.Canvas.BackgroundImage))
-                {
-                    // Code To Lockbits
-                    BitmapData bitmapData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
-                    IntPtr pointer = bitmapData.Scan0;
-                    int size = Math.Abs(bitmapData.Stride) * source.Height;
-                    byte[] pixels = new byte[size];
-                    Marshal.Copy(pointer, pixels, 0, size);
-
-                    // End Code To Lockbits
-                    // Marshal.Copy(pixels,0,pointer, size);
-                    source.UnlockBits(bitmapData);
-
-                    // test only
-                    int length = pixels.Length;
-
-                    // Set the Max for the grid, minus 10 just for comfort
-                    this.Graph.Maximum = source.Width * source.Height + 1000;
-
-                    // Create a new instance of a 'PixelDatabase' object.
-                    this.PixelDatabase = new PixelDatabase();
-
-                     // locals
-                    Color color = Color.FromArgb(0, 0, 0);
-                    int red = 0;
-                    int green = 0;
-                    int blue = 0;
-                    int alpha = 0;
-
-                    // variables to hold height and width
-                    int width = source.Width;
-                    int height = source.Height;
-                    int x = -1;
-                    int y = 0;
-
-                    // Iterating the pixel array, every 4th byte is a new pixel, much faster than GetPixel
-                    for (int a = 0; a < pixels.Length; a = a + 4)
-                    {
-                         // increment the value for x
-                        x++;
-
-                        // every new column
-                        if (x >= width)
-                        {
-                            // reset x
-                            x = 0;
-
-                            // Increment the value for y
-                            y++;
-                        }      
-
-                        // Increment the value
-                        this.Graph.Value++;
-
-                        // get the values for r, g, and blue
-                        blue = pixels[a];
-                        green = pixels[a + 1];
-                        red = pixels[a + 2];
-                        alpha = pixels[a + 3];
-                    
-                        // create a color
-                        color = Color.FromArgb(alpha, red, green, blue);
-
-                        // Add this point
-                        PixelInformation pixelInformation = this.PixelDatabase.AddPixel(color, x, y);
-                    }
-
-                    // Create a DirectBitmap
-                    this.DirectBitmap = new DirectBitmap(source.Width, source.Height);
-                }
-
-                // Now we must copy over the Pixels from the PixelDatabase to the DirectBitmap
-                if ((this.HasPixelDatabase) && (ListHelper.HasOneOrMoreItems(this.PixelDatabase.Pixels)))
-                {
-                    // iterate the pixels
-                    foreach (PixelInformation pixel in this.PixelDatabase.Pixels)
-                    {
-                        // Set the pixel at this spot
-                        DirectBitmap.SetPixel(pixel.X, pixel.Y, pixel.Color);
-                    }
-                }
+                // Load the PixelDatabase
+                this.PixelDatabase = PixelDatabaseLoader.LoadPixelDatabase(this.Canvas.BackgroundImage, StatusUpdate);
 
                 // Set to False
                 this.Analyzing = false;
@@ -2389,6 +2304,36 @@ namespace TransparencyMaker
             }
             #endregion
             
+            #region StatusUpdate(string message, int pixelsUpdated)
+            /// <summary>
+            /// This method returns the Update
+            /// </summary>
+            public void StatusUpdate(string message, int pixelsUpdated)
+            {
+                if (message == "SetGraphMax")
+                {
+                    // Set the Max for the Graph
+                    // this.Graph.Maximum = 1000;
+                }
+                else
+                {
+                    // Set the message
+                    MessagesLabel.Text = message;
+
+                    // if in range
+                    if (pixelsUpdated <= Graph.Maximum)
+                    {
+                        // Set the message
+                        Graph.Value = pixelsUpdated;
+                    }
+                }
+
+                // Refresh everything
+                Refresh();
+                Application.DoEvents();
+            }
+            #endregion
+            
             #region SwapColor(Color previousColor, PixelQuery pixelQuery)
             /// <summary>
             /// This method returns the Color
@@ -2474,10 +2419,6 @@ namespace TransparencyMaker
                     // remove the background image while a file is open
                     this.MainPanel.BackgroundImage = Properties.Resources.Gray_Slate_Small;
                 }
-
-                // Refresh Everything
-                this.Refresh();
-                Application.DoEvents();
             }
             #endregion
             
@@ -2563,8 +2504,21 @@ namespace TransparencyMaker
             /// </summary>
             public DirectBitmap DirectBitmap
             {
-                get { return directBitmap; }
-                set { directBitmap = value; }
+                get 
+                { 
+                    // initial value
+                    DirectBitmap directBitmap = null;
+
+                    // if the value for HasPixelDatabase is true
+                    if (HasPixelDatabase)
+                    {
+                        // set the return value
+                        directBitmap = PixelDatabase.DirectBitmap;
+                    }
+
+                    // return value
+                    return directBitmap;
+                }
             }
             #endregion
             
@@ -2677,13 +2631,10 @@ namespace TransparencyMaker
                     imagePath = value; 
 
                     // if the file exists
-                    if ((TextHelper.Exists(value)) && (File.Exists(value)))
+                    if ((TextHelper.Exists(imagePath)) && (File.Exists(imagePath)))
                     {
                         // local
-                        Image image = null;
-
-                        // load the image
-                        image = Image.FromFile(value);
+                        Image image = Image.FromFile(imagePath);
 
                         // Load the Canvas
                         this.Canvas.BackgroundImage = image;
