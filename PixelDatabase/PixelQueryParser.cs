@@ -9,13 +9,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using TransparencyMaker.Enumerations;
-using TransparencyMaker.Objects;
+using DataJuggler.PixelDatabase.Enumerations;
 
 #endregion
 
-namespace TransparencyMaker.Util
+namespace DataJuggler.PixelDatabase
 {
 
     #region class PixelQueryParser
@@ -245,6 +243,11 @@ namespace TransparencyMaker.Util
                         {
                             // Set the PixelType
                             pixelCriteria.PixelType = PixelTypeEnum.Total;
+                        }
+                        else if (text.Contains("alpha"))
+                        {
+                            // Set the PixelType
+                            pixelCriteria.PixelType = PixelTypeEnum.Alpha;
                         }
                         else if (text.Contains("pixels in lastupdate"))
                         {
@@ -660,7 +663,7 @@ namespace TransparencyMaker.Util
                                 // Increment the value for count
                                 count++;
 
-                                // skip the first line, as it is not really needed
+                                // skip the first line, as it is not needed
                                 if (count > 2)
                                 {
                                     // Add this lines test
@@ -1071,6 +1074,9 @@ namespace TransparencyMaker.Util
                                 // verify everything is valid
                                 if ((pixelQuery.Red >= 0) && (pixelQuery.Green >= 0) && (pixelQuery.Red >= 0) && (pixelQuery.Alpha >= 0))
                                 {
+                                    // SetColor is true
+                                    pixelQuery.SetColor = true;
+
                                     // Set the Color
                                     pixelQuery.Color = Color.FromArgb(pixelQuery.Alpha, pixelQuery.Red, pixelQuery.Green, pixelQuery.Blue);
                                 }
@@ -1152,6 +1158,9 @@ namespace TransparencyMaker.Util
                             // Example: Set Color Orchid (the color must be a named color)
                             else if (words.Count == 3)
                             {
+                                // SetColor is true
+                                pixelQuery.SetColor = true;
+
                                 // Set the Color
                                 pixelQuery.Color = Color.FromName(words[2].Text);
                                 pixelQuery.Alpha = 255;

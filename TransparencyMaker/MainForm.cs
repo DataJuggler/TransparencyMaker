@@ -12,9 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TransparencyMaker.Enumerations;
-using TransparencyMaker.Objects;
-using TransparencyMaker.Util;
+using DataJuggler.PixelDatabase;
+using DataJuggler.PixelDatabase.Enumerations;
 
 #endregion
 
@@ -713,6 +712,14 @@ namespace TransparencyMaker
 
                                 // required
                                 break;
+
+                            case PixelTypeEnum.Alpha:
+
+                                // Handle Alpha Pixels
+                                pixels = HandleAlphaPixels(pixels, criteria);
+
+                                // required
+                                break;
                         }
                     }
                 }
@@ -746,12 +753,12 @@ namespace TransparencyMaker
                     // get the prevoiusColor
                     previousColor = this.DirectBitmap.GetPixel(pixel.X, pixel.Y);
 
-                    // if this pixel is not part of any active masks
-                    if ((pixelQuery.AdjustColor) || (pixelQuery.SwapColors))
-                    {
-                        // Get the color
-                        color = pixel.Color;
+                    // Get the color
+                    color = pixel.Color;
 
+                    // if this pixel is not part of any active masks
+                    if ((pixelQuery.AdjustColor) || (pixelQuery.SwapColors) || (pixelQuery.SetColor))
+                    {
                         // if this is not a mask, masks get set as is
                         if (!isMask)
                         {
@@ -765,6 +772,11 @@ namespace TransparencyMaker
                             {
                                 // Swap two colors
                                 color = SwapColor(previousColor, pixelQuery);
+                            }
+                            else if (pixelQuery.SetColor)
+                            {
+                                // Set the color from here
+                                color = pixelQuery.Color;
                             }
                         }
 
@@ -1192,6 +1204,56 @@ namespace TransparencyMaker
                         }
                     }
                 }
+            }
+            #endregion
+
+            #region HandleAlphaPixels(List<PixelInformation> pixels, PixelCriteria criteria)
+            /// <summary>
+            /// This method returns a list of pixels that match the criteria given based upon Alpha values
+            /// </summary>
+            public List<PixelInformation> HandleAlphaPixels(List<PixelInformation> pixels, PixelCriteria criteria)
+            {
+                // verify everything is valid
+                if ((ListHelper.HasOneOrMoreItems(pixels)) && (NullHelper.Exists(criteria)))
+                {
+                    switch (criteria.ComparisonType)
+                    {   
+                        case ComparisonTypeEnum.LessThan:
+
+                            // Set the pixels
+                            pixels = pixels.Where(x => x.Alpha <= criteria.MaxValue).ToList();
+
+                            // required
+                            break;
+
+                        case ComparisonTypeEnum.Between:
+
+                            // Set the pixels
+                            pixels = pixels.Where(x => x.Alpha >= criteria.MinValue && x.Alpha <= criteria.MaxValue).ToList();
+
+                            // required
+                            break;
+
+                        case ComparisonTypeEnum.GreaterThan:
+
+                            // Get the pixels greater than the mixValue
+                            pixels = pixels.Where(x => x.Alpha >= criteria.MinValue).ToList();
+
+                            // required
+                            break;
+
+                        case ComparisonTypeEnum.Equals:
+
+                            // Get the pixels greater than the mixValue
+                            pixels = pixels.Where(x => x.Alpha == criteria.TargetValue).ToList();
+
+                            // required
+                            break;
+                    }
+                }
+                
+                // return value
+                return pixels;
             }
             #endregion
             
@@ -2170,7 +2232,7 @@ namespace TransparencyMaker
                 // Close the file
                 CloseFile(true);
 
-                // Set the ImagePath again (this reloads the image from disk and set the Canvas.BackgroundImage)
+                // Set the ImagePath again (this reloads the image from disk and sets the Canvas.BackgroundImage)
                 this.ImagePath = imagePath;
 
                 // Reload the PixelDatabase

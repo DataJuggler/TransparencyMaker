@@ -1,16 +1,9 @@
-﻿
+﻿#region using statements
 
-#region using statements
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class Directions

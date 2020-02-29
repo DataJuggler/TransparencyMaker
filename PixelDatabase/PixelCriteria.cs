@@ -2,17 +2,12 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransparencyMaker.Enumerations;
+using DataJuggler.PixelDatabase.Enumerations;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class PixelCriteria

@@ -2,16 +2,13 @@
 
 #region using statements
 
+using DataJuggler.PixelDatabase.Enumerations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransparencyMaker.Enumerations;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class Mask

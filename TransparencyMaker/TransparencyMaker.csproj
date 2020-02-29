@@ -97,7 +97,7 @@
       <DependentUpon>PixelInformationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Delegates\RegisteredEvents.cs" />
-    <Compile Include="Enumerations\TransparencyMakerEnumerations.cs" />
+    <Compile Include="Enumerations\TransparencyMaker.Enumerations.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -105,12 +105,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Objects\History.cs" />
-    <Compile Include="Objects\Mask.cs" />
-    <Compile Include="Objects\PixelCriteria.cs" />
-    <Compile Include="Objects\PixelDatabase.cs" />
-    <Compile Include="Objects\PixelInformation.cs" />
-    <Compile Include="Objects\PixelQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -118,10 +112,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Util\DirectBitmap.cs" />
-    <Compile Include="Objects\Directions.cs" />
-    <Compile Include="Util\MaskManager.cs" />
-    <Compile Include="Util\PixelQueryParser.cs" />
     <EmbeddedResource Include="Controls\FuturisticButtonControl.resx">
       <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +271,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PixelDatabase\PixelDatabase.csproj">
+      <Project>{3cd054eb-8fa9-4bec-bebb-b5302c1020ea}</Project>
+      <Name>PixelDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UltimateHelper\DataJuggler.Core.UltimateHelper.csproj">
       <Project>{b570d96e-c163-480d-8c89-192ac7cef60a}</Project>
       <Name>DataJuggler.Core.UltimateHelper</Name>

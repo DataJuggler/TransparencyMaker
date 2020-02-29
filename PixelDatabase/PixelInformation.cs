@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class PixelInformation

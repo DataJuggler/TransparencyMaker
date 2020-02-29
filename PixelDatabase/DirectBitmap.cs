@@ -10,11 +10,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using TransparencyMaker.Objects;
+using DataJuggler.PixelDatabase;
 
 #endregion
 
-namespace TransparencyMaker.Util
+namespace DataJuggler.PixelDatabase
 {
 
     #region class DirectBitmap

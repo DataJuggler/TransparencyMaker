@@ -5,11 +5,10 @@
 using DataJuggler.Core.UltimateHelper;
 using System.Collections.Generic;
 using System.Linq;
-using TransparencyMaker.Objects;
 
 #endregion
 
-namespace TransparencyMaker.Util
+namespace DataJuggler.PixelDatabase
 {
 
     #region class MaskManager

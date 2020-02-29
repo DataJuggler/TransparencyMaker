@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class PixelDatabase
@@ -24,6 +24,7 @@ namespace TransparencyMaker.Objects
 
         #region Private Variables
         private List<PixelInformation> pixels;
+        private DirectBitmap directBitmap;
         #endregion
 
         #region Constructor
@@ -70,6 +71,34 @@ namespace TransparencyMaker.Objects
 
         #region Properties
 
+            #region DirectBitmap
+            /// <summary>
+            /// This property gets or sets the value for 'DirectBitmap'.
+            /// </summary>
+            public DirectBitmap DirectBitmap
+            {
+                get { return directBitmap; }
+                set { directBitmap = value; }
+            }
+            #endregion
+            
+            #region HasDirectBitmap
+            /// <summary>
+            /// This property returns true if this object has a 'DirectBitmap'.
+            /// </summary>
+            public bool HasDirectBitmap
+            {
+                get
+                {
+                    // initial value
+                    bool hasDirectBitmap = (this.DirectBitmap != null);
+                    
+                    // return value
+                    return hasDirectBitmap;
+                }
+            }
+            #endregion
+            
             #region HasOneOrMorePixels
             /// <summary>
             /// This property returns true if this object has one or more 'Pixels'.

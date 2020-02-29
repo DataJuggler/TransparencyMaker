@@ -2,18 +2,14 @@
 
 #region using statements
 
-using System;
+using DataJuggler.Core.UltimateHelper;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataJuggler.Core.UltimateHelper;
-using TransparencyMaker.Enumerations;
+using DataJuggler.PixelDatabase.Enumerations;
 
 #endregion
 
-namespace TransparencyMaker.Objects
+namespace DataJuggler.PixelDatabase
 {
 
     #region class PixelQuery
@@ -35,6 +31,7 @@ namespace TransparencyMaker.Objects
         private bool colorSet;
         private bool adjustColor;
         private bool swapColors;
+        private bool setColor;
         private SwapTypeEnum swapType;
         private int adjustment;
         private Mask mask;
@@ -358,6 +355,17 @@ namespace TransparencyMaker.Objects
             }
             #endregion
            
+            #region SetColor
+            /// <summary>
+            /// This property gets or sets the value for 'SetColor'.
+            /// </summary>
+            public bool SetColor
+            {
+                get { return setColor; }
+                set { setColor = value; }
+            }
+            #endregion
+            
             #region SetMaskColor
             /// <summary>
             /// This property gets or sets the value for 'SetMaskColor'.
