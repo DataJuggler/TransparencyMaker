@@ -708,8 +708,6 @@ namespace TransparencyMaker
             }
             #endregion
             
-            
-            
             #region StatusUpdate(string message, int pixelsUpdated)
             /// <summary>
             /// This method returns the Update
