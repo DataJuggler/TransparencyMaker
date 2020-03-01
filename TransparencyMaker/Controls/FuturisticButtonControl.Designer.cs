@@ -17,10 +17,10 @@ namespace TransparencyMaker.Controls
         
         #region Private Variables
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Panel TopMarginPanel;
-        private System.Windows.Forms.Panel BottomMarginPanel;
-        private System.Windows.Forms.Panel LeftMarginPanel;
-        private System.Windows.Forms.Panel RightMarginPanel;
+        private TransparencyMaker.Controls.PanelExtender TopMarginPanel;
+        private TransparencyMaker.Controls.PanelExtender BottomMarginPanel;
+        private TransparencyMaker.Controls.PanelExtender LeftMarginPanel;
+        private TransparencyMaker.Controls.PanelExtender RightMarginPanel;
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.PictureBox Image;
         #endregion
@@ -49,10 +49,10 @@ namespace TransparencyMaker.Controls
             /// </summary>
             private void InitializeComponent()
             {
-            this.TopMarginPanel = new System.Windows.Forms.Panel();
-            this.BottomMarginPanel = new System.Windows.Forms.Panel();
-            this.LeftMarginPanel = new System.Windows.Forms.Panel();
-            this.RightMarginPanel = new System.Windows.Forms.Panel();
+            this.TopMarginPanel = new TransparencyMaker.Controls.PanelExtender();
+            this.BottomMarginPanel = new TransparencyMaker.Controls.PanelExtender();
+            this.LeftMarginPanel = new TransparencyMaker.Controls.PanelExtender();
+            this.RightMarginPanel = new TransparencyMaker.Controls.PanelExtender();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.Image = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Image)).BeginInit();

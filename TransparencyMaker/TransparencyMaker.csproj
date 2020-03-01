@@ -90,6 +90,9 @@
     <Compile Include="Controls\FuturisticButtonControl.Designer.cs">
       <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PanelExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PixelInformationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
