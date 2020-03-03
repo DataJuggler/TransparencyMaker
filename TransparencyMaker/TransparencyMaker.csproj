@@ -56,7 +56,8 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Erason Icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>AC3032132EC62D06C1FF55FD8EEFCDB07B892B5A</ManifestCertificateThumbprint>
@@ -71,6 +72,12 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataJuggler.Core.UltimateHelper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataJuggler.Core.UltimateHelper.1.5.0\lib\net461\DataJuggler.Core.UltimateHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DataJuggler.PixelDatabase.Net, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataJuggler.PixelDatabase.Net.1.0.1\lib\net461\DataJuggler.PixelDatabase.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -130,6 +137,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -243,7 +251,6 @@
     <None Include="Images\Sum.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Erason Icon.ico" />
     <None Include="Resources\AbortButton.png" />
     <None Include="Resources\Edit1.png" />
     <None Include="Resources\Edit.png" />
@@ -274,14 +281,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PixelDatabase\PixelDatabase.csproj">
-      <Project>{3cd054eb-8fa9-4bec-bebb-b5302c1020ea}</Project>
-      <Name>PixelDatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UltimateHelper\DataJuggler.Core.UltimateHelper.csproj">
-      <Project>{b570d96e-c163-480d-8c89-192ac7cef60a}</Project>
-      <Name>DataJuggler.Core.UltimateHelper</Name>
-    </ProjectReference>
+    <Content Include="Data Juggler.ico" />
+    <Content Include="Erason Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

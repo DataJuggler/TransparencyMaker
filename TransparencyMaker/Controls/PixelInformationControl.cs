@@ -5,7 +5,7 @@
 using DataJuggler.Core.UltimateHelper;
 using System;
 using System.Windows.Forms;
-using DataJuggler.PixelDatabase;
+using DataJuggler.PixelDatabase.Net;
 
 #endregion
 

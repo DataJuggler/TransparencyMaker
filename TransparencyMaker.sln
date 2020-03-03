@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransparencyMaker", "TransparencyMaker\TransparencyMaker.csproj", "{09855544-8192-48BF-9412-CCD0A3822A64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataJuggler.Core.UltimateHelper", "UltimateHelper\DataJuggler.Core.UltimateHelper.csproj", "{B570D96E-C163-480D-8C89-192AC7CEF60A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelDatabase", "PixelDatabase\PixelDatabase.csproj", "{3CD054EB-8FA9-4BEC-BEBB-B5302C1020EA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{09855544-8192-48BF-9412-CCD0A3822A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09855544-8192-48BF-9412-CCD0A3822A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09855544-8192-48BF-9412-CCD0A3822A64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B570D96E-C163-480D-8C89-192AC7CEF60A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B570D96E-C163-480D-8C89-192AC7CEF60A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B570D96E-C163-480D-8C89-192AC7CEF60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B570D96E-C163-480D-8C89-192AC7CEF60A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CD054EB-8FA9-4BEC-BEBB-B5302C1020EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD054EB-8FA9-4BEC-BEBB-B5302C1020EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CD054EB-8FA9-4BEC-BEBB-B5302C1020EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CD054EB-8FA9-4BEC-BEBB-B5302C1020EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

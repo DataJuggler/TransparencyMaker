@@ -12,8 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using DataJuggler.PixelDatabase;
-using DataJuggler.PixelDatabase.Enumerations;
+using DataJuggler.PixelDatabase.Net;
+using DataJuggler.PixelDatabase.Net.Enumerations;
 
 #endregion
 
@@ -368,7 +368,7 @@ namespace TransparencyMaker
                 OpenFileDialog fileDialog = new OpenFileDialog();
 
                 // Create the DefaultExtension if for Png's
-                fileDialog.DefaultExt = ".png";
+                fileDialog.DefaultExt = ".png;.jpg;";
                 fileDialog.Filter = "image files (*.png,*.jpg)|*.png;*.jpg";
 
                 // Show to the user
