@@ -282,6 +282,7 @@
   <ItemGroup>
     <Content Include="Data Juggler.ico" />
     <Content Include="Erason Icon.ico" />
+    <None Include="Resources\Start.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

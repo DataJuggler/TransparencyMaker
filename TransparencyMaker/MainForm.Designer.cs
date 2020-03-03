@@ -83,11 +83,11 @@ namespace TransparencyMaker
             this.MessagesLabel = new System.Windows.Forms.Label();
             this.RightMargin2 = new TransparencyMaker.Controls.PanelExtender();
             this.MainPanel = new TransparencyMaker.Controls.PanelExtender();
-            this.Canvas = new System.Windows.Forms.PictureBox();
             this.PixelInfo = new TransparencyMaker.Controls.PixelInformationControl();
             this.Separator2 = new TransparencyMaker.Controls.PanelExtender();
             this.Separator1 = new TransparencyMaker.Controls.PanelExtender();
             this.StartButton = new System.Windows.Forms.PictureBox();
+            this.Canvas = new System.Windows.Forms.PictureBox();
             this.ButtonPanel = new TransparencyMaker.Controls.PanelExtender();
             this.IconTopPanel = new TransparencyMaker.Controls.PanelExtender();
             this.RectangleButton = new System.Windows.Forms.PictureBox();
@@ -118,8 +118,8 @@ namespace TransparencyMaker
             this.YouTubePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).BeginInit();
             this.MainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.ButtonPanel.SuspendLayout();
             this.IconTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).BeginInit();
@@ -368,21 +368,6 @@ namespace TransparencyMaker
             this.MainPanel.Size = new System.Drawing.Size(1156, 526);
             this.MainPanel.TabIndex = 78;
             // 
-            // Canvas
-            // 
-            this.Canvas.BackColor = System.Drawing.Color.Transparent;
-            this.Canvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Canvas.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Canvas.Location = new System.Drawing.Point(0, 0);
-            this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(720, 526);
-            this.Canvas.TabIndex = 24;
-            this.Canvas.TabStop = false;
-            this.Canvas.Visible = false;
-            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
-            this.Canvas.MouseEnter += new System.EventHandler(this.Canvas_MouseEnter);
-            this.Canvas.MouseLeave += new System.EventHandler(this.Canvas_MouseLeave);
-            // 
             // PixelInfo
             // 
             this.PixelInfo.BackColor = System.Drawing.Color.LightYellow;
@@ -421,7 +406,7 @@ namespace TransparencyMaker
             // StartButton
             // 
             this.StartButton.BackColor = System.Drawing.Color.Transparent;
-            this.StartButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Start_Button_New;
+            this.StartButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Start;
             this.StartButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.StartButton.Location = new System.Drawing.Point(255, 212);
             this.StartButton.Name = "StartButton";
@@ -431,6 +416,21 @@ namespace TransparencyMaker
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             this.StartButton.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.StartButton.MouseLeave += new System.EventHandler(this.Button_Leave);
+            // 
+            // Canvas
+            // 
+            this.Canvas.BackColor = System.Drawing.Color.Transparent;
+            this.Canvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Canvas.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Canvas.Location = new System.Drawing.Point(0, 0);
+            this.Canvas.Name = "Canvas";
+            this.Canvas.Size = new System.Drawing.Size(720, 526);
+            this.Canvas.TabIndex = 24;
+            this.Canvas.TabStop = false;
+            this.Canvas.Visible = false;
+            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
+            this.Canvas.MouseEnter += new System.EventHandler(this.Canvas_MouseEnter);
+            this.Canvas.MouseLeave += new System.EventHandler(this.Canvas_MouseLeave);
             // 
             // ButtonPanel
             // 
@@ -730,8 +730,8 @@ namespace TransparencyMaker
             this.YouTubePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.YouTubeButton)).EndInit();
             this.MainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             this.ButtonPanel.ResumeLayout(false);
             this.IconTopPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RectangleButton)).EndInit();

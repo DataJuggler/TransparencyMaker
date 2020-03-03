@@ -152,13 +152,13 @@ namespace TransparencyMaker
                         // Parse and apply the current query
                         this.Abort = true;
 
-                        // Refresh everything
-                        Refresh();
-                        Application.DoEvents();
-
                         // required
                         break;
                 }
+
+                // Refresh everything
+                Refresh();
+                Application.DoEvents();
             }
             #endregion
 
