@@ -73,9 +73,9 @@ namespace TransparencyMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Alpha {
+        internal static System.Drawing.Bitmap Add_Button_Small {
             get {
-                object obj = ResourceManager.GetObject("Alpha", resourceCulture);
+                object obj = ResourceManager.GetObject("Add Button Small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace TransparencyMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Alpha_Background {
+        internal static System.Drawing.Bitmap Add_Button_Small_Gray {
             get {
-                object obj = ResourceManager.GetObject("Alpha Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Add Button Small Gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +133,16 @@ namespace TransparencyMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BlackButton {
+            get {
+                object obj = ResourceManager.GetObject("BlackButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Blue {
             get {
                 object obj = ResourceManager.GetObject("Blue", resourceCulture);
@@ -146,6 +156,46 @@ namespace TransparencyMaker.Properties {
         internal static System.Drawing.Bitmap Blue_Wall_Very_Small {
             get {
                 object obj = ResourceManager.GetObject("Blue Wall Very Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BlueArrorUp {
+            get {
+                object obj = ResourceManager.GetObject("BlueArrorUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BlueArrowDown {
+            get {
+                object obj = ResourceManager.GetObject("BlueArrowDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BlueArrowDownGray {
+            get {
+                object obj = ResourceManager.GetObject("BlueArrowDownGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BlueArrowUpGray {
+            get {
+                object obj = ResourceManager.GetObject("BlueArrowUpGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +236,26 @@ namespace TransparencyMaker.Properties {
         internal static System.Drawing.Bitmap Dark_Slate_Small {
             get {
                 object obj = ResourceManager.GetObject("Dark Slate Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteButtonX {
+            get {
+                object obj = ResourceManager.GetObject("DeleteButtonX", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteButtonXGray {
+            get {
+                object obj = ResourceManager.GetObject("DeleteButtonXGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,6 +333,26 @@ namespace TransparencyMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pencil_Transparent {
+            get {
+                object obj = ResourceManager.GetObject("Pencil Transparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pencil_TransparentGray {
+            get {
+                object obj = ResourceManager.GetObject("Pencil TransparentGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Purple {
             get {
                 object obj = ResourceManager.GetObject("Purple", resourceCulture);
@@ -323,9 +413,29 @@ namespace TransparencyMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Start {
+        internal static System.Drawing.Bitmap SmallPancake {
             get {
-                object obj = ResourceManager.GetObject("Start", resourceCulture);
+                object obj = ResourceManager.GetObject("SmallPancake", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SmallPancakeGray {
+            get {
+                object obj = ResourceManager.GetObject("SmallPancakeGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartSmall {
+            get {
+                object obj = ResourceManager.GetObject("StartSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

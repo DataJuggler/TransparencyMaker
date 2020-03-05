@@ -74,9 +74,6 @@
     <Reference Include="DataJuggler.Core.UltimateHelper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataJuggler.Core.UltimateHelper.1.5.0\lib\net461\DataJuggler.Core.UltimateHelper.dll</HintPath>
     </Reference>
-    <Reference Include="DataJuggler.PixelDatabase.Net, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataJuggler.PixelDatabase.Net.1.0.1\lib\net461\DataJuggler.PixelDatabase.Net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,11 +87,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DialogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DialogControl.Designer.cs">
+      <DependentUpon>DialogControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FuturisticButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\FuturisticButtonControl.Designer.cs">
       <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LayerLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LayersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LayersControl.Designer.cs">
+      <DependentUpon>LayersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\PanelExtender.cs">
       <SubType>Component</SubType>
@@ -106,6 +118,12 @@
       <DependentUpon>PixelInformationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Delegates\RegisteredEvents.cs" />
+    <Compile Include="DialogControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogControlForm.Designer.cs">
+      <DependentUpon>DialogControlForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\TransparencyMaker.Enumerations.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MainForm.cs">
@@ -116,16 +134,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Controls\DialogControl.resx">
+      <DependentUpon>DialogControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FuturisticButtonControl.resx">
       <DependentUpon>FuturisticButtonControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LayersControl.resx">
+      <DependentUpon>LayersControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PixelInformationControl.resx">
       <DependentUpon>PixelInformationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogControlForm.resx">
+      <DependentUpon>DialogControlForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -141,6 +163,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -280,9 +307,31 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data Juggler.ico" />
-    <Content Include="Erason Icon.ico" />
     <None Include="Resources\Start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PixelDatabase.Net\PixelDatabase.Net.csproj">
+      <Project>{3cd054eb-8fa9-4bec-bebb-b5302c1020ea}</Project>
+      <Name>PixelDatabase.Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Erason Icon.ico" />
+    <None Include="Resources\BlackButton.jpg" />
+    <None Include="Resources\SmallPancakeGray.png" />
+    <None Include="Resources\SmallPancake.png" />
+    <None Include="Resources\BlueArrowDownGray.png" />
+    <None Include="Resources\BlueArrowUpGray.png" />
+    <None Include="Resources\DeleteButtonXGray.png" />
+    <None Include="Resources\Add Button Small Gray.png" />
+    <None Include="Resources\Pencil TransparentGray.png" />
+    <None Include="Resources\Pencil Transparent.png" />
+    <None Include="Resources\BlueArrowDown.png" />
+    <None Include="Resources\BlueArrorUp.png" />
+    <None Include="Resources\DeleteButtonX.png" />
+    <None Include="Resources\DeleteButton.png" />
+    <None Include="Resources\Add Button Small.png" />
+    <None Include="Resources\StartSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

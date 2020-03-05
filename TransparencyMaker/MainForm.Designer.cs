@@ -78,6 +78,7 @@ namespace TransparencyMaker
             this.ApplyButton = new TransparencyMaker.Controls.FuturisticButtonControl();
             this.QueryTopMargin = new TransparencyMaker.Controls.PanelExtender();
             this.YouTubePanel = new TransparencyMaker.Controls.PanelExtender();
+            this.LayersControl = new TransparencyMaker.Controls.LayersControl();
             this.YouTubeButton = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.MessagesLabel = new System.Windows.Forms.Label();
@@ -301,12 +302,24 @@ namespace TransparencyMaker
             // 
             // YouTubePanel
             // 
+            this.YouTubePanel.Controls.Add(this.LayersControl);
             this.YouTubePanel.Controls.Add(this.YouTubeButton);
             this.YouTubePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.YouTubePanel.Location = new System.Drawing.Point(0, 0);
             this.YouTubePanel.Name = "YouTubePanel";
             this.YouTubePanel.Size = new System.Drawing.Size(480, 180);
             this.YouTubePanel.TabIndex = 107;
+            // 
+            // LayersControl
+            // 
+            this.LayersControl.BackColor = System.Drawing.Color.Transparent;
+            this.LayersControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LayersControl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LayersControl.Location = new System.Drawing.Point(0, 0);
+            this.LayersControl.Name = "LayersControl";
+            this.LayersControl.Size = new System.Drawing.Size(236, 180);
+            this.LayersControl.TabIndex = 66;
+            this.LayersControl.Visible = false;
             // 
             // YouTubeButton
             // 
@@ -319,6 +332,9 @@ namespace TransparencyMaker
             this.YouTubeButton.Size = new System.Drawing.Size(160, 80);
             this.YouTubeButton.TabIndex = 65;
             this.YouTubeButton.TabStop = false;
+            this.YouTubeButton.Click += new System.EventHandler(this.YouTubeButton_Click);
+            this.YouTubeButton.MouseEnter += new System.EventHandler(this.Button_Enter);
+            this.YouTubeButton.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
             // label1
             // 
@@ -406,7 +422,7 @@ namespace TransparencyMaker
             // StartButton
             // 
             this.StartButton.BackColor = System.Drawing.Color.Transparent;
-            this.StartButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Start;
+            this.StartButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.StartSmall;
             this.StartButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.StartButton.Location = new System.Drawing.Point(255, 212);
             this.StartButton.Name = "StartButton";
@@ -475,7 +491,6 @@ namespace TransparencyMaker
             // RectangleButton
             // 
             this.RectangleButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.RectangleButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.Rectanble;
             this.RectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.RectangleButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.RectangleButton.Location = new System.Drawing.Point(0, 0);
@@ -775,6 +790,7 @@ namespace TransparencyMaker
         private TransparencyMaker.Controls.PanelExtender QueryTopMargin;
         private TransparencyMaker.Controls.PanelExtender YouTubePanel;
         private System.Windows.Forms.PictureBox YouTubeButton;
+        private Controls.LayersControl LayersControl;
     }
     #endregion
 

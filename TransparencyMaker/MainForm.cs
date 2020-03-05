@@ -531,14 +531,14 @@ namespace TransparencyMaker
                     if ((displayY + 60) > (canvasHeight - PixelInfo.Height - TitleBarHeight))
                     {
                         // Move up a control's length
-                        displayY = displayY - 60 - PixelInfo.Height;
+                        displayY = displayY - 64 - PixelInfo.Height;
                     }
 
                     // if the width is too far right
-                    if ((displayX) > (canvasWidth + PixelInfo.Width))
+                    if ((displayX + 60) > canvasWidth)
                     {
                         // Move left 
-                        displayX = displayX - 60 - PixelInfo.Width;
+                        displayX = displayX - 96 - PixelInfo.Width;
                     }
 
                     // Display the PixelInfo
@@ -628,6 +628,9 @@ namespace TransparencyMaker
 
                 // Set the value for the property 'ImageLoaded' to true
                 this.ImageLoaded = true;
+
+                // display the layers
+                LayersControl.DisplayLayers();
 
                 // Enable controls now that we are done analyzing
                 UIEnable();
@@ -719,13 +722,13 @@ namespace TransparencyMaker
                     // Set the Max for the Graph
                     this.Graph.Maximum = pixelsUpdated;
                 }
-                else if (message == "")
+                else if (message == "RemoveBackColor")
                 {
-                    // Restore the background image
-                    this.MainPanel.BackgroundImage = Properties.Resources.Gray_Slate_Small;
-
-                        // Set the BackColor
+                    // Set the BackColor
                     this.MainPanel.BackColor = Color.Transparent;
+
+                    // Enable or disable controls
+                    UIEnable();
                 }
                 else if (message.StartsWith("SetBackColor"))
                 {
