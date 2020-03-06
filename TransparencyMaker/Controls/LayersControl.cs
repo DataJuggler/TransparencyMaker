@@ -213,12 +213,12 @@ namespace TransparencyMaker.Controls
                 if (Enabled)
                 {
                     // Use Pancake texture
-                    FlattenButtoon.BackgroundImage = Properties.Resources.SmallPancake;
+                    FlattenButton.BackgroundImage = Properties.Resources.SmallPancake;
                 }
                 else
                 {   
                     // Use Gray Pancake texture
-                    FlattenButtoon.BackgroundImage = Properties.Resources.SmallPancakeGray;
+                    FlattenButton.BackgroundImage = Properties.Resources.SmallPancakeGray;
                 }
             }
             #endregion
@@ -480,7 +480,7 @@ namespace TransparencyMaker.Controls
                 int trueIndex = -1;
 
                 // if the value for hasLayer is true
-                if ((HasPixelDatabase) && (ListHelper.HasXOrMoreItems(PixelDatabase.Layers, 2)) && (hasLayer)))
+                if ((HasPixelDatabase) && (ListHelper.HasXOrMoreItems(PixelDatabase.Layers, 2)) && (hasLayer))
                 {
                     // get the true index
                     trueIndex = FindLayerIndex(SelectedLayer);
@@ -492,14 +492,14 @@ namespace TransparencyMaker.Controls
                     MoveDownButton.Enabled = (trueIndex < PixelDatabase.Layers.Count);
 
                     // Enable the Flatten button if there are two or more layers
-                    FlattenButtoon.Enabled = (PixelDatabase.Layers.Count > 1);
+                    FlattenButton.Enabled = (PixelDatabase.Layers.Count > 1);
                 }
                 else
                 {
                     // there has to be 2 or more layers to Move Up / Move Down or Flatten.
                     MoveUpButton.Enabled = false;
                     MoveDownButton.Enabled = false;
-                    FlattenButtoon.Enabled = false;
+                    FlattenButton.Enabled = false;
                 }
             }
             #endregion

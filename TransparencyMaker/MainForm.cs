@@ -138,12 +138,17 @@ namespace TransparencyMaker
 
                     case 7:
 
+                        // Apply Query
+
                         // Parse and apply the current query
-                        PixelDatabase.ApplyQuery(QueryTextBox.Text,  this.StatusUpdate);
+                        PixelQuery pixelQuery = PixelDatabase.ApplyQuery(QueryTextBox.Text,  this.StatusUpdate);
 
                         // Set the Bitmap now that is has been updated
                         Canvas.BackgroundImage = PixelDatabase.DirectBitmap.Bitmap;
 
+                        // reload the PixelDatabase
+                        PixelDatabase = PixelDatabaseLoader.LoadPixelDatabase(PixelDatabase.DirectBitmap.Bitmap, StatusUpdate);
+                        
                         // required
                         break;
 

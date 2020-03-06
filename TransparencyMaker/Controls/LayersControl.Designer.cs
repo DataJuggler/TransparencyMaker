@@ -34,7 +34,7 @@
             this.TitleLabel = new System.Windows.Forms.Label();
             this.BottomMargin = new TransparencyMaker.Controls.PanelExtender();
             this.ButtonPanel = new TransparencyMaker.Controls.PanelExtender();
-            this.FlattenButtoon = new System.Windows.Forms.Button();
+            this.FlattenButton = new System.Windows.Forms.Button();
             this.Seperator4 = new TransparencyMaker.Controls.PanelExtender();
             this.EditButton = new System.Windows.Forms.Button();
             this.Sepeartor4 = new TransparencyMaker.Controls.PanelExtender();
@@ -90,7 +90,7 @@
             // 
             // ButtonPanel
             // 
-            this.ButtonPanel.Controls.Add(this.FlattenButtoon);
+            this.ButtonPanel.Controls.Add(this.FlattenButton);
             this.ButtonPanel.Controls.Add(this.Seperator4);
             this.ButtonPanel.Controls.Add(this.EditButton);
             this.ButtonPanel.Controls.Add(this.Sepeartor4);
@@ -109,24 +109,24 @@
             // 
             // FlattenButtoon
             // 
-            this.FlattenButtoon.BackgroundImage = global::TransparencyMaker.Properties.Resources.SmallPancakeGray;
-            this.FlattenButtoon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.FlattenButtoon.Dock = System.Windows.Forms.DockStyle.Left;
-            this.FlattenButtoon.Enabled = false;
-            this.FlattenButtoon.FlatAppearance.BorderSize = 0;
-            this.FlattenButtoon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.FlattenButtoon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.FlattenButtoon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlattenButtoon.Location = new System.Drawing.Point(182, 0);
-            this.FlattenButtoon.Name = "FlattenButtoon";
-            this.FlattenButtoon.Size = new System.Drawing.Size(32, 32);
-            this.FlattenButtoon.TabIndex = 11;
-            this.ToolTip.SetToolTip(this.FlattenButtoon, "Flatten all layers.");
-            this.FlattenButtoon.UseVisualStyleBackColor = true;
-            this.FlattenButtoon.EnabledChanged += new System.EventHandler(this.FlattenButtoon_EnabledChanged);
-            this.FlattenButtoon.Click += new System.EventHandler(this.FlattenButtoon_Click);
-            this.FlattenButtoon.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.FlattenButtoon.MouseLeave += new System.EventHandler(this.Button_Leave);
+            this.FlattenButton.BackgroundImage = global::TransparencyMaker.Properties.Resources.SmallPancakeGray;
+            this.FlattenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.FlattenButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.FlattenButton.Enabled = false;
+            this.FlattenButton.FlatAppearance.BorderSize = 0;
+            this.FlattenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.FlattenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.FlattenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FlattenButton.Location = new System.Drawing.Point(182, 0);
+            this.FlattenButton.Name = "FlattenButtoon";
+            this.FlattenButton.Size = new System.Drawing.Size(32, 32);
+            this.FlattenButton.TabIndex = 11;
+            this.ToolTip.SetToolTip(this.FlattenButton, "Flatten all layers.");
+            this.FlattenButton.UseVisualStyleBackColor = true;
+            this.FlattenButton.EnabledChanged += new System.EventHandler(this.FlattenButtoon_EnabledChanged);
+            this.FlattenButton.Click += new System.EventHandler(this.FlattenButtoon_Click);
+            this.FlattenButton.MouseEnter += new System.EventHandler(this.Button_Enter);
+            this.FlattenButton.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
             // Seperator4
             // 
@@ -328,7 +328,7 @@
         private PanelExtender Sepeartor4;
         private PanelExtender LayersPanel;
         private System.Windows.Forms.Label BackgroundLabel;
-        private System.Windows.Forms.Button FlattenButtoon;
+        private System.Windows.Forms.Button FlattenButton;
         private PanelExtender Seperator4;
         private System.Windows.Forms.ToolTip ToolTip;
     }
