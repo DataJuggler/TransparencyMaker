@@ -146,9 +146,6 @@ namespace TransparencyMaker
                         // Set the Bitmap now that is has been updated
                         Canvas.BackgroundImage = PixelDatabase.DirectBitmap.Bitmap;
 
-                        // reload the PixelDatabase
-                        PixelDatabase = PixelDatabaseLoader.LoadPixelDatabase(PixelDatabase.DirectBitmap.Bitmap, StatusUpdate);
-                        
                         // required
                         break;
 
@@ -635,7 +632,7 @@ namespace TransparencyMaker
                 this.ImageLoaded = true;
 
                 // display the layers
-                LayersControl.DisplayLayers();
+                // LayersControl.DisplayLayers();
 
                 // Enable controls now that we are done analyzing
                 UIEnable();
